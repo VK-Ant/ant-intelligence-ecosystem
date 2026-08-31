@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/VK-Ant/ant-intelligence-ecosystem/main/images/logo.png" alt="DocQWise: Read, Extract, Retrieve" width="30%">
+  <img src="https://raw.githubusercontent.com/VK-Ant/ant-intelligence-ecosystem/main/images/logo.png" alt="DocQWise: Read, Extract, Retrieve" width="250">
 </p>
 
 
