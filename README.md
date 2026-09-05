@@ -1,13 +1,18 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/VK-Ant/ant-intelligence-ecosystem/main/images/logo.png" alt="DocQWise: Read, Extract, Retrieve" width="250">
-</p>
+# Ant Intelligence Ecosystem
 
+Documentation for the Ant Intelligence Ecosystem: eight open-source Python libraries and a unified CLI/SDK for building AI systems.
 
-# Ant Intelligence Ecosystem - Documentation
+**Live docs:** [https://vk-ant.github.io/ant-intelligence-ecosystem](https://vk-ant.github.io/ant-intelligence-ecosystem)
 
-Documentation site for the Ant Intelligence Ecosystem: seven open-source Python libraries for building AI systems.
+## Ant Studio
 
-**Live site:** [https://vk-ant.github.io/ant-intelligence-ecosystem](https://vk-ant.github.io/ant-intelligence-ecosystem)
+| | | |
+|---|---|---|
+| **Ant Studio** | CLI + Python SDK that unifies the entire ecosystem into one interface. One command, real results. Built-in quality scoring and privacy auditing on every run. | [PyPI](https://pypi.org/project/antstudio/) | [GitHub](https://github.com/VK-Ant/ant-studio) |
+
+```bash
+pip install antstudio
+```
 
 ## Libraries
 
@@ -24,17 +29,19 @@ Documentation site for the Ant Intelligence Ecosystem: seven open-source Python 
 ## Install All
 
 ```bash
-pip install sightrag sonarwise docqwise wavqwise adaptive-intelligence llmevalkit antguard
+pip install antstudio sightrag sonarwise docqwise wavqwise adaptive-intelligence llmevalkit antguard
 ```
 
 ## Contributing
 
-This is an open source project. Contributions are welcome. See each library's GitHub repo for issues and contribution guidelines.
+This is an entirely open source project. Contributions are welcome — bug reports, feature requests, pull requests, documentation improvements, or new integrations. See each library's GitHub repo for issues and contribution guidelines.
+
+If you are using any of these libraries in your company or project, share your use case. That feedback is what keeps this going.
 
 ## Author
 
-**Venkatkumar R** - [Portfolio](https://vk-ant.github.io/Venkatkumar) | [GitHub](https://github.com/VK-Ant) | [Medium](https://medium.com/@VK_Venkatkumar/list/the-ant-intelligence-ecosystem-71503517a3c1)
+**Venkatkumar Rajan**: [Portfolio](https://vk-ant.github.io/Venkatkumar) , [GitHub](https://github.com/VK-Ant) , [PyPI](https://pypi.org/user/Venkat_VK/) , [Medium](https://medium.com/@VK_Venkatkumar/list/the-ant-intelligence-ecosystem-71503517a3c1)
 
 ## License
 
-Documentation: MIT. Individual libraries have their own licenses (Apache 2.0 / MIT).
+Documentation: MIT. Individual libraries: Apache 2.0 / MIT.

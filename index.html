@@ -13,30 +13,30 @@
 <style>
 /* ===== THEME TOKENS ===== */
 [data-theme="dark"]{
-  --bg:       #07070c;
-  --bg2:      #0e0e16;
-  --bg3:      #15151f;
-  --bg-code:  #12121c;
-  --border:   #222235;
-  --t1:       #eaeaf0;
-  --t2:       #9494a8;
-  --t3:       #5c5c72;
-  --accent:   #f59e0b;
-  --accent2:  rgba(245,158,11,.12);
-  --shadow:   rgba(0,0,0,.4);
+  --bg:       #0c0c14;
+  --bg2:      #131320;
+  --bg3:      #1c1c2e;
+  --bg-code:  #161625;
+  --border:   #2d2d48;
+  --t1:       #f0f0f8;
+  --t2:       #b0b0c8;
+  --t3:       #707090;
+  --accent:   #f5a623;
+  --accent2:  rgba(245,166,35,.12);
+  --shadow:   rgba(0,0,0,.5);
 }
 [data-theme="light"]{
-  --bg:       #f5f6fa;
+  --bg:       #f7f8fc;
   --bg2:      #ffffff;
-  --bg3:      #eaecf4;
-  --bg-code:  #e8eaf2;
-  --border:   #c8c8da;
-  --t1:       #0d0d24;
-  --t2:       #2e2e50;
-  --t3:       #6a6a88;
-  --accent:   #b85c00;
-  --accent2:  rgba(184,92,0,.08);
-  --shadow:   rgba(20,20,60,.12);
+  --bg3:      #eceef6;
+  --bg-code:  #e6e9f2;
+  --border:   #c5c8d8;
+  --t1:       #101028;
+  --t2:       #363658;
+  --t3:       #6e6e8c;
+  --accent:   #d47400;
+  --accent2:  rgba(212,116,0,.07);
+  --shadow:   rgba(20,20,60,.1);
 }
 :root{
   --sw: 264px;
@@ -48,7 +48,7 @@
 /* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.68;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.72;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
 
 /* ===== HEADER ===== */
 .hdr{position:fixed;top:0;left:0;right:0;height:var(--hh);background:var(--bg);border-bottom:1px solid var(--border);z-index:100;display:flex;align-items:center;padding:0 16px;gap:12px;transition:background .3s}
@@ -75,7 +75,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .sb-t{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--t3);margin-bottom:5px;padding:0 8px;font-family:'Space Grotesk',sans-serif}
 .sb-l{display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:5px;color:var(--t2);text-decoration:none;font-size:12.5px;font-weight:500;transition:all .1s;cursor:pointer}
 .sb-l:hover{background:var(--bg3);color:var(--t1)}
-.sb-l.on{background:var(--accent2);color:var(--accent)}
+.sb-l.on{background:var(--accent2);color:var(--accent);font-weight:600}
 .sb-l .d{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .sb-l svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
 .sb-sub{margin-left:14px;border-left:1px solid var(--border);padding-left:6px;margin-top:1px;max-height:0;overflow:hidden;transition:max-height .25s}
@@ -138,7 +138,7 @@ p code,li code,td code{background:var(--bg-code);padding:1px 5px;border-radius:3
 .lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;max-width:860px;margin:0 auto;padding:0 24px 48px}
 .lgrid-title{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;color:var(--t3);padding:0 24px;max-width:860px;margin:8px auto 10px}
 .lc{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:18px;cursor:pointer;transition:all .18s;text-decoration:none;color:inherit}
-.lc{box-shadow:0 1px 4px var(--shadow)}
+.lc{box-shadow:0 2px 8px var(--shadow);transition:all .2s}
 .lc:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 28px var(--shadow)}
 .lc-n{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:2px}
 .lc-tag{font-size:11px;font-weight:600;letter-spacing:.4px;margin-bottom:6px}
@@ -171,6 +171,33 @@ p code,li code,td code{background:var(--bg-code);padding:1px 5px;border-radius:3
 .lib-links a.primary:hover{opacity:.85}
 .lib-links a svg{width:14px;height:14px;fill:currentColor}
 
+
+
+/* BRAND IDENTITY */
+.hdr{border-bottom:none;box-shadow:0 1px 0 var(--border)}
+.hdr::after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),#ff6b35,var(--accent))}
+.sb{border-right:none;box-shadow:1px 0 0 var(--border)}
+.hero{background:radial-gradient(ellipse at center top,rgba(245,166,35,.06) 0%,transparent 60%);padding-top:44px}
+.hero h1{background:linear-gradient(135deg,#f5a623 0%,#ff6b35 40%,#f5a623 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lc{border-left:3px solid transparent;transition:all .2s}
+.lc:hover{border-left-color:var(--accent);border-color:var(--accent)}
+.banner{border:none;border-radius:12px;box-shadow:0 4px 20px var(--shadow)}
+h2.sh{border-bottom:2px solid var(--border)}
+h2.sh::after{content:"";display:block;width:40px;height:2px;background:var(--accent);margin-top:-2px}
+.cb pre{border-left:3px solid var(--accent);border-radius:0 8px 8px 0}
+.lib-links a.primary{background:linear-gradient(135deg,#f5a623,#e88d0c);box-shadow:0 2px 8px rgba(245,166,35,.25)}
+.lib-links a.primary:hover{box-shadow:0 4px 16px rgba(245,166,35,.35)}
+.hero-logo{border:2px solid rgba(245,166,35,.3);box-shadow:0 0 40px rgba(245,166,35,.15)}
+.hero-cmd{border:1px solid rgba(245,166,35,.3);background:rgba(245,166,35,.04)}
+[data-theme="light"] .hero{background:radial-gradient(ellipse at center top,rgba(212,116,0,.06) 0%,transparent 60%)}
+[data-theme="light"] .hero-cmd{background:rgba(212,116,0,.06);border-color:rgba(212,116,0,.2)}
+[data-theme="light"] .lc{box-shadow:0 2px 12px var(--shadow)}
+[data-theme="light"] .banner{box-shadow:0 2px 12px var(--shadow)}
+[data-theme="light"] .cb pre{border-left-color:var(--accent)}
+[data-theme="light"] .hdr::after{background:linear-gradient(90deg,var(--accent),#e86a00,var(--accent))}
+.sb-l .d{box-shadow:0 0 6px currentColor}
+.dt{letter-spacing:-1px}
+.lc-n{font-family:'Space Grotesk',sans-serif}
 
 </style>
 </head>
@@ -209,6 +236,22 @@ p code,li code,td code{background:var(--bg-code);padding:1px 5px;border-radius:3
     <div class="sb-t">Get Started</div>
     <a class="sb-l on" data-p="home" onclick="go('home')"><svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg> Overview</a>
     <a class="sb-l" data-p="quickstart" onclick="go('quickstart')"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg> Quick Start</a>
+  </div>
+  <div class="sb-sec">
+    <div class="sb-t">Studio</div>
+    <a class="sb-l" data-p="antstudio" onclick="go('antstudio');tsub('sub-as')">
+      <span class="d" style="background:#f5a623"></span> Ant Studio
+      <svg class="sb-toggle" data-toggle="sub-as" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+    </a>
+    <div class="sb-sub" id="sub-as">
+      <a class="sb-l" onclick="go('antstudio','as-cli')">CLI Commands</a>
+      <a class="sb-l" onclick="go('antstudio','as-doc')">Document Intelligence</a>
+      <a class="sb-l" onclick="go('antstudio','as-ts')">Forecasting</a>
+      <a class="sb-l" onclick="go('antstudio','as-llm')">LLM Providers</a>
+      <a class="sb-l" onclick="go('antstudio','as-sdk')">Python SDK</a>
+      <a class="sb-l" onclick="go('antstudio','as-track')">Pipeline Tracking</a>
+      <a class="sb-l" onclick="go('antstudio','as-docker')">Docker</a>
+    </div>
   </div>
   <div class="sb-sec">
     <div class="sb-t">Perception</div>
@@ -322,7 +365,16 @@ p code,li code,td code{background:var(--bg-code);padding:1px 5px;border-radius:3
   <div style="max-width:900px;margin:0 auto;padding:0 24px 20px">
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px">
 
-      <div style="grid-column:1/-1;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--t3);margin-top:8px;padding:0 2px;font-family:'Space Grotesk',sans-serif">PERCEPTION</div>
+      <div style="grid-column:1/-1;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--t3);margin-top:8px;padding:0 2px;font-family:'Space Grotesk',sans-serif">STUDIO</div>
+
+      <div class="lc" onclick="go('antstudio')" style="grid-column:1/-1">
+        <div class="lc-n" style="color:var(--accent)">Ant Studio</div>
+        <div class="lc-tag" style="color:var(--accent)">Build. Run. Control.</div>
+        <div class="lc-d" style="margin-top:6px">CLI + Python SDK that unifies the entire ecosystem. One command, real results. Built-in quality scoring (LLMEvalKit) and privacy auditing (AntGuard) on every pipeline run. Vision, audio, documents, time-series, orchestration, all through one interface.</div>
+        <div class="lc-b"><span>v0.2</span><span>Apache 2.0</span><span>pip install antstudio</span></div>
+      </div>
+
+      <div style="grid-column:1/-1;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--t3);margin-top:12px;padding:0 2px;font-family:'Space Grotesk',sans-serif">PERCEPTION</div>
 
       <div class="lc" onclick="go('sightrag')">
         <div class="lc-n" style="color:var(--sr)">SightRAG</div>
@@ -2076,6 +2128,269 @@ OVERALL RISK: LOW
 </div>
 </div>
 
+
+<div class="pg" id="pg-antstudio" data-lib="Ant Studio">
+<div class="ct">
+<img src="images/ant_studio.png" class="banner" alt="Ant Studio">
+<h1 class="dt" style="color:var(--accent)">Ant Studio</h1>
+<div class="dtag" style="color:var(--accent)">Build. Run. Control.</div>
+<p class="ddesc">CLI + Python SDK that unifies the entire Ant Intelligence Ecosystem into one interface. One command, real results. Every pipeline run auto-includes quality scoring (LLMEvalKit, 79 metrics) and privacy auditing (AntGuard). Vision, audio, documents, time-series, orchestration, evaluation, security, all accessible from a single tool.</p>
+<div class="lib-links">
+  <a class="primary" href="https://github.com/VK-Ant/ant-studio" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a>
+  <a href="https://pypi.org/project/antstudio/" target="_blank">PyPI</a>
+  <a href="https://github.com/VK-Ant/ant-studio/blob/main/LICENSE" target="_blank">Apache 2.0</a>
+  <a href="https://github.com/VK-Ant/ant-studio#contributing" target="_blank">Contribute</a>
+</div>
+
+<h2 class="sh" id="as-install">Installation</h2>
+<div class="cb"><pre><code class="language-bash">pip install antstudio              # Core (Ollama, zero deps)
+pip install antstudio[llm]         # + LiteLLM (100+ cloud providers)
+pip install antstudio[local]       # + llama-cpp-python (local GGUF models)
+pip install antstudio[full]        # Everything</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="as-how">How It Works</h2>
+<p class="pr">Every command creates a tracked pipeline run. Ant Studio scans your files, processes them through the right library (DocQWise for documents, WavqWise for time-series), scores the output quality with LLMEvalKit (78 metrics), and audits data privacy with AntGuard. All automatic, no flags needed.</p>
+<div class="cb"><pre><code class="language-bash">$ antstudio doc extract ./invoices/ --fields vendor,amount --output results.csv
+
+  Ant Studio v0.2.0 | DocQWise + llmevalkit + AntGuard
+
+  [1/4] Scanning .................... 47 files found
+  [2/4] Extracting .................. 47/47 complete
+  [3/4] Quality (llmevalkit) ........ 44 passed, 3 flagged
+  [4/4] Privacy (AntGuard) .......... data_left: NO | risk: LOW
+
+  Results saved: results.csv (47 rows)
+  Report (quality): results_quality.json
+  Report (audit): results_audit.json</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+<p class="pr">Every run saves three things: the data output, a quality report (JSON), and a privacy audit report (JSON). No extra configuration.</p>
+
+<h2 class="sh" id="as-cli">All CLI Commands</h2>
+<div class="cb"><pre><code class="language-bash"># Document Intelligence
+antstudio doc extract &lt;source&gt; --fields vendor,amount --output results.csv
+antstudio doc ask &lt;source&gt; "What are the payment terms?"
+
+# Time-Series
+antstudio ts forecast &lt;source&gt; --target revenue --horizon 30 --chart forecast.png
+antstudio ts anomaly &lt;source&gt; --target temperature --method zscore
+
+# Pipeline Tracking
+antstudio runs                    # List all pipeline runs
+antstudio run-detail &lt;run_id&gt;    # Step-by-step view
+
+# System
+antstudio models                  # Available LLM models
+antstudio status                  # Library + system status</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="as-doc">Document Intelligence</h2>
+<p class="pr">Extract structured data from any document type: PDF, DOCX, Excel, images (OCR), and plain text. Supports batch processing of 1000+ files with recursive directory scanning, automatic file-type routing, and confidence scoring per extraction.</p>
+
+<h3 class="ssh">Field Extraction</h3>
+<div class="cb"><pre><code class="language-bash"># Single file
+antstudio doc extract ./invoice.pdf --fields vendor,amount,date
+
+# Batch folder (1000+ files)
+antstudio doc extract ./invoices/ --fields vendor,amount --output results.csv
+
+# Filter file types
+antstudio doc extract ./mixed_docs/ --extensions .pdf,.docx,.xlsx
+
+# From database
+antstudio doc extract --db "postgresql://user:pass@host/db" --query "SELECT * FROM docs"
+
+# From URL
+antstudio doc extract --url "https://example.com/report.pdf"</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Document Q&A</h3>
+<p class="pr">Ask natural-language questions about documents. RAG mode is auto-selected: <code>simple</code> for single documents, <code>graph</code> for multi-document entity linking, <code>auto</code> for Adaptive Intelligence to pick the best mode.</p>
+<div class="cb"><pre><code class="language-bash">antstudio doc ask ./report.pdf "What is the total revenue?"
+antstudio doc ask ./contracts/ "Which vendor has the highest liability?"
+antstudio doc ask ./report.pdf "What is the revenue?" --model openai/gpt-4o</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Supported File Types</h3>
+<p class="pr">PDF, DOCX, XLSX/XLS, CSV, TXT, MD, JSON, XML, HTML, PNG, JPG, JPEG, BMP, TIFF (images via OCR).</p>
+
+<h3 class="ssh">Output Formats</h3>
+<div class="cb"><pre><code class="language-bash">antstudio doc extract ./invoices/ --output results.csv    # CSV
+antstudio doc extract ./invoices/ --output results.xlsx   # Excel
+antstudio doc extract ./invoices/ --output results.json   # JSON
+antstudio doc extract ./invoices/ --output-db "postgresql://..." --table extracted  # Database</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="as-ts">Forecasting & Anomaly Detection</h2>
+
+<h3 class="ssh">Time-Series Forecasting</h3>
+<p class="pr">Generates production-grade forecast charts with historical data, forecast line, 95% confidence interval, and summary statistics. The chart auto-saves alongside CSV output.</p>
+<div class="cb"><pre><code class="language-bash">antstudio ts forecast ./sales.csv --target revenue --horizon 30 --chart forecast.png</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Anomaly Detection</h3>
+<p class="pr">Detect anomalies in time-series data with Z-score or model-based methods. Output includes index, value, anomaly score, and severity level (medium / high / critical).</p>
+<div class="cb"><pre><code class="language-bash">antstudio ts anomaly ./sensors.csv --target temperature --method zscore --threshold 2.0 --output anomalies.csv</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="as-llm">LLM Providers</h2>
+<p class="pr">Ant Studio works with any LLM provider using the <code>provider/model</code> format. Local models, cloud APIs, or both. Auto-detection priority: Ollama running locally &rarr; API key in environment &rarr; Ollama fallback.</p>
+<div class="cb"><pre><code class="language-bash"># Ollama (local, zero config, default)
+antstudio doc ask ./report.pdf "What is the revenue?"
+antstudio doc ask ./report.pdf "What is the revenue?" --model ollama/llama3.2
+
+# OpenAI
+export OPENAI_API_KEY=sk-...
+antstudio doc ask ./report.pdf "What is the revenue?" --model openai/gpt-4o
+
+# Azure OpenAI
+export AZURE_API_KEY=...
+export AZURE_API_BASE=https://your-resource.openai.azure.com/
+antstudio doc ask ./report.pdf "What is the revenue?" --model azure/gpt-4o
+
+# Anthropic
+export ANTHROPIC_API_KEY=sk-ant-...
+antstudio doc ask ./report.pdf "What is the revenue?" --model anthropic/claude-sonnet
+
+# Groq / Mistral / DeepSeek / Together AI
+antstudio doc ask ./report.pdf "Revenue?" --model groq/llama-3.1-70b
+antstudio doc ask ./report.pdf "Revenue?" --model mistral/mistral-large-latest
+antstudio doc ask ./report.pdf "Revenue?" --model deepseek/deepseek-chat
+
+# Local GGUF model (fully offline)
+antstudio doc ask ./report.pdf "Revenue?" --model local:/path/to/model.gguf
+
+# Check available models
+antstudio models
+antstudio status</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="as-sdk">Python SDK</h2>
+<p class="pr">Same engine, in code. Every function auto-saves quality and audit reports alongside the output.</p>
+<div class="cb"><pre><code class="language-python">from antstudio.doc.extract import run as extract
+from antstudio.doc.ask import run as ask
+from antstudio.ts.forecast import run as forecast
+from antstudio.ts.anomaly import run as detect
+from antstudio.llm.engine import LLMEngine
+
+# LLM engine - use any provider
+engine = LLMEngine()                                    # auto-detect
+engine = LLMEngine(model="ollama/llama3.2")             # local
+engine = LLMEngine(model="openai/gpt-4o")               # cloud
+engine = LLMEngine(model="azure/gpt-4o")                 # enterprise
+engine = LLMEngine(provider="local", model_path="/path/to/model.gguf")  # offline
+
+# Extract from folder
+results = extract("./invoices/", fields=["vendor", "amount", "date"], output="output.csv")
+print(results.quality)     # llmevalkit scores
+print(results.audit)       # AntGuard report
+
+# Forecast with chart
+fc = forecast("./sales.csv", target="revenue", horizon=30, output="forecast.csv")
+fc.save_chart("chart.png", title="Revenue Forecast", show_confidence=True)
+print(fc.predictions)      # [213.4, 215.1, ...]
+print(fc.model_used)       # model name
+
+# Anomaly detection
+anom = detect("./sensors.csv", target="temperature", method="zscore", output="anomalies.csv")
+print(anom.items)           # [{"index": 42, "value": 98.5, "score": 3.2, "severity": "high"}]
+
+# Document Q&A
+answer = ask("./report.pdf", "What are the payment terms?", model="openai/gpt-4o")
+print(answer.text, answer.confidence)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="as-track">Pipeline Tracking</h2>
+<p class="pr">Every command creates a tracked pipeline run, stored locally at <code>~/.antstudio/runs/</code>. No server needed.</p>
+<div class="cb"><pre><code class="language-bash"># List all past runs
+antstudio runs
+
+  ID         Pipeline                              Steps        Status     Time
+  ---------- ------------------------------------- ------------ ---------- --------
+  a1b2c3d4   Document Extraction: ./invoices/      4/4 passed   success    12.3s
+  e5f6g7h8   Forecast: ./sales.csv                 3/3 passed   success    3.1s
+
+# Detailed step view
+antstudio run-detail a1b2c3d4</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Pipeline Tracker UI</h3>
+<p class="pr">A web-based flow visualization showing the execution graph, step status, logs, and run history. Shows each step as a node with status indicator, duration, and quality score.</p>
+<div class="cb"><pre><code class="language-bash"># With Docker Compose
+docker compose up tracker
+# Open http://localhost:8501
+
+# Standalone
+pip install flask
+cd tracker && python app.py</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="as-reports">Quality & Audit Reports</h2>
+<p class="pr">Every pipeline run automatically saves quality and audit reports as JSON files alongside the output. No extra flags needed.</p>
+<div class="cb"><pre><code class="language-bash">antstudio ts forecast ./sales.csv --target revenue --horizon 30 --output output/forecast.csv
+
+# Output directory:
+# output/
+#   forecast.csv              &lt;- pipeline output
+#   forecast_forecast.png     &lt;- visualization chart
+#   forecast_quality.json     &lt;- llmevalkit quality scores
+#   forecast_audit.json       &lt;- antguard privacy audit</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+<p class="pr">Use cases: attach <code>_audit.json</code> for compliance proof, check <code>_quality.json</code> for debugging, parse JSON in CI/CD to gate deployments, ship reports alongside results for client handoffs.</p>
+
+<h2 class="sh" id="as-docker">Docker</h2>
+<p class="pr">Docker Compose stack includes Ant Studio CLI, Ollama (local LLM), and the Pipeline Tracker UI.</p>
+<div class="cb"><pre><code class="language-bash"># Build and run everything
+docker compose up -d
+
+# Run a forecast
+docker compose exec antstudio antstudio ts forecast /data/samples/daily_sales.csv \
+  --target value --horizon 30 --chart /output/forecast.png
+
+# Extract from documents
+docker compose exec antstudio antstudio doc extract /data/my_invoices/ \
+  --fields vendor,amount --output /output/results.csv
+
+# Pipeline Tracker UI at http://localhost:8501
+
+# Stop
+docker compose down</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<table class="tb">
+<thead><tr><th>Service</th><th>Port</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code>antstudio</code></td><td>--</td><td>CLI container with all dependencies</td></tr>
+<tr><td><code>ollama</code></td><td>11434</td><td>Local LLM server</td></tr>
+<tr><td><code>tracker</code></td><td>8501</td><td>Pipeline tracking web UI</td></tr>
+</tbody>
+</table>
+
+<h2 class="sh" id="as-responsible">Responsible AI (Always On)</h2>
+<p class="pr">Three pillars run on every command. Never configured. Never skipped.</p>
+<table class="tb">
+<thead><tr><th>Pillar</th><th>Library</th><th>What It Does</th></tr></thead>
+<tbody>
+<tr><td><strong>Routing</strong></td><td>Adaptive Intelligence</td><td>Auto-detects file type, routes to correct pipeline</td></tr>
+<tr><td><strong>Quality</strong></td><td>LLMEvalKit (78 metrics)</td><td>Scores every output. Flags low confidence.</td></tr>
+<tr><td><strong>Privacy</strong></td><td>AntGuard</td><td>Monitors file/network. Proves data stayed local.</td></tr>
+</tbody>
+</table>
+
+<h2 class="sh" id="as-arch">Architecture</h2>
+<div class="cb"><pre><code class="language-bash">antstudio/
+  cli.py               # Click CLI (doc, ts, runs, status)
+  pipeline.py           # Step tracking + JSON persistence
+  backbone/             # Auto quality + privacy on every command
+  doc/
+    extract.py          # Document field extraction (DocQWise)
+    ask.py              # Document Q&A with RAG modes
+    loader.py           # Universal file loader (PDF, DOCX, Excel, images, TXT)
+  ts/
+    forecast.py         # Time-series forecasting with visualization
+    anomaly.py          # Anomaly detection (Z-score + WavqWise)
+  io/
+    reader.py           # Universal input (file, folder, DB, URL)
+    writer.py           # Universal output (CSV, Excel, JSON, DB)
+  llm/
+    engine.py           # Universal LLM engine (10+ providers)
+  reports.py            # Quality + audit report generator (JSON)
+
+tracker/
+  app.py               # Flask API for pipeline tracking UI
+  static/index.html    # Flow visualization
+
+docker-compose.yml     # Full stack: CLI + Ollama + Tracker UI</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+</div>
+</div>
+
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -2129,6 +2444,7 @@ const SI=[
   {l:'LLMEvalKit',p:'llmevalkit',t:'llmevalkit evaluation metrics hallucination compliance hipaa gdpr dpdp security bias prompt injection pii detection'},
   {l:'AntGuard',p:'antguard',t:'antguard guard detect protect privacy security data movement file network process correlation policy profiler'},
   {l:'Quick Start',p:'quickstart',t:'install pip quick start setup getting started'},
+  {l:'Ant Studio',p:'antstudio',t:'ant studio cli sdk pipeline tracking docker forecast extract document ask anomaly ollama openai build run control'},
 ];
 function search(q){const b=document.getElementById('srb');if(!q||q.length<2){b.classList.remove('show');return}const lw=q.toLowerCase();const h=SI.filter(s=>s.t.includes(lw)||s.l.toLowerCase().includes(lw));if(!h.length){b.classList.remove('show');return}b.innerHTML=h.map(r=>'<div class="sr-i" onmousedown="go(\''+r.p+'\');document.getElementById(\'si\').value=\'\'"><b>'+r.l+'</b><br>View documentation</div>').join('');b.classList.add('show')}
 
