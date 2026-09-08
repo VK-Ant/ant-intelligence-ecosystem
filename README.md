@@ -1,14 +1,19 @@
 # Ant Intelligence Ecosystem
 
-Documentation for the Ant Intelligence Ecosystem: eight open-source Python libraries and a unified CLI/SDK for building AI systems.
+Documentation for the Ant Intelligence Ecosystem: seven open-source Python libraries and a unified CLI/SDK for building AI systems.
 
-**Live docs:** [https://vk-ant.github.io/ant-intelligence-ecosystem](https://vk-ant.github.io/ant-intelligence-ecosystem)
+**Live docs:** https://vk-ant.github.io/ant-intelligence-ecosystem
 
 ## Ant Studio
 
-| | | |
-|---|---|---|
-| **Ant Studio** | CLI + Python SDK that unifies the entire ecosystem into one interface. One command, real results. Built-in quality scoring and privacy auditing on every run. | [PyPI](https://pypi.org/project/antstudio/) | [GitHub](https://github.com/VK-Ant/ant-studio) |
+**Ant Studio** is a CLI + Python SDK that unifies the entire ecosystem into one interface.
+
+One command, real results, with built-in quality scoring and privacy auditing on every run.
+
+- [PyPI](https://pypi.org/project/antstudio/)
+- [GitHub](https://github.com/VK-Ant/ant-studio)
+
+### Install
 
 ```bash
 pip install antstudio
@@ -17,7 +22,7 @@ pip install antstudio
 ## Libraries
 
 | Library | What It Does | PyPI | GitHub |
-|---------|-------------|------|--------|
+|---|---|---|---|
 | **SightRAG** | Visual RAG for images, video, cameras | [PyPI](https://pypi.org/project/sightrag/) | [GitHub](https://github.com/VK-Ant/sightrag) |
 | **Sonarwise** | Audio perception, transcription, speaker ID | [PyPI](https://pypi.org/project/sonarwise/) | [GitHub](https://github.com/VK-Ant/sonarwise) |
 | **DocQWise** | Document intelligence, extraction, RAG | [PyPI](https://pypi.org/project/docqwise/) | [GitHub](https://github.com/VK-Ant/docqwise) |
@@ -34,13 +39,20 @@ pip install antstudio sightrag sonarwise docqwise wavqwise adaptive-intelligence
 
 ## Contributing
 
-This is an entirely open source project. Contributions are welcome — bug reports, feature requests, pull requests, documentation improvements, or new integrations. See each library's GitHub repo for issues and contribution guidelines.
+This is an entirely open-source project. Contributions are welcome — bug reports, feature requests, pull requests, documentation improvements, or new integrations.
 
-If you are using any of these libraries in your company or project, share your use case. That feedback is what keeps this going.
+See each library's GitHub repository for issues and contribution guidelines.
+
+If you are using any of these libraries in your company or project, share your use case. That feedback helps keep the ecosystem evolving.
 
 ## Author
 
-**Venkatkumar Rajan**: [Portfolio](https://vk-ant.github.io/Venkatkumar) , [GitHub](https://github.com/VK-Ant) , [PyPI](https://pypi.org/user/Venkat_VK/) , [Medium](https://medium.com/@VK_Venkatkumar/list/the-ant-intelligence-ecosystem-71503517a3c1)
+**Venkatkumar Rajan**
+
+- [Portfolio](https://vk-ant.github.io/Venkatkumar)
+- [GitHub](https://github.com/VK-Ant)
+- [PyPI](https://pypi.org/user/Venkat_VK/)
+- [Medium](https://medium.com/@VK_Venkatkumar/list/the-ant-intelligence-ecosystem-71503517a3c1)
 
 ## License
 
