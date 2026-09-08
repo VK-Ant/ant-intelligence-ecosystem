@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -7,230 +7,654 @@
 <meta name="description" content="Seven pluggable AI libraries for vision, audio, documents, time-series, orchestration, evaluation, and security.">
 <link rel="icon" href="images/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" id="hljs-dark">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-light" disabled>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-light">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" id="hljs-dark" disabled>
 <style>
-/* ===== THEME TOKENS ===== */
-[data-theme="dark"]{
-  --bg:       #0c0c14;
-  --bg2:      #131320;
-  --bg3:      #1c1c2e;
-  --bg-code:  #161625;
-  --border:   #2d2d48;
-  --t1:       #f0f0f8;
-  --t2:       #b0b0c8;
-  --t3:       #707090;
-  --accent:   #f5a623;
-  --accent2:  rgba(245,166,35,.12);
-  --shadow:   rgba(0,0,0,.5);
-}
-[data-theme="light"]{
-  --bg:       #f7f8fc;
-  --bg2:      #ffffff;
-  --bg3:      #eceef6;
-  --bg-code:  #e6e9f2;
-  --border:   #c5c8d8;
-  --t1:       #101028;
-  --t2:       #363658;
-  --t3:       #6e6e8c;
-  --accent:   #d47400;
-  --accent2:  rgba(212,116,0,.07);
-  --shadow:   rgba(20,20,60,.1);
-}
-:root{
-  --sw: 264px;
-  --hh: 52px;
+/* ===== 1. THEME TOKENS & CONTRAST PALETTE ===== */
+:root {
+  --sw: 270px;
+  --hh: 64px;
+  --g-blue: #1a73e8;
+  --g-blue-hover: #1557b0;
+  --g-blue-subtle: #e8f0fe;
+  --g-text-dark: #1f1f1f;
+  --g-text-subtle: #444746;
+  --g-border: #dadce0;
+  --g-bg-card: #ffffff;
+  --g-bg-page: #f8f9fa;
+  --g-code-bg: #f1f3f4;
   --sr: #00c896; --so: #f97316; --dq: #16a34a; --wq: #8b5cf6;
-  --ai: #eab308; --ek: #ec4899; --ag: #3b82f6;
+  --ai: #eab308; --ek: #ec4899; --ag: #3b82f6; --as: #f5a623;
 }
 
-/* ===== RESET ===== */
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.72;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
-
-/* ===== HEADER ===== */
-.hdr{position:fixed;top:0;left:0;right:0;height:var(--hh);background:var(--bg);border-bottom:1px solid var(--border);z-index:100;display:flex;align-items:center;padding:0 16px;gap:12px;transition:background .3s}
-.hdr-logo{display:flex;align-items:center;gap:8px;text-decoration:none;cursor:pointer}
-.hdr-logo img{width:34px;height:34px;border-radius:8px;object-fit:contain;animation:pulse 3s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-.hdr-logo span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:var(--accent);letter-spacing:-.3px}
-.hdr-logo span b{color:var(--t1);font-weight:700}
-.hdr-search{flex:1;max-width:360px;margin-left:auto;position:relative}
-.hdr-search input{width:100%;padding:6px 12px 6px 32px;background:var(--bg2);border:1px solid var(--border);border-radius:7px;color:var(--t1);font-size:12.5px;outline:none;font-family:inherit;transition:border .15s}
-.hdr-search input:focus{border-color:var(--accent)}
-.hdr-search input::placeholder{color:var(--t3)}
-.hdr-search svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);width:14px;height:14px;stroke:var(--t3);fill:none;stroke-width:2}
-.hdr-right{display:flex;align-items:center;gap:10px}
-.hdr-right a{color:var(--t2);font-size:12.5px;font-weight:600;text-decoration:none;transition:color .12s}
-.hdr-right a:hover{color:var(--accent)}
-.theme-btn{background:var(--bg2);border:1px solid var(--border);border-radius:6px;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--t2);transition:all .15s;flex-shrink:0}
-.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
-.ham{display:none;background:none;border:none;color:var(--t1);cursor:pointer;padding:2px}
-
-/* ===== SIDEBAR ===== */
-.sb{position:fixed;top:var(--hh);left:0;bottom:0;width:var(--sw);background:var(--bg2);border-right:1px solid var(--border);overflow-y:auto;padding:14px 0;z-index:90;scrollbar-width:thin;scrollbar-color:var(--border) transparent;transition:background .3s,transform .25s}
-.sb-sec{padding:0 10px;margin-bottom:18px}
-.sb-t{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--t3);margin-bottom:5px;padding:0 8px;font-family:'Space Grotesk',sans-serif}
-.sb-l{display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:5px;color:var(--t2);text-decoration:none;font-size:12.5px;font-weight:500;transition:all .1s;cursor:pointer}
-.sb-l:hover{background:var(--bg3);color:var(--t1)}
-.sb-l.on{background:var(--accent2);color:var(--accent);font-weight:600}
-.sb-l .d{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.sb-l svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
-.sb-sub{margin-left:14px;border-left:1px solid var(--border);padding-left:6px;margin-top:1px;max-height:0;overflow:hidden;transition:max-height .25s}
-.sb-sub.open{max-height:500px}
-.sb-sub .sb-l{font-size:11.5px;padding:3px 8px;color:var(--t3)}
-.sb-sub .sb-l:hover{color:var(--t2)}
-
-/* ===== MAIN ===== */
-.mn{margin-left:var(--sw);margin-top:var(--hh);min-height:calc(100vh - var(--hh));transition:margin .25s}
-.pg{display:none}.pg.on{display:block}
-.ct{max-width:820px;margin:0 auto;padding:36px 28px 90px}
-
-/* ===== TYPOGRAPHY ===== */
-h1.dt{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;letter-spacing:-.8px;margin-bottom:6px;line-height:1.15}
-.dtag{font-size:15px;font-weight:600;margin-bottom:10px}
-.ddesc{font-size:14px;color:var(--t2);margin-bottom:24px;max-width:600px;line-height:1.75}
-h2.sh{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;margin:40px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--border);letter-spacing:-.2px}
-h3.ssh{font-size:14.5px;font-weight:700;margin:24px 0 8px;color:var(--t1)}
-.pr{font-size:13.5px;color:var(--t2);margin-bottom:14px;line-height:1.75}
-.pr strong{color:var(--t1);font-weight:600}
-.note{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 7px 7px 0;padding:12px 16px;margin:14px 0;font-size:12.5px;color:var(--t2);line-height:1.6}
-
-/* ===== CODE ===== */
-pre{background:var(--bg-code)!important;border:1px solid var(--border);border-radius:7px;padding:14px 16px;margin:8px 0 16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.55;transition:background .3s}
-code{font-family:'JetBrains Mono',monospace;font-size:12.5px}
-p code,li code,td code{background:var(--bg-code);padding:1px 5px;border-radius:3px;font-size:11.5px;border:1px solid var(--border)}
-.cb{position:relative}
-.cb .cp{position:absolute;top:7px;right:7px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:3px 8px;font-size:10px;color:var(--t3);cursor:pointer;font-family:inherit;opacity:0;transition:opacity .12s}
-.cb:hover .cp{opacity:1}
-.cb .cp:hover{color:var(--accent);border-color:var(--accent)}
-
-/* ===== TABLE ===== */
-.tb{width:100%;border-collapse:collapse;margin:8px 0 20px;font-size:12.5px}
-.tb th{text-align:left;padding:8px 10px;background:var(--bg-code);border:1px solid var(--border);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--t1)}
-.tb td{padding:7px 10px;border:1px solid var(--border);color:var(--t2);vertical-align:top}
-.tb tr:hover td{background:var(--bg3)}
-
-/* ===== BADGES ===== */
-.bdg{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:24px}
-.bdg a{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:5px;font-size:11px;font-weight:600;text-decoration:none;border:1px solid var(--border);color:var(--t2);transition:all .12s}
-.bdg a:hover{border-color:var(--accent);color:var(--t1)}
-.bdg a svg{width:13px;height:13px;fill:currentColor}
-
-/* ===== BANNER ===== */
-.banner{width:100%;border-radius:9px;margin-bottom:24px;border:1px solid var(--border);transition:transform .2s}
-.banner:hover{transform:scale(1.005)}
-
-/* ===== HERO ===== */
-.hero{text-align:center;padding:50px 24px 32px}
-.hero-logo{width:160px;height:160px;border-radius:28px;margin:0 auto 18px;animation:float 4s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,5vw,42px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),#f472b6,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:14.5px;color:var(--t2);max-width:520px;margin:0 auto 28px;line-height:1.7}
-.hero-cmd{display:inline-flex;align-items:center;gap:8px;background:var(--bg-code);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--sr);cursor:pointer;transition:border .15s}
-.hero-cmd:hover{border-color:var(--accent)}
-[data-theme="light"] .hero-cmd{color:#0a6847;border-color:#c0c0d0;background:#e4e6f0}
-.hero-cmd .dl{color:var(--t3);user-select:none}
-
-/* ===== LIBRARY CARDS ===== */
-.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;max-width:860px;margin:0 auto;padding:0 24px 48px}
-.lgrid-title{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;color:var(--t3);padding:0 24px;max-width:860px;margin:8px auto 10px}
-.lc{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:18px;cursor:pointer;transition:all .18s;text-decoration:none;color:inherit}
-.lc{box-shadow:0 2px 8px var(--shadow);transition:all .2s}
-.lc:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 28px var(--shadow)}
-.lc-n{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:2px}
-.lc-tag{font-size:11px;font-weight:600;letter-spacing:.4px;margin-bottom:6px}
-.lc-d{font-size:11.5px;color:var(--t2);line-height:1.5}
-.lc-b{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-.lc-b span{font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;background:var(--bg3);color:var(--t3)}
-
-/* ===== SEARCH RESULTS ===== */
-.sr-box{position:absolute;top:100%;left:0;right:0;background:var(--bg3);border:1px solid var(--border);border-radius:7px;margin-top:3px;max-height:300px;overflow-y:auto;display:none;z-index:200}
-.sr-box.show{display:block}
-.sr-i{padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--border);font-size:12px}
-.sr-i:hover{background:var(--accent2)}
-.sr-i b{color:var(--accent);font-size:10px}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-  .sb{transform:translateX(-100%);width:240px}
-  .sb.open{transform:translateX(0)}
-  .mn{margin-left:0}
-  .ham{display:block}
-  .hdr-right a:not(.theme-btn){display:none}
-  .ct{padding:18px 12px 60px}
-  .lgrid{grid-template-columns:1fr;padding:0 12px 40px}
+[data-theme="light"] {
+  --bg: #f8f9fa;
+  --bg2: #ffffff;
+  --bg3: #f1f3f4;
+  --border: #d3d6db;
+  --t1: #1f1f1f;
+  --t2: #3c4043;
+  --t3: #4b5157;
+  --accent: #1a73e8;
+  --accent2: #e8f0fe;
+  --shadow: rgba(60,64,67,.08);
+  --hero-title-color: #ffffff;
+  --sec-label: #1a73e8;
 }
 
-.lib-links{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;align-items:center}
-.lib-links a{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:6px;font-size:11.5px;font-weight:600;text-decoration:none;border:1px solid var(--border);color:var(--t2);transition:all .12s}
-.lib-links a:hover{border-color:var(--accent);color:var(--t1)}
-.lib-links a.primary{background:var(--accent);color:#000;border-color:var(--accent)}
-.lib-links a.primary:hover{opacity:.85}
-.lib-links a svg{width:14px;height:14px;fill:currentColor}
+[data-theme="dark"] {
+  --bg: #111215;
+  --bg2: #1a1b1f;
+  --bg3: #26282e;
+  --border: #383b42;
+  --t1: #f1f3f4;
+  --t2: #c4c7c5;
+  --t3: #a4a8ad;
+  --accent: #8ab4f8;
+  --accent2: rgba(138,180,248,.12);
+  --shadow: rgba(0,0,0,.5);
+  --hero-title-color: #ffffff;
+  --sec-label: #8ab4f8;
+}
 
+/* ===== 2. RESET & BASE TYPOGRAPHY ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'Google Sans', 'DM Sans', Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--t1);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background .2s, color .2s;
+}
 
+/* ===== 3. HEADER ===== */
+.hdr {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--hh);
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  gap: 20px;
+}
 
-/* BRAND IDENTITY */
-.hdr{border-bottom:none;box-shadow:0 1px 0 var(--border)}
-.hdr::after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),#ff6b35,var(--accent))}
-.sb{border-right:none;box-shadow:1px 0 0 var(--border)}
-.hero{background:radial-gradient(ellipse at center top,rgba(245,166,35,.06) 0%,transparent 60%);padding-top:44px}
-.hero h1{background:linear-gradient(135deg,#f5a623 0%,#ff6b35 40%,#f5a623 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.lc{border-left:3px solid transparent;transition:all .2s}
-.lc:hover{border-left-color:var(--accent);border-color:var(--accent)}
-.banner{border:none;border-radius:12px;box-shadow:0 4px 20px var(--shadow)}
-h2.sh{border-bottom:2px solid var(--border)}
-h2.sh::after{content:"";display:block;width:40px;height:2px;background:var(--accent);margin-top:-2px}
-.cb pre{border-left:3px solid var(--accent);border-radius:0 8px 8px 0}
-.lib-links a.primary{background:linear-gradient(135deg,#f5a623,#e88d0c);box-shadow:0 2px 8px rgba(245,166,35,.25)}
-.lib-links a.primary:hover{box-shadow:0 4px 16px rgba(245,166,35,.35)}
-.hero-logo{border:2px solid rgba(245,166,35,.3);box-shadow:0 0 40px rgba(245,166,35,.15)}
-.hero-cmd{border:1px solid rgba(245,166,35,.3);background:rgba(245,166,35,.04)}
-[data-theme="light"] .hero{background:radial-gradient(ellipse at center top,rgba(212,116,0,.06) 0%,transparent 60%)}
-[data-theme="light"] .hero-cmd{background:rgba(212,116,0,.06);border-color:rgba(212,116,0,.2)}
-[data-theme="light"] .lc{box-shadow:0 2px 12px var(--shadow)}
-[data-theme="light"] .banner{box-shadow:0 2px 12px var(--shadow)}
-[data-theme="light"] .cb pre{border-left-color:var(--accent)}
-[data-theme="light"] .hdr::after{background:linear-gradient(90deg,var(--accent),#e86a00,var(--accent))}
-.sb-l .d{box-shadow:0 0 6px currentColor}
-.dt{letter-spacing:-1px}
-.lc-n{font-family:'Space Grotesk',sans-serif}
+.hdr-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
 
+.hdr-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--t1);
+}
+
+.hdr-logo img {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.hdr-brand-title {
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--t1);
+}
+
+.hdr-brand-title span {
+  color: var(--g-blue);
+  font-weight: 600;
+}
+
+.hdr-nav {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin-left: 14px;
+}
+
+.hdr-nav a {
+  text-decoration: none;
+  color: var(--t2);
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+}
+
+.hdr-nav a:hover {
+  color: var(--accent);
+}
+
+.hdr-search {
+  flex: 1;
+  max-width: 360px;
+  margin-left: auto;
+  position: relative;
+}
+
+.hdr-search input {
+  width: 100%;
+  padding: 9px 16px 9px 38px;
+  background: var(--bg3);
+  border: 1px solid transparent;
+  border-radius: 24px;
+  color: var(--t1);
+  font-size: 13.5px;
+  outline: none;
+  font-family: inherit;
+  transition: all .2s;
+}
+
+.hdr-search input:focus {
+  background: var(--bg2);
+  border-color: var(--accent);
+  box-shadow: 0 1px 6px rgba(32,33,36,.12);
+}
+
+.hdr-search svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 17px;
+  stroke: var(--t2);
+  fill: none;
+  stroke-width: 2;
+}
+
+.hdr-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--t2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+}
+
+.icon-btn:hover {
+  background: var(--bg3);
+  color: var(--t1);
+}
+
+.newsletter-btn {
+  background-color: var(--g-blue);
+  color: #ffffff;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 24px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color .15s, box-shadow .15s;
+}
+
+.newsletter-btn:hover {
+  background-color: var(--g-blue-hover);
+  box-shadow: 0 1px 4px 1px rgba(66,133,244,.28);
+}
+
+.ham {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--t1);
+  cursor: pointer;
+}
+
+/* ===== 4. SIDEBAR NAVIGATION ===== */
+.sb {
+  position: fixed;
+  top: var(--hh);
+  left: 0;
+  bottom: 0;
+  width: var(--sw);
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 18px 0;
+  z-index: 90;
+  scrollbar-width: thin;
+  transition: transform .25s;
+}
+
+body.home-active .sb {
+  display: none !important;
+}
+
+body.home-active .mn {
+  margin-left: 0 !important;
+}
+
+.sb-sec { padding: 0 12px; margin-bottom: 22px; }
+.sb-t {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--t3);
+  margin-bottom: 8px;
+  padding: 0 12px;
+}
+
+.sb-l {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--t2);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: all .15s;
+  cursor: pointer;
+}
+
+.sb-l:hover { background: var(--bg3); color: var(--t1); }
+.sb-l.on { background: var(--accent2); color: var(--accent); font-weight: 600; }
+.sb-l .d { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.sb-l svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; flex-shrink: 0; }
+.sb-sub { margin-left: 20px; border-left: 2px solid var(--border); padding-left: 8px; margin-top: 2px; max-height: 0; overflow: hidden; transition: max-height .25s; }
+.sb-sub.open { max-height: 500px; }
+.sb-sub .sb-l { font-size: 12.5px; padding: 6px 10px; color: var(--t2); }
+
+/* ===== 5. HERO SECTION ===== */
+.hero-wn3 {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: 
+    radial-gradient(ellipse at 15% 85%, rgba(254, 240, 138, 0.45) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 20%, rgba(56, 189, 248, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(37, 99, 235, 0.75) 0%, transparent 70%),
+    linear-gradient(135deg, #0284c7 0%, #2563eb 45%, #1d4ed8 75%, #1e3a8a 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.hero-wn3::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 110px 110px;
+  mask-image: radial-gradient(circle at center, black 65%, transparent 95%);
+  -webkit-mask-image: radial-gradient(circle at center, black 65%, transparent 95%);
+  pointer-events: none;
+}
+
+.hero-wn3-circles {
+  position: absolute;
+  width: 620px;
+  height: 620px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-wn3-circles::after {
+  content: "";
+  position: absolute;
+  inset: 80px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 64px 24px;
+  max-width: 980px;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  padding: 7px 18px;
+  border-radius: 24px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.hero-content h1 {
+  font-size: clamp(3rem, 6.8vw, 5.6rem);
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: -1.6px;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 28px rgba(0, 30, 80, 0.35);
+}
+
+.hero-content p {
+  font-size: clamp(1.15rem, 2.1vw, 1.45rem);
+  color: rgba(255, 255, 255, 0.98);
+  font-weight: 400;
+  max-width: 720px;
+  margin: 0 auto 34px;
+  line-height: 1.68;
+}
+
+.hero-cmd {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 30px;
+  padding: 12px 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #fef08a;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.hero-cmd:hover {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(255, 255, 255, 0.65);
+  transform: translateY(-2px);
+}
+
+.hero-cmd .dl { color: rgba(255,255,255,0.7); user-select: none; }
+
+/* ===== 6. MAIN CONTENT AREA ===== */
+.mn { margin-left: var(--sw); margin-top: var(--hh); min-height: calc(100vh - var(--hh)); transition: margin .25s; }
+.pg { display: none; }
+.pg.on { display: block; }
+.ct { max-width: 880px; margin: 0 auto; padding: 44px 32px 100px; }
+
+h1.dt { font-size: 34px; font-weight: 600; letter-spacing: -0.6px; margin-bottom: 10px; line-height: 1.2; color: var(--t1); }
+.dtag { font-size: 16px; font-weight: 600; margin-bottom: 14px; }
+.ddesc { font-size: 15.5px; color: var(--t2); margin-bottom: 26px; line-height: 1.75; }
+h2.sh { font-size: 22px; font-weight: 600; margin: 46px 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); letter-spacing: -0.3px; color: var(--t1); }
+h3.ssh { font-size: 16px; font-weight: 600; margin: 28px 0 10px; color: var(--t1); }
+.pr { font-size: 15px; color: var(--t2); margin-bottom: 18px; line-height: 1.75; }
+.pr strong { color: var(--t1); font-weight: 600; }
+.note { background: var(--bg2); border: 1px solid var(--border); border-left: 4px solid var(--g-blue); border-radius: 4px 8px 8px 4px; padding: 16px 20px; margin: 20px 0; font-size: 14px; color: var(--t2); }
+
+pre { background: var(--bg3)!important; border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 12px 0 20px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.55; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+p code, li code, td code { background: var(--bg3); padding: 3px 7px; border-radius: 4px; font-size: 12.5px; border: 1px solid var(--border); }
+.cb { position: relative; }
+.cb .cp { position: absolute; top: 8px; right: 8px; background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 5px 12px; font-size: 11.5px; font-weight: 500; color: var(--t2); cursor: pointer; opacity: 0; transition: opacity .15s; font-family: inherit; }
+.cb:hover .cp { opacity: 1; }
+.cb .cp:hover { color: var(--g-blue); border-color: var(--g-blue); }
+
+.tb { width: 100%; border-collapse: collapse; margin: 14px 0 26px; font-size: 13.5px; background: var(--bg2); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+.tb th { text-align: left; padding: 12px 16px; background: var(--bg3); border-bottom: 1px solid var(--border); font-weight: 600; font-size: 12.5px; color: var(--t1); }
+.tb td { padding: 10px 16px; border-bottom: 1px solid var(--border); color: var(--t2); vertical-align: top; }
+.tb tr:last-child td { border-bottom: none; }
+.tb tr:hover td { background: var(--bg3); }
+
+.banner { width: 100%; border-radius: 12px; margin-bottom: 26px; border: 1px solid var(--border); }
+
+.lib-links { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 26px; align-items: center; }
+.lib-links a { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; text-decoration: none; border: 1px solid var(--border); color: var(--t2); transition: all .15s; }
+.lib-links a:hover { border-color: var(--g-blue); color: var(--g-blue); }
+.lib-links a.primary { background: var(--g-blue); color: #ffffff; border-color: var(--g-blue); }
+.lib-links a.primary:hover { background: var(--g-blue-hover); color: #ffffff; }
+
+/* ===== 7. ENHANCED CARD GRID ===== */
+.lgrid-container { max-width: 1040px; margin: 48px auto 70px; padding: 0 28px; }
+.lgrid-sec-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--sec-label);
+  margin: 36px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lgrid-sec-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.lgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.lc { 
+  background: var(--bg2); 
+  border: 1px solid var(--border); 
+  border-radius: 14px; 
+  padding: 26px; 
+  cursor: pointer; 
+  transition: all .2s ease; 
+  box-shadow: 0 2px 5px var(--shadow); 
+  text-decoration: none; 
+  color: inherit; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+}
+
+.lc:hover { 
+  transform: translateY(-4px); 
+  border-color: var(--g-blue); 
+  box-shadow: 0 8px 24px var(--shadow); 
+}
+
+.lc-n { 
+  font-size: 20px; 
+  font-weight: 700; 
+  margin-bottom: 6px; 
+  letter-spacing: -0.3px;
+}
+
+.lc-tag { 
+  font-size: 13.5px; 
+  font-weight: 600; 
+  margin-bottom: 12px; 
+}
+
+.lc-d { 
+  font-size: 14.5px; 
+  color: var(--t2); 
+  line-height: 1.65; 
+  margin-bottom: 18px; 
+}
+
+.lc-b { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+.lc-b span { 
+  font-size: 11.5px; 
+  font-weight: 600; 
+  padding: 4px 10px; 
+  border-radius: 6px; 
+  background: var(--bg3); 
+  color: var(--t2); 
+  border: 1px solid var(--border);
+}
+
+.sr-box { position: absolute; top: 100%; left: 0; right: 0; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; margin-top: 6px; max-height: 320px; overflow-y: auto; display: none; z-index: 2000; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+.sr-box.show { display: block; }
+.sr-i { padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--border); font-size: 13px; }
+.sr-i:hover { background: var(--accent2); }
+.sr-i b { color: var(--accent); font-size: 11.5px; }
+
+.author-card {
+  margin-top: 32px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.author-badge {
+  display: inline-block;
+  background: var(--accent2);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.author-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--t1);
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.author-role {
+  font-size: 13.5px;
+  color: var(--t3);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.author-bio {
+  font-size: 14px;
+  color: var(--t2);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.author-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.author-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  color: var(--t2);
+  transition: all 0.15s;
+}
+
+.author-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.author-btn.primary {
+  background: var(--g-blue);
+  color: #ffffff;
+  border-color: var(--g-blue);
+}
+
+.author-btn.primary:hover {
+  background: var(--g-blue-hover);
+}
+
+@media(max-width: 860px) {
+  .hdr-nav { display: none; }
+  .sb { transform: translateX(-100%); width: 250px; }
+  .sb.open { transform: translateX(0); }
+  .mn { margin-left: 0; }
+  .ham { display: block; }
+  .ct { padding: 24px 16px 80px; }
+  .lgrid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
-<body>
+<body class="home-active">
 
-<!-- HEADER -->
+<!-- ===== TOP NAVIGATION BAR ===== -->
 <header class="hdr">
-  <button class="ham" onclick="document.getElementById('sb').classList.toggle('open')" aria-label="Menu">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  <button class="ham" onclick="document.getElementById('sb').classList.toggle('open')" aria-label="Toggle Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
   </button>
-  <a class="hdr-logo" onclick="go('home')">
-    <img src="images/logo.png" alt="Ant">
-    <span>Ant <b>Intelligence</b></span>
-  </a>
+
+  <div class="hdr-left">
+    <a class="hdr-logo" onclick="go('home')">
+      <img src="images/logo.png" alt="Ant Intelligence">
+      <span class="hdr-brand-title">Ant Intelligence <span>Ecosystem</span></span>
+    </a>
+    <ul class="hdr-nav">
+      <li><a href="#quickstart" onclick="go('quickstart')">Getting Started</a></li>
+      <li><a href="#antstudio" onclick="go('antstudio')">Platform &amp; Tools</a></li>
+      <li><a href="#llmevalkit" onclick="go('llmevalkit')">Evaluation</a></li>
+      <li><a href="#antguard" onclick="go('antguard')">Security</a></li>
+      <li><a href="#about" onclick="go('about')">About</a></li>
+    </ul>
+  </div>
+
   <div class="hdr-search">
     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" id="si" placeholder="Search docs..." oninput="search(this.value)" onfocus="search(this.value)" onblur="setTimeout(()=>document.getElementById('srb').classList.remove('show'),200)">
+    <input type="text" id="si" placeholder="Search documentation..." oninput="search(this.value)" onfocus="search(this.value)" onblur="setTimeout(()=>document.getElementById('srb').classList.remove('show'),200)">
     <div class="sr-box" id="srb"></div>
   </div>
+
   <div class="hdr-right">
-    <a href="https://github.com/VK-Ant" target="_blank" title="GitHub" style="display:flex;align-items:center">
+    <button class="icon-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode" id="themeBtn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <a href="https://github.com/VK-Ant" target="_blank" class="icon-btn" title="GitHub">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
     </a>
-    <a href="https://pypi.org/user/Venkat_VK/" target="_blank" title="PyPI" style="display:flex;align-items:center;font-weight:700;font-size:13px">
-      PyPI
-    </a>
-    <button class="theme-btn" onclick="toggleTheme()" title="Toggle dark/light mode" id="themeBtn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
+    <a href="https://pypi.org/user/Venkat_VK/" target="_blank" class="newsletter-btn">PyPI Packages</a>
   </div>
 </header>
 
-<!-- SIDEBAR -->
+<!-- ===== SIDEBAR NAVIGATION ===== -->
 <nav class="sb" id="sb">
   <div class="sb-sec">
     <div class="sb-t">Get Started</div>
@@ -238,10 +662,9 @@ h2.sh::after{content:"";display:block;width:40px;height:2px;background:var(--acc
     <a class="sb-l" data-p="quickstart" onclick="go('quickstart')"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg> Quick Start</a>
   </div>
   <div class="sb-sec">
-    <div class="sb-t">Studio</div>
+    <div class="sb-t">Studio Platform</div>
     <a class="sb-l" data-p="antstudio" onclick="go('antstudio');tsub('sub-as')">
-      <span class="d" style="background:#f5a623"></span> Ant Studio
-      <svg class="sb-toggle" data-toggle="sub-as" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      <span class="d" style="background:var(--as)"></span> Ant Studio
     </a>
     <div class="sb-sub" id="sub-as">
       <a class="sb-l" onclick="go('antstudio','as-cli')">CLI Commands</a>
@@ -254,15 +677,17 @@ h2.sh::after{content:"";display:block;width:40px;height:2px;background:var(--acc
     </div>
   </div>
   <div class="sb-sec">
-    <div class="sb-t">Perception</div>
+    <div class="sb-t">Perception &amp; Vision</div>
     <a class="sb-l" data-p="sightrag" onclick="go('sightrag');tsub('sub-sr')"><span class="d" style="background:var(--sr)"></span> SightRAG</a>
     <div class="sb-sub" id="sub-sr">
+      <a class="sb-l" onclick="go('sightrag','sr-install')">Installation</a>
       <a class="sb-l" onclick="go('sightrag','sr-core')">Core API</a>
       <a class="sb-l" onclick="go('sightrag','sr-ocr')">OCR Search</a>
-      <a class="sb-l" onclick="go('sightrag','sr-mm')">Multimodal</a>
-      <a class="sb-l" onclick="go('sightrag','sr-gd')">Grounding DINO</a>
+      <a class="sb-l" onclick="go('sightrag','sr-multimodal')">Multimodal</a>
+      <a class="sb-l" onclick="go('sightrag','sr-grounding')">Grounding DINO</a>
       <a class="sb-l" onclick="go('sightrag','sr-reid')">Person Re-ID</a>
       <a class="sb-l" onclick="go('sightrag','sr-plug')">Custom Models</a>
+      <a class="sb-l" onclick="go('sightrag','sr-backends')">Backends & Storage</a>
       <a class="sb-l" onclick="go('sightrag','sr-cli')">CLI & REST API</a>
     </div>
   </div>
@@ -270,171 +695,180 @@ h2.sh::after{content:"";display:block;width:40px;height:2px;background:var(--acc
     <div class="sb-t">Audio Intelligence</div>
     <a class="sb-l" data-p="sonarwise" onclick="go('sonarwise');tsub('sub-sw')"><span class="d" style="background:var(--so)"></span> Sonarwise</a>
     <div class="sb-sub" id="sub-sw">
+      <a class="sb-l" onclick="go('sonarwise','sw-install')">Installation</a>
       <a class="sb-l" onclick="go('sonarwise','sw-core')">Core API</a>
-      <a class="sb-l" onclick="go('sonarwise','sw-spk')">Speaker Intelligence</a>
+      <a class="sb-l" onclick="go('sonarwise','sw-speaker')">Speaker Intelligence</a>
       <a class="sb-l" onclick="go('sonarwise','sw-live')">Live Streaming</a>
+      <a class="sb-l" onclick="go('sonarwise','sw-events')">Event Detection</a>
       <a class="sb-l" onclick="go('sonarwise','sw-plug')">Custom Components</a>
+      <a class="sb-l" onclick="go('sonarwise','sw-cli')">CLI & Export</a>
     </div>
   </div>
   <div class="sb-sec">
     <div class="sb-t">Document Intelligence</div>
     <a class="sb-l" data-p="docqwise" onclick="go('docqwise');tsub('sub-dq')"><span class="d" style="background:var(--dq)"></span> DocQWise</a>
     <div class="sb-sub" id="sub-dq">
-      <a class="sb-l" onclick="go('docqwise','dq-ext')">Extraction Methods</a>
+      <a class="sb-l" onclick="go('docqwise','dq-install')">Installation</a>
+      <a class="sb-l" onclick="go('docqwise','dq-extract')">Extraction Methods</a>
       <a class="sb-l" onclick="go('docqwise','dq-llm')">LLM Backends</a>
-      <a class="sb-l" onclick="go('docqwise','dq-rag')">RAG Modes</a>
-      <a class="sb-l" onclick="go('docqwise','dq-api')">Full API</a>
+      <a class="sb-l" onclick="go('docqwise','dq-templates')">Templates & Schemas</a>
+      <a class="sb-l" onclick="go('docqwise','dq-rag')">RAG & GraphRAG</a>
+      <a class="sb-l" onclick="go('docqwise','dq-qa')">Structured Q&A</a>
+      <a class="sb-l" onclick="go('docqwise','dq-api')">Full API Reference</a>
     </div>
   </div>
   <div class="sb-sec">
-    <div class="sb-t">Forecasting & Signals</div>
+    <div class="sb-t">Forecasting &amp; Signals</div>
     <a class="sb-l" data-p="wavqwise" onclick="go('wavqwise');tsub('sub-wq')"><span class="d" style="background:var(--wq)"></span> WavqWise</a>
     <div class="sb-sub" id="sub-wq">
-      <a class="sb-l" onclick="go('wavqwise','wq-mod')">33+ Models</a>
-      <a class="sb-l" onclick="go('wavqwise','wq-anom')">Anomaly Detection</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-install')">Installation</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-core')">Core Workflow</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-models')">33+ Pluggable Models</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-anomaly')">Anomaly Detection</a>
       <a class="sb-l" onclick="go('wavqwise','wq-eeg')">EEG & Signals</a>
-      <a class="sb-l" onclick="go('wavqwise','wq-trd')">Trading</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-trading')">Trading Indicators</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-runtime')">Runtime Acceleration</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-db')">Database Support</a>
     </div>
   </div>
   <div class="sb-sec">
     <div class="sb-t">Orchestration</div>
     <a class="sb-l" data-p="adaptive" onclick="go('adaptive');tsub('sub-ai')"><span class="d" style="background:var(--ai)"></span> Adaptive Intelligence</a>
     <div class="sb-sub" id="sub-ai">
+      <a class="sb-l" onclick="go('adaptive','ai-install')">Installation</a>
+      <a class="sb-l" onclick="go('adaptive','ai-how')">How It Works</a>
       <a class="sb-l" onclick="go('adaptive','ai-rl')">RL Routing</a>
+      <a class="sb-l" onclick="go('adaptive','ai-context')">Context Engineering</a>
       <a class="sb-l" onclick="go('adaptive','ai-mcp')">MCP & Tools</a>
-      <a class="sb-l" onclick="go('adaptive','ai-mem')">Memory</a>
-      <a class="sb-l" onclick="go('adaptive','ai-llm')">LLM Providers</a>
+      <a class="sb-l" onclick="go('adaptive','ai-agentic')">Agentic Workflow</a>
+      <a class="sb-l" onclick="go('adaptive','ai-memory')">Memory & Feedback</a>
+      <a class="sb-l" onclick="go('adaptive','ai-harness')">Harness & Loop</a>
+      <a class="sb-l" onclick="go('adaptive','ai-providers')">LLM Providers</a>
     </div>
   </div>
   <div class="sb-sec">
     <div class="sb-t">Evaluation</div>
     <a class="sb-l" data-p="llmevalkit" onclick="go('llmevalkit');tsub('sub-ek')"><span class="d" style="background:var(--ek)"></span> LLMEvalKit</a>
     <div class="sb-sub" id="sub-ek">
+      <a class="sb-l" onclick="go('llmevalkit','ek-install')">Installation</a>
+      <a class="sb-l" onclick="go('llmevalkit','ek-overview')">13 Modules Overview</a>
       <a class="sb-l" onclick="go('llmevalkit','ek-qual')">Quality Metrics</a>
-      <a class="sb-l" onclick="go('llmevalkit','ek-hall')">Hallucination</a>
-      <a class="sb-l" onclick="go('llmevalkit','ek-comp')">Compliance</a>
-      <a class="sb-l" onclick="go('llmevalkit','ek-sec')">Security</a>
-      <a class="sb-l" onclick="go('llmevalkit','ek-det')">AI Detection</a>
-      <a class="sb-l" onclick="go('llmevalkit','ek-pre')">Presets</a>
+      <a class="sb-l" onclick="go('llmevalkit','ek-comp')">Compliance (HIPAA/GDPR)</a>
+      <a class="sb-l" onclick="go('llmevalkit','ek-doceval')">Document Evaluation</a>
+      <a class="sb-l" onclick="go('llmevalkit','ek-sec')">Security & Injection</a>
+      <a class="sb-l" onclick="go('llmevalkit','ek-hall')">Hallucination (12 Types)</a>
+      <a class="sb-l" onclick="go('llmevalkit','ek-det')">AI Content Detection</a>
+      <a class="sb-l" onclick="go('llmevalkit','ek-gt')">Ground Truth Testing</a>
+      <a class="sb-l" onclick="go('llmevalkit','ek-pre')">All 28 Presets</a>
     </div>
   </div>
   <div class="sb-sec">
-    <div class="sb-t">Guard & Security</div>
+    <div class="sb-t">Guard &amp; Security</div>
     <a class="sb-l" data-p="antguard" onclick="go('antguard');tsub('sub-ag')"><span class="d" style="background:var(--ag)"></span> AntGuard</a>
     <div class="sb-sub" id="sub-ag">
-      <a class="sb-l" onclick="go('antguard','ag-mon')">Monitoring Layers</a>
-      <a class="sb-l" onclick="go('antguard','ag-api')">Full API</a>
-      <a class="sb-l" onclick="go('antguard','ag-pol')">Policy Engine</a>
-      <a class="sb-l" onclick="go('antguard','ag-bri')">Bridge</a>
+      <a class="sb-l" onclick="go('antguard','ag-install')">Installation</a>
+      <a class="sb-l" onclick="go('antguard','ag-monitors')">8 Monitoring Layers</a>
+      <a class="sb-l" onclick="go('antguard','ag-api')">Full API & Methods</a>
+      <a class="sb-l" onclick="go('antguard','ag-policy')">Policy Engine & YAML</a>
+      <a class="sb-l" onclick="go('antguard','ag-bridge')">LLMEvalKit Bridge</a>
+      <a class="sb-l" onclick="go('antguard','ag-platform')">Cross-Platform Specs</a>
     </div>
-    <div class="sb-sec" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+  </div>
+  <div class="sb-sec" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
     <div class="sb-t">About</div>
     <a class="sb-l" data-p="about" onclick="go('about')">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      About This Project
+      About the Ecosystem
     </a>
   </div>
-</div>
 </nav>
 
-<!-- MAIN -->
+<!-- ===== MAIN CONTAINER ===== -->
 <main class="mn" id="mn">
 
-<!-- ===== HOME ===== -->
+<!-- ===== HOME PAGE ===== -->
 <div class="pg on" id="pg-home">
-  <div class="hero">
-    <img src="images/logo.png" class="hero-logo" alt="Ant Intelligence">
-    <h1>Ant Intelligence Ecosystem</h1>
-    <p>Seven open-source Python libraries for building AI systems that see, hear, read, forecast, learn, evaluate, and protect.</p>
-    <div class="hero-cmd" onclick="navigator.clipboard.writeText('pip install sightrag sonarwise docqwise wavqwise adaptive-intelligence llmevalkit antguard')">
-      <span class="dl">$</span> pip install sightrag sonarwise docqwise wavqwise adaptive-intelligence llmevalkit antguard
+  <section class="hero-wn3">
+    <div class="hero-wn3-circles"></div>
+    <div class="hero-content">
+      <span class="hero-badge">Open Source Platform</span>
+      <h1>Ant Intelligence Ecosystem</h1>
+      <p>Seven open-source Python libraries for building autonomous AI systems that see, hear, read, forecast, learn, evaluate, and protect.</p>
+      <div class="hero-cmd" onclick="navigator.clipboard.writeText('pip install sightrag sonarwise docqwise wavqwise adaptive-intelligence llmevalkit antguard antstudio')">
+        <span class="dl">$</span> pip install sightrag sonarwise docqwise wavqwise adaptive-intelligence llmevalkit antguard antstudio
+      </div>
     </div>
-    <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <a href="https://github.com/VK-Ant" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;border:1px solid var(--border);color:var(--t2);transition:all .15s">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a href="https://pypi.org/user/Venkat_VK/" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;border:1px solid var(--border);color:var(--t2);transition:all .15s">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.042.004l-1.308.14C5.516.756 2.07 3.56 2.07 7.5v4.106c0 1.86.54 3.15 1.53 4.2l-.12.06C1.77 16.86.57 18.48.57 20.4c0 2.52 2.01 3.6 4.02 3.6h14.82c2.01 0 4.02-1.08 4.02-3.6 0-1.92-1.2-3.54-2.91-4.53l-.12-.06c.99-1.05 1.53-2.34 1.53-4.2V7.5c0-3.94-3.45-6.744-8.67-7.356l-1.22-.14zm-.042 2c4.2.48 7 2.64 7 5.496v4.106c0 2.94-2.76 5.394-7 5.394s-7-2.454-7-5.394V7.5c0-2.856 2.8-5.016 7-5.496z"/></svg>
-        PyPI
-      </a>
-    </div>
-  </div>
+  </section>
 
-  <!-- ALL 7 LIBRARIES IN ONE GRID -->
-  <div style="max-width:900px;margin:0 auto;padding:0 24px 20px">
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px">
-
-      <div style="grid-column:1/-1;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--t3);margin-top:8px;padding:0 2px;font-family:'Space Grotesk',sans-serif">STUDIO</div>
-
-      <div class="lc" onclick="go('antstudio')" style="grid-column:1/-1">
-        <div class="lc-n" style="color:var(--accent)">Ant Studio</div>
-        <div class="lc-tag" style="color:var(--accent)">Build. Run. Control.</div>
-        <div class="lc-d" style="margin-top:6px">CLI + Python SDK that unifies the entire ecosystem. One command, real results. Built-in quality scoring (LLMEvalKit) and privacy auditing (AntGuard) on every pipeline run. Vision, audio, documents, time-series, orchestration, all through one interface.</div>
+  <!-- GRID OVERVIEW -->
+  <div class="lgrid-container">
+    <div class="lgrid-sec-title">Studio Platform</div>
+    <div class="lgrid" style="grid-template-columns: 1fr; margin-bottom: 28px;">
+      <div class="lc" onclick="go('antstudio')">
+        <div class="lc-n" style="color:var(--as)">Ant Studio</div>
+        <div class="lc-tag" style="color:var(--as)">Build &bull; Run &bull; Control</div>
+        <div class="lc-d">CLI and Python SDK that unifies the entire ecosystem. One command, real results. Built-in quality scoring via LLMEvalKit and privacy auditing with AntGuard on every pipeline run. Vision, audio, documents, time-series, and orchestration through one unified interface.</div>
         <div class="lc-b"><span>v0.2</span><span>Apache 2.0</span><span>pip install antstudio</span></div>
       </div>
+    </div>
 
-      <div style="grid-column:1/-1;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--t3);margin-top:12px;padding:0 2px;font-family:'Space Grotesk',sans-serif">PERCEPTION</div>
-
+    <div class="lgrid-sec-title">Perception &amp; Cognition</div>
+    <div class="lgrid">
       <div class="lc" onclick="go('sightrag')">
         <div class="lc-n" style="color:var(--sr)">SightRAG</div>
-        <div class="lc-tag" style="color:var(--sr)">See. Search. Retrieve.</div>
-        <div class="lc-d">Visual RAG for images, video, live cameras. OCR, Grounding DINO, Person Re-ID, ONNX/TensorRT.</div>
+        <div class="lc-tag" style="color:var(--sr)">See &bull; Search &bull; Retrieve</div>
+        <div class="lc-d">Visual RAG for images, video, and live cameras. OCR, Grounding DINO, Person Re-ID, and ONNX or TensorRT acceleration.</div>
         <div class="lc-b"><span>v0.4</span><span>Apache 2.0</span></div>
       </div>
       <div class="lc" onclick="go('sonarwise')">
         <div class="lc-n" style="color:var(--so)">Sonarwise</div>
-        <div class="lc-tag" style="color:var(--so)">Hear. Search. Retrieve.</div>
-        <div class="lc-d">Audio perception. Transcription, speaker diarization, sound events, CLAP embeddings, live streaming.</div>
+        <div class="lc-tag" style="color:var(--so)">Hear &bull; Search &bull; Retrieve</div>
+        <div class="lc-d">Audio perception engine. Transcription, speaker diarization, sound events, CLAP embeddings, and live streaming.</div>
         <div class="lc-b"><span>v0.2</span><span>Apache 2.0</span></div>
       </div>
       <div class="lc" onclick="go('docqwise')">
         <div class="lc-n" style="color:var(--dq)">DocQWise</div>
-        <div class="lc-tag" style="color:var(--dq)">Read. Extract. Retrieve.</div>
-        <div class="lc-d">Document intelligence with RAG, GraphRAG, vision extraction, templates, self-improving corrections.</div>
+        <div class="lc-tag" style="color:var(--dq)">Read &bull; Extract &bull; Retrieve</div>
+        <div class="lc-d">Document intelligence with RAG, GraphRAG, vision extraction, templates, and self-improving corrections.</div>
         <div class="lc-b"><span>v0.3</span><span>Apache 2.0</span></div>
       </div>
+    </div>
 
-      <div style="grid-column:1/-1;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--t3);margin-top:12px;padding:0 2px;font-family:'Space Grotesk',sans-serif">FORECASTING & SIGNALS</div>
-
+    <div class="lgrid-sec-title">Forecasting &amp; Adaptive Orchestration</div>
+    <div class="lgrid">
       <div class="lc" onclick="go('wavqwise')">
         <div class="lc-n" style="color:var(--wq)">WavqWise</div>
-        <div class="lc-tag" style="color:var(--wq)">Sense. Forecast. Alert.</div>
-        <div class="lc-d">33+ models from ARIMA to Chronos. Anomaly detection, EEG signals, trading indicators.</div>
+        <div class="lc-tag" style="color:var(--wq)">Sense &bull; Forecast &bull; Alert</div>
+        <div class="lc-d">33+ temporal models from ARIMA to Chronos foundation models. Anomaly detection, EEG signals, and financial indicators.</div>
         <div class="lc-b"><span>v0.1</span><span>Apache 2.0</span></div>
       </div>
-
-      <div style="grid-column:1/-1;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--t3);margin-top:12px;padding:0 2px;font-family:'Space Grotesk',sans-serif">ORCHESTRATION</div>
-
       <div class="lc" onclick="go('adaptive')">
         <div class="lc-n" style="color:var(--ai)">Adaptive Intelligence</div>
-        <div class="lc-tag" style="color:var(--ai)">Learn. Remember. Adapt.</div>
-        <div class="lc-d">Self-improving RAG with RL routing, context engineering, MCP tools, agentic workflow.</div>
+        <div class="lc-tag" style="color:var(--ai)">Learn &bull; Remember &bull; Adapt</div>
+        <div class="lc-d">Self-improving RAG with RL routing, context engineering, MCP tools, and agentic multi-round retrieval.</div>
         <div class="lc-b"><span>v4.0</span><span>Apache 2.0</span></div>
       </div>
+    </div>
 
-      <div style="grid-column:1/-1;font-size:10px;font-weight:700;letter-spacing:1px;color:var(--t3);margin-top:12px;padding:0 2px;font-family:'Space Grotesk',sans-serif">EVALUATION & SECURITY</div>
-
+    <div class="lgrid-sec-title">Evaluation &amp; Runtime Security</div>
+    <div class="lgrid">
       <div class="lc" onclick="go('llmevalkit')">
         <div class="lc-n" style="color:var(--ek)">LLMEvalKit</div>
-        <div class="lc-tag" style="color:var(--ek)">Evaluate. Score. Improve.</div>
-        <div class="lc-d">79 metrics across 13 modules. Quality, hallucination, compliance, security, AI detection, governance.</div>
+        <div class="lc-tag" style="color:var(--ek)">Evaluate &bull; Score &bull; Improve</div>
+        <div class="lc-d">79 metrics across 13 modules. Quality, hallucination, compliance, security, AI detection, and automated governance.</div>
         <div class="lc-b"><span>Stable</span><span>MIT</span></div>
       </div>
       <div class="lc" onclick="go('antguard')">
         <div class="lc-n" style="color:var(--ag)">AntGuard</div>
-        <div class="lc-tag" style="color:var(--ag)">Guard. Detect. Protect.</div>
-        <div class="lc-d">System-level data privacy profiler. File, network, process monitoring. No AI, works air-gapped.</div>
+        <div class="lc-tag" style="color:var(--ag)">Guard &bull; Detect &bull; Protect</div>
+        <div class="lc-d">System-level data privacy profiler. Real-time file, network, and process monitoring. Fully air-gapped without cloud dependencies.</div>
         <div class="lc-b"><span>v0.2</span><span>Apache 2.0</span></div>
       </div>
-
     </div>
   </div>
+</div>
 
-</div>
-  
-  
-</div>
+<!-- ===== QUICK START ===== -->
 
   <div class="pg" id="pg-quickstart" data-lib="Quick Start">
 <div class="ct">
@@ -549,6 +983,8 @@ g.save("./logs/")          # .log + .txt + .json reports</code></pre><button cla
 <p class="pr">Each library has full documentation with detailed module explanations, parameter references, and advanced usage examples. Pick a library from the sidebar to dive deeper.</p>
 </div>
 </div>
+
+<!-- ===== SIGHTRAG ===== -->
 <div class="pg" id="pg-sightrag" data-lib="SightRAG">
 <div class="ct">
 <img src="images/sight_ai.png" class="banner" alt="SightRAG">
@@ -799,11 +1235,10 @@ sightrag serve --port 8000</code></pre><button class="cp" onclick="cc(this)">Cop
 <tr><td>DELETE</td><td><code>/index</code></td><td>Clear the entire index</td></tr>
 </tbody>
 </table>
-
-
-
 </div>
 </div>
+
+<!-- ===== SONARWISE ===== -->
 <div class="pg" id="pg-sonarwise" data-lib="Sonarwise">
 <div class="ct">
 <img src="images/sonarwise_ai.png" class="banner" alt="Sonarwise">
@@ -949,6 +1384,8 @@ sw.export("meeting.wav", format="notes", output="meeting_notes.md") # Meeting no
 
 </div>
 </div>
+
+<!-- ===== DOCQWISE ===== -->
 <div class="pg" id="pg-docqwise" data-lib="DocQWise">
 <div class="ct">
 <img src="images/docintelligence.png" class="banner" alt="DocQWise">
@@ -1154,6 +1591,8 @@ dq.detect_pii("doc.pdf")                 # find PII in document</code></pre><but
 
 </div>
 </div>
+
+<!-- ===== WAVQWISE ===== -->
 <div class="pg" id="pg-wavqwise" data-lib="WavqWise">
 <div class="ct">
 <img src="images/wavqwise.png" class="banner" alt="WavqWise">
@@ -1323,6 +1762,8 @@ wavqwise models  # list all available models</code></pre><button class="cp" oncl
 
 </div>
 </div>
+
+<!-- ===== ADAPTIVE INTELLIGENCE ===== -->
 <div class="pg" id="pg-adaptive" data-lib="Adaptive Intelligence">
 <div class="ct">
 <img src="images/adaptive_intelligence.png" class="banner" alt="Adaptive Intelligence">
@@ -1490,6 +1931,7 @@ engine = AdaptiveAI(base_url="http://localhost:8000/v1")</code></pre><button cla
 
 </div>
 </div>
+<!-- ===== LLMEVALKIT ===== -->
 <div class="pg" id="pg-llmevalkit" data-lib="LLMEvalKit">
 <div class="ct">
 <img src="images/llmevalkit.png" class="banner" alt="LLMEvalKit">
@@ -1868,6 +2310,8 @@ Evaluator(provider="none", preset="math")   # offline, no API</code></pre><butto
 
 </div>
 </div>
+
+<!-- ===== ANTGUARD ===== -->
 <div class="pg" id="pg-antguard" data-lib="AntGuard">
 <div class="ct">
 <img src="images/antguard.png" class="banner" alt="AntGuard">
@@ -2078,56 +2522,11 @@ OVERALL RISK: LOW
 <p class="pr"><strong>Memory footprint:</strong> Under 25 MB RAM regardless of session length. Events stream to disk, not held in memory.</p>
 <p class="pr"><strong>Core dependencies:</strong> <code>watchdog</code> + <code>psutil</code>. That's it.</p>
 <p class="pr"><strong>No AI, no models, no downloads.</strong> Every feature runs with plain Python. No network access required. Works in air-gapped environments.</p>
-
-
-
-  </div>
-  </div>
-
 </div>
 </div>
 
 
-<div class="pg" id="pg-about" data-lib="About">
-<div class="ct">
-
-  <div style="text-align:center;margin-bottom:36px">
-    <img src="images/logo.png" alt="Ant Intelligence" style="width:160px;height:160px;border-radius:28px;margin-bottom:24px">
-    <h1 class="dt" style="color:var(--accent);font-size:32px">About This Project</h1>
-  </div>
-
-  <p class="pr" style="font-size:15px;margin-bottom:20px">The <strong>Ant Intelligence Ecosystem</strong> is entirely open source. Every library, every line of code, is free to use, modify, and distribute.</p>
-
-  <h3 class="ssh" style="margin-top:32px">How You Can Contribute</h3>
-  <p class="pr" style="margin-bottom:6px">There are many ways to get involved:</p>
-  <ul style="font-size:13.5px;color:var(--t2);line-height:2;padding-left:20px;margin-bottom:24px">
-    <li>Report bugs or request features through GitHub Issues</li>
-    <li>Submit pull requests with fixes or new features</li>
-    <li>Improve documentation or add usage examples</li>
-    <li>Build integrations with other tools and frameworks</li>
-    <li>Share feedback on what works and what could be better</li>
-  </ul>
-
-  <h3 class="ssh">Using This in Your Company?</h3>
-  <p class="pr" style="font-size:15px;margin-bottom:32px">If you are using any of these libraries in your company or project, I would love to hear about it. Share your use case, feedback, or just let me know it helped. That is what keeps this going.</p>
-
-  <div style="padding-top:28px;border-top:1px solid var(--border)">
-    <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;margin-bottom:12px;color:var(--t1)">Venkatkumar R</div>
-    <p class="pr" style="font-size:14px">Real-time problem solver. Using current knowledge to help others create real value. Learning, building, and delivering real impact with visible results, that is the goal. From research to real-time problem solving.</p>
-  </div>
-
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px">
-    <a href="https://github.com/VK-Ant" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:8px 18px;border-radius:7px;font-size:13px;font-weight:600;text-decoration:none;background:var(--accent);color:#000">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-      Contribute on GitHub</a>
-    <a href="https://pypi.org/user/Venkat_VK/" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:8px 18px;border-radius:7px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--border);color:var(--t2)">PyPI</a>
-    <a href="https://medium.com/@VK_Venkatkumar/list/the-ant-intelligence-ecosystem-71503517a3c1" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:8px 18px;border-radius:7px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--border);color:var(--t2)">Medium</a>
-    <a href="https://vk-ant.github.io/Venkatkumar" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:8px 18px;border-radius:7px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid var(--border);color:var(--t2)">Portfolio</a>
-  </div>
-
-</div>
-</div>
-
+<!-- ===== ANT STUDIO ===== -->
 
 <div class="pg" id="pg-antstudio" data-lib="Ant Studio">
 <div class="ct">
@@ -2363,47 +2762,73 @@ docker compose down</code></pre><button class="cp" onclick="cc(this)">Copy</butt
 </tbody>
 </table>
 
-<h2 class="sh" id="as-arch">Architecture</h2>
-<div class="cb"><pre><code class="language-bash">antstudio/
-  cli.py               # Click CLI (doc, ts, runs, status)
-  pipeline.py           # Step tracking + JSON persistence
-  backbone/             # Auto quality + privacy on every command
-  doc/
-    extract.py          # Document field extraction (DocQWise)
-    ask.py              # Document Q&A with RAG modes
-    loader.py           # Universal file loader (PDF, DOCX, Excel, images, TXT)
-  ts/
-    forecast.py         # Time-series forecasting with visualization
-    anomaly.py          # Anomaly detection (Z-score + WavqWise)
-  io/
-    reader.py           # Universal input (file, folder, DB, URL)
-    writer.py           # Universal output (CSV, Excel, JSON, DB)
-  llm/
-    engine.py           # Universal LLM engine (10+ providers)
-  reports.py            # Quality + audit report generator (JSON)
-
-tracker/
-  app.py               # Flask API for pipeline tracking UI
-  static/index.html    # Flow visualization
-
 docker-compose.yml     # Full stack: CLI + Ollama + Tracker UI</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+</div>
+</div>
 
+
+<!-- ===== ABOUT PAGE ===== -->
+<div class="pg" id="pg-about" data-lib="About">
+<div class="ct">
+  <div style="text-align:center;margin-bottom:36px">
+    <img src="images/logo.png" alt="Ant Intelligence" style="width:120px;height:120px;border-radius:24px;margin-bottom:20px">
+    <h1 class="dt" style="font-size:32px">About the Ecosystem</h1>
+  </div>
+  <p class="pr">The <strong>Ant Intelligence Ecosystem</strong> is entirely open source. Every library and module is free to use, modify, and distribute under standard open-source licenses.</p>
+
+  <h3 class="ssh">How You Can Contribute</h3>
+  <ul style="font-size:14.5px;color:var(--t2);line-height:2;padding-left:20px;margin-bottom:32px">
+    <li>Report bugs or request features through GitHub Issues</li>
+    <li>Submit pull requests with fixes or new capabilities</li>
+    <li>Improve documentation or add worked examples</li>
+    <li>Build integrations with other tools and frameworks</li>
+    <li>Share feedback on production deployments</li>
+  </ul>
+
+  <!-- Creator Card (No Photo) -->
+  <div class="author-card">
+    <div class="author-badge">Creator &amp; Maintainer</div>
+    <h2 class="author-name">Venkatkumar Rajan</h2>
+    <p class="author-role">Applied AI Researcher</p>
+    <p class="author-bio">
+      Real-time problem solver. Using current knowledge to help others create real value. Learning, building, and delivering real impact with visible results. From research to applied engineering.
+    </p>
+    <div class="author-links">
+      <a href="https://github.com/VK-Ant" target="_blank" class="author-btn primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        Contribute on GitHub
+      </a>
+      <a href="https://pypi.org/user/Venkat_VK/" target="_blank" class="author-btn">PyPI Profile</a>
+      <a href="https://medium.com/@VK_Venkatkumar/list/the-ant-intelligence-ecosystem-71503517a3c1" target="_blank" class="author-btn">Medium Articles</a>
+      <a href="https://vk-ant.github.io/Venkatkumar" target="_blank" class="author-btn">Portfolio</a>
+    </div>
+  </div>
 </div>
 </div>
 
 </main>
 
+<!-- ===== SCRIPTS ===== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/yaml.min.js"></script>
 <script>
-// NAV
 function go(p, sec) {
   document.querySelectorAll('.pg').forEach(x => x.classList.remove('on'));
   document.querySelectorAll('.sb-l').forEach(x => x.classList.remove('on'));
   const el = document.getElementById('pg-' + p);
-  if (el) { el.classList.add('on'); el.querySelectorAll('pre code:not(.hljs)').forEach(b => hljs.highlightElement(b)); }
+  if (el) { 
+    el.classList.add('on'); 
+    el.querySelectorAll('pre code:not(.hljs)').forEach(b => hljs.highlightElement(b)); 
+  }
+  
+  if (p === 'home') {
+    document.body.classList.add('home-active');
+  } else {
+    document.body.classList.remove('home-active');
+  }
+
   const lnk = document.querySelector('.sb-l[data-p="' + p + '"]');
   if (lnk) lnk.classList.add('on');
   if (sec) setTimeout(() => { const s = document.getElementById(sec); if (s) s.scrollIntoView({behavior:'smooth',block:'start'}); }, 60);
@@ -2411,9 +2836,12 @@ function go(p, sec) {
   document.getElementById('sb').classList.remove('open');
   history.replaceState(null, '', '#' + p + (sec ? '/' + sec : ''));
 }
-function tsub(id) { document.querySelectorAll('.sb-sub').forEach(s => { if(s.id!==id) s.classList.remove('open'); }); document.getElementById(id)?.classList.toggle('open'); }
 
-// THEME
+function tsub(id) { 
+  document.querySelectorAll('.sb-sub').forEach(s => { if(s.id !== id) s.classList.remove('open'); }); 
+  document.getElementById(id)?.classList.toggle('open'); 
+}
+
 function toggleTheme() {
   const html = document.documentElement;
   const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
@@ -2425,19 +2853,26 @@ function toggleTheme() {
     ? '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>'
     : '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
 }
+
 (function(){
   const saved = localStorage.getItem('theme');
-  if (saved) { document.documentElement.dataset.theme = saved; document.getElementById('hljs-dark').disabled = saved==='light'; document.getElementById('hljs-light').disabled = saved==='dark'; }
+  if (saved) { 
+    document.documentElement.dataset.theme = saved; 
+    document.getElementById('hljs-dark').disabled = saved==='light'; 
+    document.getElementById('hljs-light').disabled = saved==='dark'; 
+  }
 })();
 
-// COPY
-function cc(btn){ const c=btn.parentElement.querySelector('code').textContent;navigator.clipboard.writeText(c);btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',1500); }
-function copyCode(btn){ cc(btn); }
+function cc(btn){ 
+  const c = btn.parentElement.querySelector('code').textContent;
+  navigator.clipboard.writeText(c);
+  btn.textContent = 'Copied!';
+  setTimeout(() => btn.textContent = 'Copy', 1500); 
+}
 
-// SEARCH
-const SI=[
-  {l:'SightRAG',p:'sightrag',t:'sightrag visual rag image video camera query detection ocr grounding dino reid cli qdrant onnx tensorrt see search retrieve pluggable'},
-  {l:'Sonarwise',p:'sonarwise',t:'sonarwise audio speech transcription whisper diarization speaker events clap embeddings live streaming microphone hear'},
+const SI = [
+  {l:'SightRAG',p:'sightrag',t:'sightrag visual rag image video camera query detection ocr grounding dino reid cli qdrant onnx tensorrt'},
+  {l:'Sonarwise',p:'sonarwise',t:'sonarwise audio speech transcription whisper diarization speaker events clap embeddings live streaming microphone'},
   {l:'DocQWise',p:'docqwise',t:'docqwise document pdf ocr extraction table invoice contract graphrag rag read extract retrieve ollama openai'},
   {l:'WavqWise',p:'wavqwise',t:'wavqwise time series forecast anomaly eeg trading arima xgboost chronos sensor signal pipeline sense'},
   {l:'Adaptive Intelligence',p:'adaptive',t:'adaptive intelligence rl reinforcement learning rag orchestration mcp tools agentic memory context engineering'},
@@ -2446,14 +2881,37 @@ const SI=[
   {l:'Quick Start',p:'quickstart',t:'install pip quick start setup getting started'},
   {l:'Ant Studio',p:'antstudio',t:'ant studio cli sdk pipeline tracking docker forecast extract document ask anomaly ollama openai build run control'},
 ];
-function search(q){const b=document.getElementById('srb');if(!q||q.length<2){b.classList.remove('show');return}const lw=q.toLowerCase();const h=SI.filter(s=>s.t.includes(lw)||s.l.toLowerCase().includes(lw));if(!h.length){b.classList.remove('show');return}b.innerHTML=h.map(r=>'<div class="sr-i" onmousedown="go(\''+r.p+'\');document.getElementById(\'si\').value=\'\'"><b>'+r.l+'</b><br>View documentation</div>').join('');b.classList.add('show')}
 
-// HASH NAV
-function loadHash(){const h=location.hash.slice(1);if(!h)return;const[p,s]=h.split('/');go(p,s||null);}
-window.addEventListener('hashchange',loadHash);
-document.addEventListener('DOMContentLoaded',()=>{hljs.highlightAll();if(location.hash)loadHash();});
-// close sidebar on outside click
-document.addEventListener('click',e=>{const sb=document.getElementById('sb');if(sb.classList.contains('open')&&!sb.contains(e.target)&&!e.target.closest('.ham'))sb.classList.remove('open');});
+function search(q){
+  const b = document.getElementById('srb');
+  if(!q || q.length < 2){ b.classList.remove('show'); return; }
+  const lw = q.toLowerCase();
+  const h = SI.filter(s => s.t.includes(lw) || s.l.toLowerCase().includes(lw));
+  if(!h.length){ b.classList.remove('show'); return; }
+  b.innerHTML = h.map(r => '<div class="sr-i" onmousedown="go(\''+r.p+'\');document.getElementById(\'si\').value=\'\'"><b>'+r.l+'</b><br>View documentation</div>').join('');
+  b.classList.add('show');
+}
+
+function loadHash(){
+  const h = location.hash.slice(1);
+  if(!h) {
+    go('home');
+    return;
+  }
+  const [p,s] = h.split('/');
+  go(p, s || null);
+}
+
+window.addEventListener('hashchange', loadHash);
+document.addEventListener('DOMContentLoaded', () => {
+  hljs.highlightAll();
+  loadHash();
+});
+
+document.addEventListener('click', e => {
+  const sb = document.getElementById('sb');
+  if(sb.classList.contains('open') && !sb.contains(e.target) && !e.target.closest('.ham')) sb.classList.remove('open');
+});
 </script>
 
 </body>
