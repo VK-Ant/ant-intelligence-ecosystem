@@ -119,14 +119,14 @@
     <div class="sb-t">Forecasting &amp; Signals</div>
     <a class="sb-l" data-p="wavqwise" onclick="go('wavqwise');tsub('sub-wq')"><span class="d" style="background:var(--wq)"></span> WavqWise</a>
     <div class="sb-sub" id="sub-wq">
-      <a class="sb-l" onclick="go('wavqwise','wq-install')">Installation</a>
-      <a class="sb-l" onclick="go('wavqwise','wq-core')">Core Workflow</a>
-      <a class="sb-l" onclick="go('wavqwise','wq-models')">33+ Pluggable Models</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-models')">37 Models</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-stream')">Real-Time Streaming</a>
       <a class="sb-l" onclick="go('wavqwise','wq-anomaly')">Anomaly Detection</a>
-      <a class="sb-l" onclick="go('wavqwise','wq-eeg')">EEG & Signals</a>
-      <a class="sb-l" onclick="go('wavqwise','wq-trading')">Trading Indicators</a>
-      <a class="sb-l" onclick="go('wavqwise','wq-runtime')">Runtime Acceleration</a>
-      <a class="sb-l" onclick="go('wavqwise','wq-db')">Database Support</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-eeg')">EEG &amp; Signals</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-trading')">Trading</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-weather')">Weather</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-dam')">Dam Monitoring</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-plugin')">Plugin System</a>
     </div>
   </div>
   <div class="sb-sec">
@@ -994,174 +994,320 @@ dq.detect_pii("doc.pdf")                 # find PII in document</code></pre><but
 <div class="pg" id="pg-wavqwise" data-lib="WavqWise">
 <div class="ct">
 <img src="images/wavqwise.png" class="banner" alt="WavqWise">
-<h1 class="dt" style="color:var(--col-wavqwise)">WavqWise</h1>
-<div class="dtag" style="color:var(--col-wavqwise)">Sense. Forecast. Alert.</div>
-<p class="ddesc">Pluggable temporal intelligence. One import, any model. 33+ forecasting models from ARIMA to Chronos foundation models, all behind a single API. Anomaly detection, EEG signal processing, and trading indicators included.</p>
+<h1 class="dt" style="color:var(--wq)">WavqWise</h1>
+<div class="dtag" style="color:var(--wq)">Sense. Forecast. Alert.</div>
+<p class="ddesc">Pluggable temporal intelligence. One import, any model. 37 forecasting models, 5 pipelines, real-time streaming, anomaly detection, EEG signal processing, trading indicators, weather forecasting, and dam water level monitoring. All behind a single API.</p>
 <div class="lib-links">
-      <a class="primary" href="https://github.com/VK-Ant/wavqwise" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a>
-      <a href="https://pypi.org/project/wavqwise/" target="_blank">PyPI</a>
-      <a href="https://github.com/VK-Ant/wavqwise/blob/main/LICENSE" target="_blank">Apache 2.0</a>
-      <a href="https://github.com/VK-Ant/wavqwise#contributing" target="_blank">Contribute</a>
-    </div>
+  <a class="primary" href="https://github.com/VK-Ant/wavqwise" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a>
+  <a href="https://pypi.org/project/wavqwise/" target="_blank">PyPI</a>
+  <a href="https://github.com/VK-Ant/wavqwise/blob/main/LICENSE" target="_blank">Apache 2.0</a>
+  <a href="https://github.com/VK-Ant/wavqwise#contributing" target="_blank">Contribute</a>
+</div>
 
 <h2 class="sh" id="wq-install">Installation</h2>
-<div class="cb"><pre><code class="language-bash">pip install wavqwise                    # Core (numpy, pandas, sklearn)
-pip install wavqwise[traditional]       # + ARIMA, SARIMA, ETS, Theta
+<div class="cb"><pre><code class="language-bash">pip install wavqwise                    # Core: numpy, pandas, scipy, sklearn, matplotlib
+pip install wavqwise[traditional]       # + statsmodels, statsforecast (ARIMA, SARIMA, ETS, Theta)
 pip install wavqwise[ml]               # + XGBoost, LightGBM, CatBoost
-pip install wavqwise[neural]           # + NeuralProphet, N-BEATS, TFT
-pip install wavqwise[foundation]       # + Chronos, TimesFM, Moirai
-pip install wavqwise[signals]          # + EEG, spectral analysis (MNE)
-pip install wavqwise[trading]          # + yfinance, indicators, backtest
-pip install wavqwise[database]         # + PostgreSQL, MongoDB, InfluxDB
-pip install wavqwise[onnx-gpu]         # + ONNX Runtime GPU
-pip install wavqwise[tensorrt]         # + TensorRT optimization
+pip install wavqwise[neural]           # + PyTorch, NeuralProphet, N-BEATS, TFT
+pip install wavqwise[foundation]       # + transformers, Chronos, TimesFM, Moirai
+pip install wavqwise[signals]          # + MNE, PyWavelets (EEG, spectral analysis)
+pip install wavqwise[trading]          # + yfinance, ta (indicators, backtest)
+pip install wavqwise[database]         # + SQLAlchemy, psycopg2, pymongo, influxdb
+pip install wavqwise[onnx-gpu]         # + ONNX Runtime GPU, skl2onnx
+pip install wavqwise[tensorrt]         # + ONNX Runtime GPU, TensorRT
 pip install wavqwise[all]              # Everything</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="wq-core">Core Workflow</h2>
-<p class="pr">WavqWise eliminates the boilerplate of time-series modeling. Without WavqWise, each model family requires its own import, preprocessing pipeline, and evaluation loop — roughly 50 lines per model. With WavqWise, you change a single string parameter to switch between 33+ models.</p>
-<div class="cb"><pre><code class="language-python">from wavqwise import WavqPipeline
+<p class="pr">WavqWise eliminates the boilerplate of time-series modeling. Without WavqWise, each model family requires its own import, preprocessing, and evaluation loop. With WavqWise, you change a single string parameter to switch between 37 models. The surrounding code never changes.</p>
+<div class="cb"><pre><code class="language-python">from wavqwise import WavqPipeline  # The ONLY import you need
 
 pipeline = WavqPipeline()
 pipeline.load("sales.csv", target="revenue", time="date")
 
-# Change the model string — everything else stays the same
+# Change the model string, everything else stays the same
 forecast = pipeline.forecast(horizon=30, model="arima")
 forecast = pipeline.forecast(horizon=30, model="xgboost")
 forecast = pipeline.forecast(horizon=30, model="chronos")
 forecast = pipeline.forecast(horizon=30, model="auto")  # auto-select best
 
-forecast.plot()  # built-in visualization</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
-
-<h2 class="sh" id="wq-models">33+ Pluggable Models</h2>
-<p class="pr">All models are accessed through the same <code>model=</code> parameter. WavqWise handles model loading, preprocessing, training, and inference internally.</p>
-<table class="tb">
-<thead><tr><th>Category</th><th>Models</th></tr></thead>
-<tbody>
-<tr><td><strong>Traditional</strong></td><td>Moving Average, EMA, ARIMA, SARIMA, ETS, Holt-Winters, Theta, CES, Croston, Naive, Seasonal Naive</td></tr>
-<tr><td><strong>Machine Learning</strong></td><td>XGBoost, LightGBM, CatBoost, Random Forest, Ridge, Lasso, ElasticNet</td></tr>
-<tr><td><strong>Neural</strong></td><td>NeuralProphet, N-BEATS, Temporal Fusion Transformer (TFT)</td></tr>
-<tr><td><strong>Foundation</strong></td><td>Chronos, TimesFM, Lag-Llama, Moirai, HuggingFace Hub models</td></tr>
-<tr><td><strong>Cloud / LLM</strong></td><td>TimeGPT, Ollama (any model), OpenAI, Anthropic</td></tr>
-</tbody>
-</table>
-
-<h3 class="ssh">Ensemble Forecasting</h3>
-<p class="pr">Pass a list of model names to create an ensemble forecast. WavqWise trains each model independently and averages their predictions, reducing variance and improving robustness.</p>
-<div class="cb"><pre><code class="language-python">forecast = pipeline.forecast(
-    horizon=30,
-    model=["arima", "ets", "xgboost"]  # ensemble of 3 models
-)
-forecast.plot()</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+forecast.plot()          # built-in visualization
+forecast.summary()       # text summary with metrics
+forecast.to_dataframe()  # export</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h3 class="ssh">Incremental Training</h3>
-<p class="pr">Most libraries require full retraining when new data arrives. WavqWise supports in-place incremental updates — the model absorbs new observations without starting over.</p>
+<p class="pr">Most libraries require full retraining when new data arrives. WavqWise supports in-place incremental updates. The cost depends on the model type: statistical models append observations (very low cost), ML models warm-start (low cost), neural models fine-tune (medium cost), foundation models are zero-shot (no cost).</p>
 <div class="cb"><pre><code class="language-python">pipeline = WavqPipeline()
 pipeline.load(historical_data, target="sales", time="date")
 pipeline.forecast(horizon=30, model="arima")
 
-# New data arrives — update, don't retrain
+# New data arrives, update without retraining
 pipeline.update(new_week_data)
 forecast = pipeline.forecast(horizon=30)  # uses updated model</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
-<h2 class="sh" id="wq-anomaly">Anomaly Detection</h2>
-<p class="pr">The <code>AnomalyPipeline</code> detects outliers in time-series data using statistical methods (z-score, IQR) or ML models (Isolation Forest). Results include severity scoring and built-in visualization.</p>
+<h3 class="ssh">Auto Model Selection &amp; Ensemble</h3>
+<div class="cb"><pre><code class="language-python"># Auto-select: benchmarks MA, ARIMA, ETS, Holt-Winters, picks best by MAE
+forecast = pipeline.forecast(horizon=30, model="auto")
+
+# Ensemble: weights inversely proportional to holdout MAE
+forecast = pipeline.forecast(horizon=30, model=["arima", "ets", "xgboost"])
+
+# Compare models side by side
+pipeline.compare_models(["arima", "ets", "xgboost"], horizon=14)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="wq-models">37 Pluggable Models</h2>
+<p class="pr">All models implement <code>BaseForecaster</code> with three methods: <code>fit()</code>, <code>predict()</code>, <code>update()</code>. The registry resolves model strings to the correct backend class with lazy imports.</p>
+
+<h3 class="ssh">Traditional (11)</h3>
+<table class="tb">
+<thead><tr><th>Model</th><th>Key</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>Moving Average</td><td><code>moving_average</code>, <code>sma</code></td><td>Simple moving average, configurable window</td></tr>
+<tr><td>EMA</td><td><code>ema</code></td><td>Exponential moving average</td></tr>
+<tr><td>ARIMA</td><td><code>arima</code></td><td>AutoRegressive Integrated Moving Average</td></tr>
+<tr><td>AutoARIMA</td><td><code>auto_arima</code></td><td>Automatic order selection</td></tr>
+<tr><td>SARIMA</td><td><code>sarima</code></td><td>Seasonal ARIMA</td></tr>
+<tr><td>ETS</td><td><code>ets</code></td><td>Exponential Smoothing</td></tr>
+<tr><td>Holt-Winters</td><td><code>holtwinters</code></td><td>Triple exponential smoothing</td></tr>
+<tr><td>Theta</td><td><code>theta</code></td><td>Theta method</td></tr>
+<tr><td>Naive</td><td><code>naive</code></td><td>Last-value baseline</td></tr>
+<tr><td>Seasonal Naive</td><td><code>seasonal_naive</code></td><td>Repeats last seasonal cycle</td></tr>
+<tr><td>CES / Croston</td><td><code>ces</code>, <code>croston</code></td><td>Complex ES, intermittent demand</td></tr>
+</tbody>
+</table>
+
+<h3 class="ssh">Machine Learning (7)</h3>
+<table class="tb">
+<thead><tr><th>Model</th><th>Key</th><th>Backend</th></tr></thead>
+<tbody>
+<tr><td>XGBoost</td><td><code>xgboost</code></td><td>xgboost.XGBRegressor</td></tr>
+<tr><td>LightGBM</td><td><code>lightgbm</code></td><td>lightgbm.LGBMRegressor</td></tr>
+<tr><td>CatBoost</td><td><code>catboost</code></td><td>catboost.CatBoostRegressor</td></tr>
+<tr><td>Random Forest</td><td><code>random_forest</code></td><td>sklearn</td></tr>
+<tr><td>Ridge</td><td><code>ridge</code></td><td>sklearn Ridge</td></tr>
+<tr><td>Lasso</td><td><code>lasso</code></td><td>sklearn Lasso</td></tr>
+<tr><td>ElasticNet</td><td><code>elasticnet</code></td><td>sklearn EN</td></tr>
+</tbody>
+</table>
+
+<h3 class="ssh">Neural + Foundation (8)</h3>
+<table class="tb">
+<thead><tr><th>Model</th><th>Key</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>NeuralProphet</td><td><code>neuralprophet</code></td><td>neuralprophet.com</td></tr>
+<tr><td>N-BEATS</td><td><code>nbeats</code></td><td>PyTorch</td></tr>
+<tr><td>TFT</td><td><code>tft</code></td><td>PyTorch (Temporal Fusion Transformer)</td></tr>
+<tr><td>Chronos</td><td><code>chronos</code></td><td>amazon/chronos-t5</td></tr>
+<tr><td>TimesFM</td><td><code>timesfm</code></td><td>google/timesfm</td></tr>
+<tr><td>Lag-Llama</td><td><code>lagllama</code></td><td>time-series-foundation-models</td></tr>
+<tr><td>Moirai</td><td><code>moirai</code></td><td>salesforce/moirai</td></tr>
+<tr><td>HuggingFace</td><td><code>huggingface:id</code></td><td>Any HF time-series model</td></tr>
+</tbody>
+</table>
+
+<h3 class="ssh">Weather Foundation Models (5)</h3>
+<table class="tb">
+<thead><tr><th>Model</th><th>By</th></tr></thead>
+<tbody>
+<tr><td>GraphCast</td><td>Google DeepMind</td></tr>
+<tr><td>GenCast</td><td>Google DeepMind</td></tr>
+<tr><td>Aurora</td><td>Microsoft</td></tr>
+<tr><td>Pangu-Weather</td><td>Huawei</td></tr>
+<tr><td>FourCastNet</td><td>NVIDIA</td></tr>
+</tbody>
+</table>
+
+<h3 class="ssh">Cloud (3)</h3>
+<p class="pr">TimeGPT (Nixtla API), Ollama (local LLM), OpenAI (GPT-based). All via registry stubs with dynamic prefixes: <code>ollama:model_name</code>, <code>openai:model_name</code>.</p>
+
+<h2 class="sh" id="wq-stream">Real-Time Streaming Engine</h2>
+<p class="pr">The feature no other forecasting library has. Continuous data ingestion with live anomaly detection and automatic forecast updates. The core loop: receive data, append to sliding window, run anomaly detection, fire callback if anomaly found, update forecast every N points, refit model every M points.</p>
+<div class="cb"><pre><code class="language-python">stream = pipeline.stream(
+    model="ema",
+    anomaly_method="zscore",
+    window_size=500,
+    forecast_horizon=30,
+    forecast_every=10,       # update forecast every 10 points
+    refit_every=100,         # refit model every 100 points
+    anomaly_threshold=3.0,
+    on_anomaly=lambda e: send_slack_alert(e),
+    on_forecast=lambda f: update_dashboard(f)
+)
+
+# Push data manually
+stream.push({"timestamp": "2025-01-01 10:00", "temperature": 72.3})
+
+# Or connect to a live CSV (polls for new rows)
+stream.connect_csv("live_sensor.csv", poll_interval=5)
+
+# Or connect any data source
+stream.connect_callback(my_generator_fn, interval=1)
+
+print(stream.summary())</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="wq-anomaly">Anomaly Detection Pipeline</h2>
+<p class="pr">Five detection methods, each suited to different data characteristics. Results include severity levels: low, medium, high, critical.</p>
+<table class="tb">
+<thead><tr><th>Method</th><th>Approach</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><code>zscore</code></td><td>Statistical Z-score thresholding</td><td>Gaussian data, known baselines</td></tr>
+<tr><td><code>iqr</code></td><td>Interquartile range fencing</td><td>Skewed data, robust to outliers</td></tr>
+<tr><td><code>isolation_forest</code></td><td>Tree-based isolation scoring</td><td>High-dimensional, no distribution assumed</td></tr>
+<tr><td><code>stl</code></td><td>STL seasonal decomposition residuals</td><td>Seasonal data with trend</td></tr>
+<tr><td><code>dbscan</code></td><td>Density-based clustering</td><td>Spatial outlier detection</td></tr>
+</tbody>
+</table>
 <div class="cb"><pre><code class="language-python">from wavqwise import AnomalyPipeline
 
 detector = AnomalyPipeline()
 detector.load("sensor_data.csv", target="temperature", time="timestamp")
-
-# Detection methods
-anomalies = detector.detect(method="zscore")          # statistical
-anomalies = detector.detect(method="iqr")             # interquartile range
-anomalies = detector.detect(method="isolation_forest") # ML-based
-
+anomalies = detector.detect(method="zscore")
 anomalies.plot(show_severity=True)
 print(anomalies.summary())
-# Anomalies: 93/10000 (0.9%) | Method: zscore | Severity: HIGH: 12, MEDIUM: 31, LOW: 50</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+# Anomalies: 93/10000 (0.9%) | Method: zscore | HIGH: 12, MEDIUM: 31, LOW: 50</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
-<h2 class="sh" id="wq-eeg">EEG & Signal Processing</h2>
-<p class="pr">The <code>SignalPipeline</code> handles multi-channel physiological signals. It supports bandpass filtering, notch filtering (for power line noise), frequency band extraction (delta, theta, alpha, beta, gamma), and event detection. Built on MNE for clinical-grade signal processing.</p>
+<h2 class="sh" id="wq-eeg">EEG &amp; Signal Processing</h2>
+<p class="pr">Multi-channel physiological signal processing built on MNE. Supports bandpass filtering (Butterworth 4th order), notch filtering (50/60 Hz), frequency band extraction, power spectral density (Welch method), event/spike detection, and spectrogram generation. Clinical applications: sleep staging, attention monitoring, BCI, seizure detection.</p>
 <div class="cb"><pre><code class="language-python">from wavqwise import SignalPipeline
 
 sig = SignalPipeline()
 sig.load("eeg.csv", channels=["Fp1", "Fp2", "C3", "C4"], sample_rate=256)
-
-# Preprocessing
-sig.filter(low=1, high=50, notch=50)  # bandpass + 50Hz notch
-
-# Frequency band extraction
+sig.filter(low=1, high=50, notch=50)
 bands = sig.extract_bands(["delta", "theta", "alpha", "beta", "gamma"])
-bands.plot_bands()  # power spectral density per band
-
-# Event detection (spike detection, artifact removal)
+bands.plot_bands()          # power spectral density per band
 events = sig.detect_events(threshold=3.0)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
-<h2 class="sh" id="wq-trading">Trading & Financial Analysis</h2>
-<p class="pr">WavqWise includes a full suite of technical indicators: momentum (RSI), trend (MACD, SMA, EMA), and volatility (Bollinger Bands). Indicators are composable — each returns the modified DataFrame with new columns.</p>
+<h2 class="sh" id="wq-trading">Trading &amp; Financial Pipeline</h2>
+<p class="pr">Eight technical indicators across momentum, trend, and volatility categories. Each returns a modified DataFrame with new columns. Composable in any order.</p>
+<table class="tb">
+<thead><tr><th>Indicator</th><th>Category</th><th>Parameters</th></tr></thead>
+<tbody>
+<tr><td>RSI</td><td>Momentum</td><td>period=14</td></tr>
+<tr><td>Stochastic</td><td>Momentum</td><td>period=14 (%K, %D)</td></tr>
+<tr><td>MACD</td><td>Trend</td><td>12/26/9</td></tr>
+<tr><td>SMA</td><td>Trend</td><td>period=20</td></tr>
+<tr><td>EMA</td><td>Trend</td><td>period=20</td></tr>
+<tr><td>Bollinger Bands</td><td>Volatility</td><td>period=20, std=2</td></tr>
+<tr><td>ATR</td><td>Volatility</td><td>period=14</td></tr>
+<tr><td>VWAP</td><td>Volume</td><td>Volume-weighted average</td></tr>
+</tbody>
+</table>
 <div class="cb"><pre><code class="language-python">from wavqwise import WavqPipeline
 from wavqwise.trading.indicators.momentum import RSIIndicator
-from wavqwise.trading.indicators.trend import MACDIndicator, SMAIndicator
+from wavqwise.trading.indicators.trend import MACDIndicator
 from wavqwise.trading.indicators.volatility import BollingerBandsIndicator
 import yfinance as yf
 
-# Load real stock data
 stock = yf.download("AAPL", period="2y", auto_adjust=True).reset_index()
-
-# Add technical indicators
 stock = RSIIndicator(14).compute(stock)
 stock = MACDIndicator().compute(stock)
 stock = BollingerBandsIndicator(20, 2).compute(stock)
 
-# Forecast price
 pipeline = WavqPipeline()
 pipeline.load(stock, target="Close", time="Date")
 forecast = pipeline.forecast(horizon=30, model="ema")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
-<h2 class="sh" id="wq-runtime">GPU & Runtime Acceleration</h2>
-<p class="pr">WavqWise auto-detects the fastest available hardware at startup. The detection priority is: TensorRT → ONNX GPU → PyTorch CUDA → PyTorch MPS (Apple) → ONNX CPU → CPU. No configuration needed.</p>
-<div class="cb"><pre><code class="language-python">pipeline = WavqPipeline()              # auto-detect best backend
-pipeline = WavqPipeline(device="cuda")  # force CUDA
+<h2 class="sh" id="wq-weather">Weather Forecasting Pipeline</h2>
+<p class="pr">Loads real weather data from Open-Meteo API (free, no API key, 20+ cities built-in). Supports temperature, precipitation, wind, humidity forecasting with any WavqWise model. Includes weather indicators: heat index, wind chill, dew point, thermal comfort index. Five open-source weather foundation models supported.</p>
+<div class="cb"><pre><code class="language-python">from wavqwise import WeatherPipeline
+
+weather = WeatherPipeline()
+weather.load_city("Chennai", days=365)
+forecast = weather.forecast(target="temperature_2m_mean", horizon=14, model="ema")
+forecast.plot()</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="wq-dam">Dam Water Level Monitoring</h2>
+<p class="pr">49 real dams across 13 countries with regional filtering. Use cases: water level forecasting, flood early warning, rainfall-driven inflow prediction, real-time monitoring with anomaly alerts, multi-dam network visualization.</p>
+<table class="tb">
+<thead><tr><th>Country</th><th>Dams</th><th>States/Regions</th></tr></thead>
+<tbody>
+<tr><td>India</td><td>22</td><td>TN, Kerala, Karnataka, AP, Telangana, Maharashtra, HP, UK, Odisha, Gujarat</td></tr>
+<tr><td>USA</td><td>8</td><td>Nevada, Arizona, Washington, California, Montana, North Dakota, Idaho</td></tr>
+<tr><td>China</td><td>4</td><td>Hubei, Yunnan, Guangxi</td></tr>
+<tr><td>Brazil</td><td>3</td><td>Parana, Para</td></tr>
+<tr><td>Turkey</td><td>2</td><td>Sanliurfa, Mardin</td></tr>
+<tr><td>Australia</td><td>2</td><td>Tasmania, NSW</td></tr>
+<tr><td>Japan</td><td>2</td><td>Toyama, Kanagawa</td></tr>
+<tr><td>Egypt, Zimbabwe, Ghana, Ethiopia, Switzerland, Italy</td><td>1 each</td><td></td></tr>
+</tbody>
+</table>
+<div class="cb"><pre><code class="language-python">from wavqwise import DamDB
+
+DamDB.filter(country="India", state="Tamil Nadu")
+DamDB.search("cauvery")
+DamDB.list_countries()</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="wq-plugin">Plugin System</h2>
+<p class="pr">Three ways to plug any external model into WavqWise. Your class needs <code>fit(data, target, time_col)</code> and <code>predict(horizon)</code>. That is it.</p>
+<div class="cb"><pre><code class="language-python"># Way 1: Register any class
+WavqPipeline.register("my_model", MyModelClass)
+pipeline.forecast(model="my_model")
+
+# Way 2: ModelAdapter wraps anything
+from wavqwise.core.adapter import ModelAdapter
+adapter = ModelAdapter.from_sklearn(GradientBoostingRegressor())
+pipeline.forecast(model=adapter)
+
+# Way 3: Library adapters (migration from Nixtla, Darts, Prophet)
+from wavqwise.adapters import NixtlaAdapter, DartsAdapter, ProphetAdapter
+pipeline.forecast(model=NixtlaAdapter("AutoARIMA"))</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="wq-runtime">GPU &amp; Runtime Acceleration</h2>
+<p class="pr">Auto-detects best available hardware on startup. No user configuration needed.</p>
+<table class="tb">
+<thead><tr><th>Priority</th><th>Runtime</th><th>Condition</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>TensorRT</td><td>onnxruntime-gpu + tensorrt + NVIDIA GPU</td></tr>
+<tr><td>2</td><td>ONNX GPU</td><td>onnxruntime-gpu + CUDA/DirectML</td></tr>
+<tr><td>3</td><td>PyTorch CUDA</td><td>torch.cuda.is_available()</td></tr>
+<tr><td>4</td><td>PyTorch MPS</td><td>Apple Silicon Mac</td></tr>
+<tr><td>5</td><td>ONNX CPU</td><td>onnxruntime installed</td></tr>
+<tr><td>6</td><td>CPU</td><td>Always available (fallback)</td></tr>
+</tbody>
+</table>
+<div class="cb"><pre><code class="language-python">pipeline = WavqPipeline()               # auto-detect
+pipeline = WavqPipeline(device="cuda")   # force CUDA
 pipeline = WavqPipeline(device="tensorrt")  # force TensorRT
-
 print(pipeline.runtime_info())
-# WavqWise Runtime Engine
-# Backend:  tensorrt
-# Device:   NVIDIA RTX 4090
-# GPU:      Yes
-# VRAM:     24.0 GB</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
-<h3 class="ssh">ONNX Export for Production</h3>
-<p class="pr">Export trained models to ONNX for production deployment. ONNX models load faster, use less memory, and can be optimized with TensorRT for maximum inference speed.</p>
-<div class="cb"><pre><code class="language-python">from wavqwise.runtime import ONNXExporter, ONNXPredictor
+# ONNX export for production
+from wavqwise.runtime import ONNXExporter, ONNXPredictor
+ONNXExporter.export_sklearn(model, "model.onnx", n_features=13)
+ONNXExporter.optimize_for_tensorrt("model.onnx", fp16=True)
+predictor = ONNXPredictor("model.onnx")
+print(predictor.benchmark(input_array))</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
-exporter = ONNXExporter()
-exporter.export_sklearn(trained_model, "model.onnx", n_features=13)
-exporter.optimize_for_tensorrt("model.onnx")  # FP16 optimization
+<h2 class="sh" id="wq-db">Database Connectors</h2>
+<table class="tb">
+<thead><tr><th>Database</th><th>Connection Format</th><th>Install</th></tr></thead>
+<tbody>
+<tr><td>SQLite</td><td><code>sqlite:///path/to/db</code></td><td>Built-in</td></tr>
+<tr><td>PostgreSQL</td><td><code>postgresql://user:pass@host/db</code></td><td><code>pip install wavqwise[database]</code></td></tr>
+<tr><td>MySQL</td><td><code>mysql://user:pass@host/db</code></td><td><code>pip install wavqwise[database]</code></td></tr>
+<tr><td>MongoDB</td><td><code>mongodb://host:27017/db</code></td><td><code>pip install wavqwise[database]</code></td></tr>
+<tr><td>TimescaleDB</td><td><code>timescaledb://user:pass@host/db</code></td><td><code>pip install wavqwise[database]</code></td></tr>
+<tr><td>InfluxDB</td><td><code>influxdb://host:8086/db</code></td><td><code>pip install wavqwise[database]</code></td></tr>
+</tbody>
+</table>
 
-predictor = ONNXPredictor("model.onnx")  # auto-selects GPU
-result = predictor.predict(input_array)
-print(predictor.benchmark(input_array))   # latency report</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+<h2 class="sh" id="wq-eval">Evaluation &amp; A/B Testing</h2>
+<p class="pr">Built-in metrics: MAE, RMSE, MAPE, SMAPE, MASE, Coverage. <code>compare_models()</code> runs holdout evaluation ranked by MAE. <code>ABTest.compare()</code> performs paired t-test or Wilcoxon for statistical significance.</p>
+<div class="cb"><pre><code class="language-python">pipeline.compare_models(["arima", "ets", "xgboost"], horizon=14)
 
-<h2 class="sh" id="wq-db">Database Support</h2>
-<div class="cb"><pre><code class="language-python"># PostgreSQL / TimescaleDB
-pipeline.load("postgresql://user:pass@host:5432/db",
-              query="SELECT timestamp, value FROM sensors")
-
-# SQLite
-pipeline.load("sqlite:///local.db", table="readings")
-
-# MongoDB / InfluxDB
-pipeline.load("mongodb://host:27017/db", collection="data")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+from wavqwise.evaluation import ABTest
+ab = ABTest.compare(model_a_results, model_b_results)
+print(ab.winner, ab.p_value)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="wq-cli">CLI</h2>
 <div class="cb"><pre><code class="language-bash">wavqwise forecast --input data.csv --target sales --model arima --horizon 30
 wavqwise detect --input sensor.csv --target temperature --method zscore
-wavqwise models  # list all available models</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+wavqwise models  # list all 37 available models</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="wq-docker">Docker</h2>
+<p class="pr">Docker Compose stack: WavqWise + TimescaleDB + Grafana. Jupyter at :8888, Grafana at :3000.</p>
+<div class="cb"><pre><code class="language-bash">docker-compose -f docker/docker-compose.yml up -d</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 </div>
 </div>
-
-<!-- ===== ADAPTIVE INTELLIGENCE ===== -->
 <div class="pg" id="pg-adaptive" data-lib="Adaptive Intelligence">
 <div class="ct">
 <img src="images/adaptive_intelligence.png" class="banner" alt="Adaptive Intelligence">
@@ -2138,7 +2284,34 @@ docker compose exec antstudio antstudio doc extract /data/my_invoices/ \
 # Pipeline Tracker UI at http://localhost:8501
 
 # Stop
-docker compose down</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+docker compose down</code></pre><button class="cp" onclick="cc(this)">Copy</button>
+
+<h2 class="sh" id="as-arch">Architecture</h2>
+<div class="cb"><pre><code class="language-bash">antstudio/
+  cli.py               # Click CLI (doc, ts, runs, status)
+  pipeline.py           # Step tracking + JSON persistence
+  backbone/             # Auto quality + privacy on every command
+  doc/
+    extract.py          # Document field extraction (DocQWise)
+    ask.py              # Document Q&amp;A with RAG modes
+    loader.py           # Universal file loader (PDF, DOCX, Excel, images, TXT)
+  ts/
+    forecast.py         # Time-series forecasting with visualization
+    anomaly.py          # Anomaly detection (Z-score + WavqWise)
+  io/
+    reader.py           # Universal input (file, folder, DB, URL)
+    writer.py           # Universal output (CSV, Excel, JSON, DB)
+  llm/
+    engine.py           # Universal LLM engine (10+ providers)
+  reports.py            # Quality + audit report generator (JSON)
+
+tracker/
+  app.py               # Flask API for pipeline tracking UI
+  static/index.html    # Flow visualization
+
+docker-compose.yml     # Full stack: CLI + Ollama + Tracker UI</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+</div>
 
 <table class="tb">
 <thead><tr><th>Service</th><th>Port</th><th>Description</th></tr></thead>
