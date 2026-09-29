@@ -1258,41 +1258,21 @@ dq.visualize_query("Who signed?", output="query.html")</code></pre><button class
 python -m docqwise.server.mcp_server --port 8080</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h3 class="ssh">Architecture</h3>
+<p class="pr">
+DocQWise uses a modular architecture with pluggable extraction,
+LLM, retrieval, storage, agentic processing, and MCP components.
+The architecture is designed to keep the core engine stable while
+allowing individual components to evolve independently.
+</p>
 
-<p class="pr">DocQWise uses a factory pattern for component selection. The core engine remains stable while factories select extraction, LLM, embedding, storage, chunking, and template implementations.</p>
-
-<div class="cb"><pre><code class="language-bash">engine.py (stable — core orchestration)
-    └── factory.py
-            ├── ExtractorFactory  → rag | llm | vision | regex | agentic
-            ├── LLMFactory        → ollama | huggingface | openai
-            ├── EmbedderFactory   → sentence-transformers | any
-            ├── StoreFactory      → sqlite | faiss | any
-            ├── ChunkerFactory    → structure | fixed | sentence
-            └── TemplateFactory   → invoice | contract | resume | receipt
-
-```
-└── agent/
-        └── ExtractionAgent
-                → extract
-                → validate
-                → retry
-                → cross-check
-                → merge
-
-└── retrieval/
-        ├── RAGStrategy       → general | graphrag | multimodal
-        ├── GraphRAGEngine    → entity graph + evidence chains
-        └── QAEngine          → structured data Q&A
-
-└── server/
-        └── MCPServer
-                → JSON-RPC over stdio
-                → HTTP transport
-                → AI agent integration</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
-```
+<img
+    src="images/docqwise_Arc.png"
+    class="banner"
+    alt="DocQWise Architecture"
+>
 
 </div>
-</div>
+  </div>
 
 
 <!-- ===== WAVQWISE ===== -->
