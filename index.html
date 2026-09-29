@@ -790,85 +790,277 @@ sw.export("meeting.wav", format="notes", output="meeting_notes.md") # Meeting no
 <h1 class="dt" style="color:var(--col-docqwise)">DocQWise</h1>
 <div class="dtag" style="color:var(--col-docqwise)">Read. Extract. Retrieve.</div>
 <p class="ddesc">AI-powered document intelligence engine. Read any document format, extract structured data using LLMs and RAG pipelines, retrieve information with semantic search — locally, at scale, for zero per-page cost.</p>
+
 <div class="lib-links">
       <a class="primary" href="https://github.com/VK-Ant/docqwise" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a>
       <a href="https://pypi.org/project/docqwise/" target="_blank">PyPI</a>
       <a href="https://github.com/VK-Ant/docqwise/blob/main/LICENSE" target="_blank">Apache 2.0</a>
       <a href="https://github.com/VK-Ant/docqwise#contributing" target="_blank">Contribute</a>
-    </div>
+</div>
 
 <h2 class="sh" id="dq-install">Installation</h2>
-<p class="pr">Three install tiers: core (regex only, no ML), ML (RAG pipeline, embeddings, OCR), and full (every format, every feature).</p>
-<div class="cb"><pre><code class="language-bash"># Core only — PDF reading, regex extraction, no ML
+<p class="pr">Three install tiers: core (PDF reading, basic extraction), ML (RAG pipeline, embeddings, OCR), and full (all features and integrations).</p>
+
+<div class="cb"><pre><code class="language-bash"># Core — PDF reading, AI extraction
 pip install docqwise
 
 # With ML — RAG pipeline, embeddings, OCR (recommended)
-pip install -r requirements-ml.txt
 
-# Everything — all features, all formats
-pip install -r requirements-full.txt</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
-<p class="pr">DocQWise supports three LLM backends. Pick the one that fits your infrastructure:</p>
-<div class="cb"><pre><code class="language-bash"># Ollama — local, free, recommended for development
+pip install docqwise[ml]
+
+# Everything — all features
+
+pip install docqwise[all]
+
+# Optional feature groups
+
+pip install docqwise[graph]       # GraphRAG + NetworkX visualization
+pip install docqwise[connectors]  # FAISS, ChromaDB, Qdrant, etc.
+pip install docqwise[server]      # MCP server + FastAPI</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<p class="pr">DocQWise supports local and cloud LLM backends. Pick the one that fits your infrastructure:</p>
+
+<div class="cb"><pre><code class="language-bash"># Ollama — local, free, recommended
 # Install from https://ollama.com then:
 ollama pull nemotron-mini
 
 # HuggingFace — local GPU inference
+
 pip install transformers torch bitsandbytes accelerate
 
 # OpenAI — cloud API
+
 export OPENAI_API_KEY=your-key</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="dq-extract">Extraction Methods</h2>
-<p class="pr">DocQWise offers four extraction methods. Each is suited to different document types and accuracy/speed tradeoffs.</p>
+
+<p class="pr">DocQWise supports five extraction methods, ranging from deterministic pattern matching to autonomous multi-pass agentic extraction.</p>
+
 <p class="pr"><strong>RAG (default)</strong> chunks the document, embeds chunks, retrieves the most relevant ones for the extraction query, and passes them to an LLM for structured extraction. Best for long documents where only a few pages contain the target fields.</p>
-<p class="pr"><strong>Direct LLM</strong> sends the full document text directly to the LLM. Best for short documents (under 10 pages) where context window isn't a concern.</p>
-<p class="pr"><strong>Vision</strong> sends the document as an image to a vision LLM (GPT-4o). Best for scanned documents, handwriting, and complex layouts where text extraction loses structure.</p>
-<p class="pr"><strong>Regex</strong> uses pattern matching with no ML dependencies. Fastest method, works offline, but limited to documents with predictable formatting.</p>
+
+<p class="pr"><strong>Direct LLM</strong> sends the full document text directly to the LLM. Best for short documents where the context window is sufficient.</p>
+
+<p class="pr"><strong>Vision</strong> sends the document as an image to a vision LLM. Best for scanned documents, handwriting, and complex layouts where text extraction loses structure.</p>
+
+<p class="pr"><strong>Regex</strong> uses pattern matching with no ML dependencies. Fastest method, works offline, but limited to predictable document formats.</p>
+
+<p class="pr"><strong>Agentic Extraction</strong> uses a multi-pass, self-correcting extraction agent. It validates extracted fields, retries failed fields, cross-checks results, and merges the final output with confidence information and an audit trace. Best when extraction reliability and validation are more important than a single-pass result.</p>
+
 <div class="cb"><pre><code class="language-python">dq = Docqwise()
 
-# RAG — chunk, embed, retrieve, LLM extract (default)
+# RAG — chunk, embed, retrieve, LLM extract
+
 dq.extract_fields("doc.pdf", template="invoice")
 
 # Direct LLM — full text to LLM
+
 dq.extract_fields("doc.pdf", template="invoice", method="llm")
 
-# Vision — image-based extraction (scanned docs, handwriting)
+# Vision — image-based extraction
+
 dq.extract_fields("scan.jpg", method="vision", model="gpt-4o")
 
-# Regex — pattern matching, no ML, fastest
-dq.extract_fields("doc.pdf", template="invoice", method="regex")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+# Regex — pattern matching, no ML
+
+dq.extract_fields("doc.pdf", template="invoice", method="regex")
+
+# Agentic — multi-pass, self-correcting extraction
+
+result = dq.extract_agentic(
+"invoice.pdf",
+template="invoice",
+max_retries=3,
+cross_check=True,
+)
+
+print(result.to_json())
+print(result.confidence)
+print(result.strategy_used)
+print(result.warnings)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Agentic Extraction</h3>
+
+<p class="pr">Agentic Extraction turns document extraction into a validation-driven workflow. Instead of relying on a single extraction pass, the agent extracts fields, validates the result, retries failed fields, cross-checks the output, and merges the final result.</p>
+
+<div class="cb"><pre><code class="language-python">from docqwise import Docqwise
+
+dq = Docqwise()
+
+result = dq.extract_agentic(
+"invoice.pdf",
+template="invoice",
+max_retries=3,
+cross_check=True,
+)
+
+print(result.to_json())
+print(f"Confidence: {result.confidence}")
+print(f"Strategy: {result.strategy_used}")
+print(f"Warnings: {result.warnings}")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<p class="pr">For applications that need a complete extraction trace, the agent can also be used directly.</p>
+
+<div class="cb"><pre><code class="language-python">from docqwise.agent import ExtractionAgent
+
+agent = ExtractionAgent(
+max_retries=2,
+cross_check=True
+)
+
+result = agent.extract(
+"contract.pdf",
+template="contract"
+)
+
+print(agent.trace.summary())</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Custom Validation Rules</h3>
+
+<p class="pr">Define validation rules for required fields, numeric ranges, patterns, and allowed values. Failed validations can automatically trigger another extraction attempt.</p>
+
+<div class="cb"><pre><code class="language-python">from docqwise.agent.extraction_agent import (
+    ExtractionAgent,
+    ValidationRule
+)
+
+rules = [
+ValidationRule("invoice_number", "required"),
+ValidationRule(
+"total",
+"range",
+{"min": 0, "max": 1000000}
+),
+ValidationRule(
+"email",
+"pattern",
+{"pattern": r"[\w.]+@[\w.]+"}
+),
+ValidationRule(
+"status",
+"choices",
+{"values": ["paid", "pending", "overdue"]}
+),
+]
+
+agent = ExtractionAgent(
+validation_rules=rules
+)
+
+result = agent.extract(
+"invoice.pdf",
+schema={
+"invoice_number": "string",
+"total": "number",
+"email": "string",
+"status": "string",
+}
+)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="dq-mcp">MCP Server</h2>
+
+<p class="pr">DocQWise can run as a Model Context Protocol (MCP) server, allowing AI assistants and agentic systems to use document intelligence capabilities as tools.</p>
+
+<p class="pr">The MCP server exposes document extraction, agentic extraction, RAG question answering, ingestion, classification, table extraction, entity extraction, document comparison, PII detection, and semantic retrieval.</p>
+
+<div class="cb"><pre><code class="language-bash"># Start MCP server using stdio transport
+python -m docqwise.server.mcp_server
+
+# Start MCP server using HTTP transport
+
+python -m docqwise.server.mcp_server --port 8080</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Claude Desktop Integration</h3>
+
+<p class="pr">Add DocQWise to your Claude Desktop MCP configuration:</p>
+
+<div class="cb"><pre><code class="language-json">{
+  "mcpServers": {
+    "docqwise": {
+      "command": "python",
+      "args": ["-m", "docqwise.server.mcp_server"]
+    }
+  }
+}</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Available MCP Tools</h3>
+
+<div class="cb"><pre><code class="language-text">docqwise_extract
+docqwise_extract_agentic
+docqwise_ask
+docqwise_ingest
+docqwise_classify
+docqwise_extract_tables
+docqwise_extract_entities
+docqwise_compare
+docqwise_detect_pii
+docqwise_retrieve</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<p class="pr">This allows DocQWise to become a document-intelligence tool layer inside AI assistants and agentic workflows.</p>
 
 <h2 class="sh" id="dq-llm">LLM Backends</h2>
-<p class="pr">DocQWise works with any LLM backend. The choice of backend affects accuracy, speed, and cost but does not change the API.</p>
-<div class="cb"><pre><code class="language-python"># Ollama — local, free, no API key needed
+
+<p class="pr">DocQWise works with local and cloud LLM backends. The backend can be changed without changing the extraction API.</p>
+
+<div class="cb"><pre><code class="language-python"># Ollama — local, free
 dq.extract_fields("doc.pdf", model="nemotron-mini")
 
-# HuggingFace — local GPU, 4-bit quantization for memory efficiency
+# HuggingFace — local GPU
+
 from docqwise.llm.hf_llm import HuggingFaceLLM
-llm = HuggingFaceLLM("Qwen/Qwen2.5-3B-Instruct", quantize="4bit")
+
+llm = HuggingFaceLLM(
+"Qwen/Qwen2.5-3B-Instruct",
+quantize="4bit"
+)
+
 dq.extract_fields("doc.pdf", llm=llm)
 
-# OpenAI — cloud API, highest accuracy
-dq.extract_fields("doc.pdf", model="gpt-4o-mini")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+# OpenAI — cloud API
+
+from docqwise.llm.openai_llm import OpenAILLM
+
+llm = OpenAILLM(model="gpt-4o-mini")
+dq.extract_fields("doc.pdf", llm=llm)
+
+# Any OpenAI-compatible endpoint
+
+llm = OpenAILLM(
+model="my-model",
+base_url="https://my-server.com/v1"
+)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="dq-templates">Templates & Custom Schemas</h2>
+
 <p class="pr">Templates are pre-defined field sets for common document types. DocQWise ships with templates for invoices, contracts, resumes, and receipts. For other document types, define a custom schema as a dictionary.</p>
+
 <div class="cb"><pre><code class="language-python"># Built-in templates
 dq.extract_fields("invoice.pdf", template="invoice")
 dq.extract_fields("contract.pdf", template="contract")
 dq.extract_fields("resume.pdf", template="resume")
 dq.extract_fields("receipt.jpg", template="receipt")
 
-# Custom schema — define your own fields
+# Custom schema
+
 schema = {
-    "vendor": {"type": "string", "description": "Company name"},
-    "total": {"type": "number", "description": "Total amount"},
-    "due_date": {"type": "string", "description": "Payment due date"},
+"vendor": {
+"type": "string",
+"description": "Company name"
+},
+"total": {
+"type": "number",
+"description": "Total amount"
+},
+"due_date": {
+"type": "date"
+},
 }
+
 dq.extract_fields("doc.pdf", schema=schema)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h3 class="ssh">Custom Prompts & System Prompts</h3>
-<p class="pr">For full control over the extraction behavior, provide your own prompt template and/or system prompt. The <code>{context}</code> placeholder is replaced with the document text. The <code>{schema}</code> placeholder is replaced with the schema definition.</p>
+
+<p class="pr">For full control over extraction behavior, provide your own prompt template and/or system prompt. The <code>{context}</code> placeholder is replaced with document text and <code>{schema}</code> is replaced with the schema definition.</p>
+
 <div class="cb"><pre><code class="language-python"># Custom extraction prompt
 dq.extract_fields("doc.pdf", prompt="""
 You are a medical record parser.
@@ -881,114 +1073,227 @@ Document:
 JSON:
 """)
 
-# System prompt — sets the LLM's role
-dq.extract_fields("invoice.pdf",
-    system_prompt="You are a maritime document specialist with 20 years experience.",
-    prompt="Extract vessel name, port, and total cost.
+# System prompt
+
+dq.extract_fields(
+"invoice.pdf",
+system_prompt="You are a maritime document specialist.",
+prompt="""Extract vessel name, port, and total cost.
 
 Document:
 {context}
 
-JSON:",
+JSON:""",
 )
 
-# System prompt works with GraphRAG too
-dq.ask_rag("What is the liability cap?",
-    mode="graphrag",
-    system_prompt="You are a risk analyst. Be precise with numbers.",
+# System prompt with GraphRAG
+
+dq.ask_rag(
+"What is the liability cap?",
+mode="graphrag",
+system_prompt="You are a risk analyst. Be precise with numbers.",
 )</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h3 class="ssh">Self-Improving Corrections</h3>
-<p class="pr">When an extraction result has errors, provide corrections. DocQWise learns from these corrections and applies them automatically to future similar documents. Over time, accuracy improves without retraining any model.</p>
-<div class="cb"><pre><code class="language-python">result = dq.extract_fields("invoice.pdf", template="invoice")
-result.correct({"tax": 33300.00, "gst_number": "29AABCU9603R1ZM"})
-# Next similar document -> corrections applied automatically</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<p class="pr">When an extraction result has errors, provide corrections. DocQWise applies these corrections to future similar documents.</p>
+
+<div class="cb"><pre><code class="language-python">result = dq.extract_fields(
+    "invoice.pdf",
+    template="invoice"
+)
+
+result.correct({
+"tax": 33300.00,
+"gst_number": "29AABCU9603R1ZM"
+})
+
+# Future similar documents use the correction</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="dq-rag">RAG Modes</h2>
+
 <p class="pr">DocQWise supports three RAG modes for question-answering over ingested documents.</p>
-<p class="pr"><strong>General RAG</strong> is the standard chunk → embed → retrieve → LLM pipeline. Best for direct factual questions on single documents.</p>
-<p class="pr"><strong>GraphRAG</strong> builds an entity-relationship graph from all ingested documents. This enables cross-document reasoning — answering questions that require connecting facts from multiple files. The graph is auto-built during ingestion.</p>
-<p class="pr"><strong>Multimodal RAG</strong> combines text extraction with vision LLM analysis. Best for documents with charts, diagrams, or images that carry information not captured in text.</p>
+
+<p class="pr"><strong>General RAG</strong> is the standard chunk → embed → retrieve → LLM pipeline. Best for direct factual questions on documents.</p>
+
+<p class="pr"><strong>GraphRAG</strong> builds an entity-relationship graph from ingested documents. This enables cross-document reasoning using entities, relationships, and evidence chains.</p>
+
+<p class="pr"><strong>Multimodal RAG</strong> combines text extraction with vision LLM analysis. Best for documents containing charts, diagrams, or images where visual information is important.</p>
+
 <div class="cb"><pre><code class="language-python">dq = Docqwise()
 dq.ingest("documents/")
 
-# General RAG — chunk, embed, retrieve, LLM answer
-result = dq.ask_rag("total amount?", mode="general")
+# General RAG
 
-# GraphRAG — entity graph traversal, cross-document answers
-result = dq.ask_rag("Who is the vendor for PO-2012?", mode="graphrag")
-print(result["answer"])     # "SuperStore"
-print(result["source"])     # "invoice_001.pdf"
-print(result["evidence"])   # [{entity, relation, target}, ...]
+result = dq.ask_rag(
+"What is the total amount?",
+mode="general"
+)
 
-# Multimodal RAG — text + image analysis
-result = dq.ask_rag("What is in this scan?", mode="multimodal", source="scan.jpg")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+# GraphRAG
+
+result = dq.ask_rag(
+"What are the payment terms for Acme Corp?",
+mode="graphrag"
+)
+
+print(result["answer"])
+print(result["evidence"])
+print(result["confidence"])
+
+# Multimodal RAG
+
+result = dq.ask_rag(
+"What is in this scan?",
+mode="multimodal",
+source="scan.jpg"
+)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h3 class="ssh">Graph Visualization</h3>
-<p class="pr">Visualize the knowledge graph as an interactive HTML file. Nodes are color-coded by entity type, edges show relationships, and everything is draggable.</p>
+
+<p class="pr">Visualize the knowledge graph as an interactive HTML file. Nodes represent entities, edges represent relationships, and query-aware visualization can highlight relevant parts of the graph.</p>
+
 <div class="cb"><pre><code class="language-python">dq = Docqwise()
 dq.ingest("documents/")
 
-graphrag = dq.build_document_graph()
-graph = graphrag.get_graph()
-print(f"Nodes: {graph.node_count}, Edges: {graph.edge_count}")
+engine = dq.build_graph(
+sources=["contract1.pdf", "contract2.pdf"]
+)
 
-dq.visualize_graph(output="my_graph.html")
-# Open my_graph.html in browser — interactive visualization</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+print(engine.graph.stats())
+
+# Static visualization
+
+dq.visualize_graph(
+"graph.png",
+sources=["contract1.pdf"]
+)
+
+# Interactive visualization
+
+dq.visualize_graph(
+"graph.html",
+sources=["contract1.pdf"]
+)
+
+# Query-aware graph
+
+result = dq.visualize_query(
+"Who signed the contract?",
+output="query_graph.png",
+sources=["contract1.pdf"]
+)
+
+print(result["answer"])</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="dq-qa">Structured Data Q&A</h2>
-<p class="pr">When you ingest structured data (CSV, XLSX), DocQWise translates natural language questions into data operations — SUM, COUNT, GROUP BY, WHERE — and returns exact numerical answers, not LLM approximations.</p>
+
+<p class="pr">When you ingest structured data such as CSV or XLSX, DocQWise can answer natural-language questions using structured operations such as SUM, COUNT, GROUP BY, and WHERE.</p>
+
 <div class="cb"><pre><code class="language-python">dq.ingest("sales.xlsx")
 
-dq.ask("What is the total amount?")         # exact SUM
-dq.ask("Which vendor has highest sales?")    # GROUP BY + MAX
-dq.ask("How many invoices are overdue?")     # COUNT + WHERE</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+dq.ask("What is the total amount?")
+dq.ask("Which vendor has highest sales?")
+dq.ask("How many invoices are overdue?")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h3 class="ssh">Source Attribution</h3>
-<p class="pr">Every answer includes which document it came from, with confidence scores and the extraction method used.</p>
-<div class="cb"><pre><code class="language-python">result = dq.ask_with_source("What is the governing law?")
-print(result.answer)        # "laws of India"
-print(result.source_name)   # "sample_contract.pdf"
-print(result.confidence)    # 0.85
-print(result.method)        # "llm"</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<p class="pr">DocQWise can return source information alongside answers, including the source document, confidence, and method used.</p>
+
+<div class="cb"><pre><code class="language-python">result = dq.ask_with_source(
+    "What is the governing law?",
+    source="sample_contract.pdf"
+)
+
+print(result.answer)
+print(result.source_name)
+print(result.confidence)
+print(result.method)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="dq-api">Full API Reference</h2>
+
 <div class="cb"><pre><code class="language-python">dq = Docqwise()
 
 # Ingestion
-dq.ingest("file.pdf")                    # single file
-dq.ingest("documents/")                  # folder (all formats)
-dq.ingest("data.csv")                    # structured data
+
+dq.ingest("file.pdf")
+dq.ingest("documents/")
+dq.ingest("data.csv")
 
 # Extraction
-dq.extract_fields("doc.pdf")             # field extraction
-dq.extract_tables("doc.pdf")             # table extraction
-dq.extract_entities("doc.pdf")           # named entity extraction
-dq.extract_images("doc.pdf")             # embedded image extraction
-dq.extract_text("doc.pdf")              # plain text extraction
-dq.auto_extract("doc.pdf")              # auto-detect document type + extract
+
+dq.extract_fields("doc.pdf")
+dq.extract_agentic("doc.pdf")
+dq.extract_tables("doc.pdf")
+dq.extract_entities("doc.pdf")
+dq.extract_images("doc.pdf")
+dq.extract_text("doc.pdf")
+dq.auto_extract("doc.pdf")
 
 # Intelligence
-dq.retrieve("query", top_k=5)            # semantic search over chunks
-dq.ask("question")                       # question answering
-dq.classify("doc.pdf")                   # document classification
-dq.compare("v1.pdf", "v2.pdf")           # document comparison
-dq.detect_schema("data.csv")             # auto-detect column types
-dq.detect_pii("doc.pdf")                 # find PII in document</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+dq.retrieve("query", top_k=5)
+dq.ask("question")
+dq.ask_with_source("question")
+dq.ask_rag("question", mode="graphrag")
+dq.classify("doc.pdf")
+dq.compare("v1.pdf", "v2.pdf")
+dq.detect_schema("data.csv")
+dq.detect_pii("doc.pdf")
+
+# Knowledge Graph
+
+dq.build_graph(sources=["a.pdf", "b.pdf"])
+dq.visualize_graph("graph.png")
+dq.visualize_query("Who signed?", output="query.html")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">MCP Integration</h3>
+
+<p class="pr">Run DocQWise as an MCP server and expose document intelligence capabilities to compatible AI assistants and agentic systems.</p>
+
+<div class="cb"><pre><code class="language-bash">python -m docqwise.server.mcp_server
+
+# HTTP transport
+
+python -m docqwise.server.mcp_server --port 8080</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h3 class="ssh">Architecture</h3>
-<p class="pr">DocQWise uses a factory pattern for all component selection. The engine is stable and never changes; the factories select the right implementation based on your configuration.</p>
-<div class="cb"><pre><code class="language-bash">engine.py (stable — never changes)
-    └── factory.py (all component selection)
-            ├── ExtractorFactory  → rag | llm | vision | regex
+
+<p class="pr">DocQWise uses a factory pattern for component selection. The core engine remains stable while factories select extraction, LLM, embedding, storage, chunking, and template implementations.</p>
+
+<div class="cb"><pre><code class="language-bash">engine.py (stable — core orchestration)
+    └── factory.py
+            ├── ExtractorFactory  → rag | llm | vision | regex | agentic
             ├── LLMFactory        → ollama | huggingface | openai
             ├── EmbedderFactory   → sentence-transformers | any
-            ├── StoreFactory      → sqlite | qdrant | faiss | any
+            ├── StoreFactory      → sqlite | faiss | any
             ├── ChunkerFactory    → structure | fixed | sentence
-            └── TemplateFactory   → invoice | contract | resume | receipt</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+            └── TemplateFactory   → invoice | contract | resume | receipt
+
+```
+└── agent/
+        └── ExtractionAgent
+                → extract
+                → validate
+                → retry
+                → cross-check
+                → merge
+
+└── retrieval/
+        ├── RAGStrategy       → general | graphrag | multimodal
+        ├── GraphRAGEngine    → entity graph + evidence chains
+        └── QAEngine          → structured data Q&A
+
+└── server/
+        └── MCPServer
+                → JSON-RPC over stdio
+                → HTTP transport
+                → AI agent integration</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+```
 
 </div>
 </div>
+
 
 <!-- ===== WAVQWISE ===== -->
 <div class="pg" id="pg-wavqwise" data-lib="WavqWise">
