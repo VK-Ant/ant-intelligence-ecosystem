@@ -28,9 +28,24 @@
     </a>
     <ul class="hdr-nav">
       <li><a href="#quickstart" onclick="go('quickstart')">Getting Started</a></li>
-      <li><a href="#antstudio" onclick="go('antstudio')">Platform &amp; Tools</a></li>
-      <li><a href="#llmevalkit" onclick="go('llmevalkit')">Evaluation</a></li>
-      <li><a href="#antguard" onclick="go('antguard')">Security</a></li>
+      <li><a href="#antstudio" onclick="go('antstudio')">Ant Studio</a></li>
+      <li class="hdr-dropdown">
+        <a href="#" onclick="event.preventDefault()">Explore <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="vertical-align:0;margin-left:2px"><path d="M6 9l6 6 6-6"/></svg></a>
+        <div class="hdr-dd-menu">
+          <div class="dd-group-label">Perception</div>
+          <a onclick="go('sightrag')"><span class="dd-dot" style="background:var(--sr)"></span>SightRAG</a>
+          <a onclick="go('sonarwise')"><span class="dd-dot" style="background:var(--so)"></span>Sonarwise</a>
+          <a onclick="go('docqwise')"><span class="dd-dot" style="background:var(--dq)"></span>DocQWise</a>
+          <div class="dd-group-label">Forecasting</div>
+          <a onclick="go('wavqwise')"><span class="dd-dot" style="background:var(--wq)"></span>WavqWise</a>
+          <div class="dd-group-label">Orchestration</div>
+          <a onclick="go('adaptive')"><span class="dd-dot" style="background:var(--ai)"></span>Adaptive Intelligence</a>
+          <div class="dd-group-label">Evaluation &amp; Security</div>
+          <a onclick="go('llmevalkit')"><span class="dd-dot" style="background:var(--ek)"></span>LLMEvalKit</a>
+          <a onclick="go('antguard')"><span class="dd-dot" style="background:var(--ag)"></span>AntGuard</a>
+        </div>
+      </li>
+      <li><a href="#demos" onclick="go('demos')">Demos</a></li>
       <li><a href="#about" onclick="go('about')">About</a></li>
     </ul>
   </div>
