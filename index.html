@@ -1616,6 +1616,7 @@ pip install adaptive-intelligence[vector]         # + ChromaDB vector search
 pip install adaptive-intelligence[openai]         # + OpenAI-compatible APIs
 pip install adaptive-intelligence[huggingface]    # + Local HuggingFace models
 pip install adaptive-intelligence[all]            # Everything</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+pip install adaptive-intelligence[cache]          # + Redis cache backend
 
 <h2 class="sh" id="ai-how">How It Works</h2>
 <p class="pr">Every RAG system uses the same retrieval strategy for every query. A simple factual lookup gets the same vector search as a complex multi-document relationship chain. Adaptive Intelligence fixes this with a five-step pipeline:</p>
@@ -1713,12 +1714,45 @@ print(response.harness_report.summary())
 # Efficiency: 67%
 # Recommendation: skip graph for this query type next time</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
-<h3 class="ssh">Loop Engineering</h3>
+<h2 class="ssh">Loop Engineering</h2>
 <p class="pr">Optimizes the RL learning loop itself. Adaptive warmup per domain, per-domain exploration rates, reward shaping, and convergence detection. Domains with more queries get lower exploration (exploit learned policy). New domains get higher exploration (still learning).</p>
 <div class="cb"><pre><code class="language-python">print(engine._loop_engineer.get_stats())
 # Domains with 100+ queries: exploration rate 0.05 (exploiting)
 # New domain "legal": exploration rate 0.35 (still learning)
 # Converged domains: minimal exploration (policy stable)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="ssh">LM Cache</h2>
+<p class="pr">Cache LLM responses to skip redundant calls. Exact matching for identical queries, semantic matching for similar ones. Plug in Redis or any external backend.</p>
+<div class="cb"><pre><code class="language-python"># Exact cache (default, zero deps)
+engine = AdaptiveAI(cache=True)
+
+# Semantic cache — similar queries return cached response
+engine = AdaptiveAI(cache=True, cache_mode="semantic", cache_threshold=0.92)
+
+# Both exact + semantic
+engine = AdaptiveAI(cache=True, cache_mode="both")
+
+# Redis backend
+from adaptive_intelligence.cache import RedisAdapter
+engine = AdaptiveAI(cache=True, cache_adapter=RedisAdapter(host="localhost"))
+
+# Custom adapter
+from adaptive_intelligence.cache import CacheAdapter
+class MyCache(CacheAdapter):
+    def get(self, key): ...
+    def set(self, key, value, ttl): ...
+    def delete(self, key): ...
+
+engine = AdaptiveAI(cache=True, cache_adapter=MyCache())
+
+# Check cache stats
+print(engine.cache_display())
+# LM Cache Status
+#   Mode:           both
+#   Entries:        42
+#   Cache hits:     18 (43.2%)
+#   Cache misses:   24</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
 
 <h2 class="sh" id="ai-providers">LLM Providers</h2>
 <p class="pr">Adaptive Intelligence works with any LLM through an OpenAI-compatible API. Zero dependencies for basic usage with Ollama.</p>
@@ -2646,9 +2680,10 @@ docker-compose.yml     # Full stack: CLI + Ollama + Tracker UI</code></pre><butt
       <div class="video-desc">Extract, query, and retrieve from documents using RAG, LLM backends, vision extraction, and structured Q&A pipelines.</div>
       <div class="video-tags">
         <span class="video-tag">DocQWise</span>
-        <span class="video-tag">Document Intelligence</span>
-        <span class="video-tag">RAG</span>
-        <span class="video-tag">Extraction</span>
+        <span class="video-tag">llmevalkit</span>
+        <span class="video-tag">AntGuard</span>
+        <span class="video-tag">Adaptive Intelligence</span>
+        <span class="video-tag">Responsible AI Document Intelligence</span>
       </div>
     </div>
   </div>
@@ -2666,6 +2701,9 @@ docker-compose.yml     # Full stack: CLI + Ollama + Tracker UI</code></pre><butt
         <span class="video-tag">Forecasting</span>
         <span class="video-tag">Anomaly Detection</span>
         <span class="video-tag">Time-Series</span>
+        <span class="video-tag">llmevalkit</span>
+        <span class="video-tag">AntGuard</span>
+        <span class="video-tag">Adaptive Intelligence</span>
       </div>
     </div>
   </div>
