@@ -143,14 +143,20 @@ body {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 12px;
+  padding-top: 10px;
+  min-width: 220px;
+  z-index: 2000;
+}
+.hdr-dd-menu::before {
+  content: '';
+  display: block;
+}
+.hdr-dd-inner {
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 8px 0;
-  min-width: 220px;
   box-shadow: 0 8px 28px var(--shadow);
-  z-index: 2000;
 }
 .hdr-dropdown:hover .hdr-dd-menu {
   display: block;
