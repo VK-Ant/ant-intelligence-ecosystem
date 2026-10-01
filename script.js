@@ -64,6 +64,7 @@ const SI = [
   {l:'AntGuard',p:'antguard',t:'antguard guard detect protect privacy security data movement file network process correlation policy profiler'},
   {l:'Quick Start',p:'quickstart',t:'install pip quick start setup getting started'},
   {l:'Ant Studio',p:'antstudio',t:'ant studio cli sdk pipeline tracking docker forecast extract document ask anomaly ollama openai build run control'},
+  {l:'Demos',p:'demos',t:'demo video showcase example workflow multi-library integration pipeline end-to-end'},
 ];
 
 function search(q){
