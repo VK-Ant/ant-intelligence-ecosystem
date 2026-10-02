@@ -777,6 +777,14 @@ button, input, a { -webkit-tap-highlight-color: transparent; }
 }
 
 /* ===== DEMO VIDEO CARDS ===== */
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+@media (max-width: 860px) {
+  .demo-grid { grid-template-columns: 1fr; }
+}
 .demo-card {
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -802,12 +810,12 @@ button, input, a { -webkit-tap-highlight-color: transparent; }
   border: none;
 }
 .demo-card .video-info {
-  padding: 18px 22px;
+  padding: 14px 18px;
 }
 .demo-card .video-title {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
-  font-size: 17px;
+  font-size: 15px;
   margin-bottom: 6px;
   color: var(--t1);
 }
