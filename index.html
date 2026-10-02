@@ -406,8 +406,8 @@ g.save("./logs/")          # .log + .txt + .json reports</code></pre><button cla
 <div class="ct">
 <img src="images/sight_ai.png" class="banner" alt="SightRAG">
 <h1 class="dt" style="color:var(--col-sightrag)">SightRAG</h1>
-<div class="dtag" style="color:var(--col-sightrag)">See. Search. Retrieve.</div>
-<p class="ddesc">A pluggable visual RAG system. Any detection model. Any embedding model. Any vector store. SightRAG handles the pipeline: load, detect, embed, index, retrieve. You provide three lines of code.</p>
+<div class="dtag" style="color:var(--col-sightrag)">See. Search. Retrieve. Track.</div>
+<p class="ddesc">A pluggable visual RAG system. Any detection model. Any embedding model. Any vector store. Any segmentor. Any tracker. SightRAG handles the pipeline: load, detect, segment, embed, index, track, retrieve. You provide three lines of code.</p>
 <div class="lib-links">
       <a class="primary" href="https://github.com/VK-Ant/sightrag" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a>
       <a href="https://pypi.org/project/sightrag/" target="_blank">PyPI</a>
@@ -416,17 +416,21 @@ g.save("./logs/")          # .log + .txt + .json reports</code></pre><button cla
     </div>
 
 <h2 class="sh" id="sr-install">Installation</h2>
-<p class="pr">The base install includes PyTorch detection and CLIP embedding. Optional extras add OCR, open-vocabulary detection, person re-identification, and production-scale vector stores.</p>
-<div class="cb"><pre><code class="language-bash">pip install sightrag                     # Core: YOLOv8 + CLIP + SQLite
+<p class="pr">The base install includes detection, embedding, and a built-in vector store. Optional extras add segmentation, tracking, OCR, open-vocabulary detection, person re-identification, and production-scale vector stores.</p>
+<div class="cb"><pre><code class="language-bash">pip install sightrag                     # Core: detection + embedding + vector store
 
 # Performance extras
 pip install sightrag[onnx]               # 2x faster inference on any CPU
 pip install sightrag[openvino]           # Intel CPU optimized
 pip install sightrag[tensorrt]           # 3-5x faster on NVIDIA GPU
 
+# v0.5 extras
+pip install sightrag[sam2]               # SAM2 segmentation model
+pip install sightrag[track]              # Object tracking dependencies
+
 # Feature extras
 pip install sightrag[ocr]                # Read text on images (EasyOCR)
-pip install sightrag[multimodal]         # LLM-powered understanding (Qwen2-VL / GPT-4o)
+pip install sightrag[multimodal]         # LLM-powered understanding
 pip install sightrag[grounding-dino]     # Open-vocabulary detection (any object by text)
 pip install sightrag[reid]               # Person re-identification (cross-camera tracking)
 pip install sightrag[cli]                # Command-line interface
@@ -438,10 +442,10 @@ pip install sightrag[qdrant]             # Qdrant (1M+ images, production)
 pip install sightrag[all]                # Everything</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="sr-core">Core API</h2>
-<p class="pr">SightRAG's core workflow is <strong>index → query → show</strong>. The <code>index()</code> method accepts image folders, video files, or live camera feeds. It runs detection on each frame, embeds the detected crops, and stores the vectors. The <code>query()</code> method embeds your text query using CLIP and retrieves the most similar visual results.</p>
+<p class="pr">SightRAG's core workflow is <strong>index → query → show</strong>. The <code>index()</code> method accepts image folders, video files, video streams, or live camera feeds. It runs detection on each frame, embeds the detected crops, and stores the vectors. The <code>query()</code> method embeds your text query and retrieves the most similar visual results.</p>
 
 <h3 class="ssh">Index an Image Folder</h3>
-<p class="pr">Point <code>index()</code> at a directory of images. SightRAG processes each image: detects objects, crops them, generates CLIP embeddings, and stores everything in the vector index. Supported formats include JPG, PNG, WEBP, BMP, and TIFF.</p>
+<p class="pr">Point <code>index()</code> at a directory of images. SightRAG processes each image: detects objects, crops them, generates embeddings, and stores everything in the vector index. Supported formats include JPG, PNG, WEBP, BMP, and TIFF.</p>
 <div class="cb"><pre><code class="language-python">from sightrag import SightRAG
 
 rag = SightRAG()
@@ -468,22 +472,98 @@ results = rag.query("find person")</code></pre><button class="cp" onclick="cc(th
 rag.show(results)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h3 class="ssh">Custom Domain Detection</h3>
-<p class="pr">The <code>domain_hint</code> parameter adjusts the detection and embedding pipeline for specialized domains. Provide a text description of what objects matter in your domain, and SightRAG optimizes its CLIP queries accordingly.</p>
+<p class="pr">The <code>domain_hint</code> parameter adjusts the detection and embedding pipeline for specialized domains. Provide a text description of what objects matter in your domain, and SightRAG optimizes queries accordingly.</p>
 <div class="cb"><pre><code class="language-python">rag = SightRAG(domain_hint="pcb defect solder joint")
 rag.index("./circuit_boards/")
 results = rag.query("find defective solder joint")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h3 class="ssh">Result Format</h3>
-<p class="pr">Each result is a dictionary with the image path, similarity score, detected label, confidence, bounding box coordinates, and source metadata.</p>
+<p class="pr">Each result is a dictionary with the image path, similarity score, detected label, confidence, bounding box coordinates, and source metadata. When segmentation or tracking is enabled, additional fields are included.</p>
 <div class="cb"><pre><code class="language-python">{
     "image_path":  "./photos/shelf_042.jpg",
-    "score":       0.9134,        # CLIP similarity to query
+    "score":       0.9134,        # similarity to query
     "label":       "bottle",      # detected object class
     "confidence":  0.8721,        # detection confidence
     "bbox":        [120, 45, 380, 290],  # [x1, y1, x2, y2]
     "timestamp":   "",            # populated for video sources
-    "source_type": "image"        # "image", "video", or "camera"
+    "source_type": "image",       # "image", "video", or "camera"
+
+    # v0.5 — present when segment=True
+    "mask":        np.array(...), # pixel-level binary mask (H×W)
+
+    # v0.5 — present when track=True
+    "track_id":    3,             # unique object identity across frames
 }</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="sr-segment">Segmentation (v0.5)</h2>
+<p class="pr">Enable <code>segment=True</code> to get pixel-level masks alongside bounding boxes. Segmentation works on <strong>all input types</strong> — images, video files, video streams, and cameras. Masks are stored with the index and returned in query results, enabling precise visual analysis, mask overlays, and area calculations.</p>
+<div class="cb"><pre><code class="language-python">rag = SightRAG(segment=True)
+rag.index("./photos/")                   # images with masks
+rag.index("./video.mp4", fps=5)          # video with masks
+rag.index(source="camera")               # live camera with masks
+
+results = rag.query("find person", segment=True)
+for r in results:
+    mask = r.get("mask")                  # numpy array (H×W), or None
+    if mask is not None:
+        print(f"Mask area: {mask.sum()} pixels")
+
+rag.show(results)  # displays masks overlaid on images</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+<div class="note"><strong>Default segmentor works automatically.</strong> To use a different segmentation model, pass <code>segmentor="sam2"</code> or provide a custom <code>SegmentorBase</code> instance.</div>
+
+<h2 class="sh" id="sr-track">Object Tracking (v0.5)</h2>
+<p class="pr">Enable <code>track=True</code> to follow objects across frames with persistent identity. Tracking works on <strong>all input types</strong> — image folders (treated as ordered frame sequences), video files, video streams, and CCTV cameras. Each detected object receives a unique <code>track_id</code> that persists across frames, enabling trajectory analysis, re-appearance detection, and timeline queries.</p>
+<div class="cb"><pre><code class="language-python">rag = SightRAG(track=True)
+
+# Works on any input type
+rag.index("./photos/")                   # image folder → frame sequence
+rag.index("./footage.mp4", fps=5)        # video file
+rag.index(source="camera")               # live camera / RTSP stream
+
+# Query — results include track_id
+results = rag.query("find person")
+for r in results:
+    print(f"{r['label']} — Track#{r.get('track_id')}")
+
+# List all tracked objects
+all_tracks = rag.get_all_tracks()
+for t in all_tracks:
+    print(f"Track#{t['track_id']}: {t['label']} "
+          f"({t['first_timestamp']}s → {t['last_timestamp']}s, "
+          f"{t['frame_count']} frames)")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+<div class="note"><strong>Default tracker works automatically.</strong> To use a different tracking algorithm, pass <code>tracker="botsort"</code> or provide a custom <code>TrackerBase</code> instance.</div>
+
+<h2 class="sh" id="sr-findtrack">Find + Track (v0.5)</h2>
+<p class="pr">The <code>find_and_track()</code> method combines querying and tracking in one call. Describe what you're looking for, and SightRAG finds matching objects and returns their complete trajectory — where they first appeared, where they were last seen, and how many frames they span.</p>
+<div class="cb"><pre><code class="language-python">rag = SightRAG(track=True)
+rag.index("./footage.mp4", fps=5)
+
+# One call: find + track
+timelines = rag.find_and_track("person in red shirt", top_k=2)
+
+for tl in timelines:
+    print(f"Track#{tl['track_id']}: {tl['label']}")
+    print(f"  First seen: {tl['first_timestamp']}s")
+    print(f"  Last seen:  {tl['last_timestamp']}s")
+    print(f"  Duration:   {tl['frame_count']} frames")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="sr-timeline">Timeline (v0.5)</h2>
+<p class="pr">The <code>timeline()</code> method returns the full history of a tracked object — every frame it appeared in, with timestamps, bounding boxes, and confidence scores. Use it for movement analysis, dwell-time calculations, or generating visual summaries of an object's journey through the scene.</p>
+<div class="cb"><pre><code class="language-python">rag = SightRAG(track=True)
+rag.index("./footage.mp4", fps=5)
+
+# Get timeline for a specific track
+tl = rag.timeline(track_id=3)
+print(f"Track#{tl['track_id']}: {tl['label']}")
+print(f"  Video: {tl['video_path']}")
+print(f"  {tl['first_timestamp']}s → {tl['last_timestamp']}s")
+print(f"  {tl['frame_count']} frames, {len(tl['states'])} detections")
+
+# Combine segmentation + tracking
+rag = SightRAG(segment=True, track=True)
+rag.index("./footage.mp4", fps=5)
+results = rag.query("find person")
+# Each result has both mask AND track_id</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="sr-ocr">OCR Search (v0.4)</h2>
 <p class="pr">When <code>ocr=True</code>, SightRAG reads text visible on objects during indexing — product labels, signs, license plates, barcodes, document text. This text is stored alongside the visual embedding. At query time, text matches boost visual similarity scores automatically, giving you hybrid text+visual retrieval with zero query-time overhead.</p>
@@ -496,8 +576,8 @@ results = rag.query("find EXIT sign")    # matches text on signs
 results = rag.query("find plate AB1234") # matches license plate text</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="sr-multimodal">Multimodal Understanding (v0.4)</h2>
-<p class="pr">For queries that need deeper semantic understanding beyond CLIP similarity, enable multimodal mode. This adds an optional LLM-powered re-ranking step that runs on the top candidates only (not all images), so it stays fast. The LLM examines each candidate image and evaluates whether it truly matches the query intent.</p>
-<p class="pr">Two backends are supported: local models (Qwen2-VL, free and private) and API models (GPT-4o, most accurate). The <code>understand=True</code> flag on the query activates LLM re-ranking; without it, queries use the fast CLIP-only path.</p>
+<p class="pr">For queries that need deeper semantic understanding beyond embedding similarity, enable multimodal mode. This adds an optional LLM-powered re-ranking step that runs on the top candidates only (not all images), so it stays fast. The LLM examines each candidate image and evaluates whether it truly matches the query intent.</p>
+<p class="pr">Two backends are supported: local models (free and private) and API models (most accurate). The <code>understand=True</code> flag on the query activates LLM re-ranking; without it, queries use the fast embedding-only path.</p>
 <div class="cb"><pre><code class="language-python"># Local model (free, private, no API key)
 rag = SightRAG(ocr=True, multimodal="qwen2-vl")
 results = rag.query("find damaged product", understand=True)
@@ -507,11 +587,10 @@ rag = SightRAG(multimodal="gpt-4o", api_key="sk-...")
 results = rag.query("find suspicious activity", understand=True)
 
 # Without understand=True, query is instant (no LLM call)
-results = rag.query("find person")  # fast CLIP-only path</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+results = rag.query("find person")  # fast embedding-only path</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
-<h2 class="sh" id="sr-grounding">Grounding DINO: Open-Vocabulary Detection</h2>
-<p class="pr">The default detector (YOLOv8) recognizes 80 COCO object classes. Grounding DINO detects <strong>any object you describe in text</strong>, with no training needed. This makes SightRAG work on any domain — medical imaging, industrial inspection, satellite imagery, agriculture — just by describing what to find.</p>
-<p class="pr">Under the hood, Grounding DINO uses a text-guided detection architecture. You provide a text prompt, and the model detects objects matching that description in every image during indexing.</p>
+<h2 class="sh" id="sr-grounding">Open-Vocabulary Detection</h2>
+<p class="pr">The default detector recognizes common object classes. For open-vocabulary detection, use Grounding DINO — it detects <strong>any object you describe in text</strong>, with no training needed. This makes SightRAG work on any domain — medical imaging, industrial inspection, satellite imagery, agriculture — just by describing what to find.</p>
 <div class="cb"><pre><code class="language-python">rag = SightRAG(detector="grounding-dino")
 rag.index("./circuit_boards/")
 results = rag.query("find cracked solder joint")
@@ -524,7 +603,7 @@ rag.show(results)
 # Retail: "find misplaced product"</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="sr-reid">Person Re-Identification</h2>
-<p class="pr">Person Re-ID tracks the same individual across multiple cameras or video files. Instead of the default CLIP embedder, the <code>reid</code> embedder uses a person-specific feature extractor (ECAPA or OSNet) that generates identity-preserving embeddings. Query with a reference photo of a person, and SightRAG returns every camera and timestamp where that person appeared.</p>
+<p class="pr">Person Re-ID tracks the same individual across multiple cameras or video files. Instead of the default embedder, the <code>reid</code> embedder uses a person-specific feature extractor that generates identity-preserving embeddings. Query with a reference photo of a person, and SightRAG returns every camera and timestamp where that person appeared.</p>
 <div class="cb"><pre><code class="language-python">rag = SightRAG(embedder="reid")
 rag.index("./camera_01/")
 rag.index("./camera_02/")
@@ -535,8 +614,8 @@ results = rag.query(reference="./suspect.jpg")
 rag.show(results)
 # Returns: camera_02/frame_1842.jpg (0.94), camera_01/frame_0921.jpg (0.91), ...</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
-<h2 class="sh" id="sr-plug">Pluggable Models</h2>
-<p class="pr">Every major component in SightRAG is swappable through base classes. Implement the interface, pass your instance to the constructor, and SightRAG uses your model in the pipeline without any other code changes.</p>
+<h2 class="sh" id="sr-plug">Pluggable Components</h2>
+<p class="pr">Every major component in SightRAG is swappable through base classes. Implement the interface, pass your instance to the constructor, and SightRAG uses your component in the pipeline without any other code changes.</p>
 
 <h3 class="ssh">Custom Detector</h3>
 <p class="pr">Implement <code>DetectorBase.detect()</code> to return a list of detections. Each detection needs a bounding box, label, confidence score, and a cropped image region.</p>
@@ -588,6 +667,44 @@ class MyStore(VectorStoreBase):
 
 rag = SightRAG(store=MyStore())</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
+<h3 class="ssh">Custom Segmentor (v0.5)</h3>
+<p class="pr">Implement <code>SegmentorBase.segment()</code> to return detections with pixel-level masks. The default segmentor works automatically; use this to plug in your own segmentation model.</p>
+<div class="cb"><pre><code class="language-python">from sightrag.segmentors.base import SegmentorBase
+
+class MySegmentor(SegmentorBase):
+    def segment(self, image):
+        # Return list of dicts with bbox, label, confidence, mask
+        preds = self.model.predict(image)
+        return [
+            {"bbox": [p.x1, p.y1, p.x2, p.y2],
+             "label": p.label,
+             "confidence": p.score,
+             "mask": p.binary_mask}    # numpy array (H×W)
+            for p in preds
+        ]
+
+rag = SightRAG(segment=True, segmentor=MySegmentor())</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Custom Tracker (v0.5)</h3>
+<p class="pr">Implement <code>TrackerBase</code> with <code>update()</code>, <code>get_tracks()</code>, and <code>reset()</code> methods to plug in your own multi-object tracking algorithm. The default tracker works automatically; use this for domain-specific tracking needs.</p>
+<div class="cb"><pre><code class="language-python">from sightrag.trackers.base import TrackerBase, Track
+
+class MyTracker(TrackerBase):
+    def update(self, detections, frame_idx, timestamp="0.00"):
+        # Match detections to existing tracks
+        # Return list of TrackState dicts
+        ...
+
+    def get_tracks(self):
+        # Return dict of {track_id: Track}
+        ...
+
+    def reset(self):
+        # Reset tracker state for new sequence
+        ...
+
+rag = SightRAG(track=True, tracker=MyTracker())</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
 <h2 class="sh" id="sr-backends">Speed Backends</h2>
 <p class="pr">SightRAG automatically detects the fastest available inference backend at startup. Install the extra you want, and the speedup is automatic — no configuration needed.</p>
 <table class="tb">
@@ -613,34 +730,42 @@ rag = SightRAG(store=MyStore())</code></pre><button class="cp" onclick="cc(this)
 </table>
 
 <h3 class="ssh">Re-ranking for Large Datasets</h3>
-<p class="pr">For large, visually similar datasets, enable re-ranking. SightRAG fetches the top 100 candidates from the vector index, then re-ranks them with a more expensive cross-encoder model to return the best 5. This significantly improves precision on datasets where CLIP similarity alone produces near-ties.</p>
+<p class="pr">For large, visually similar datasets, enable re-ranking. SightRAG fetches the top 100 candidates from the vector index, then re-ranks them with a more expensive cross-encoder model to return the best 5. This significantly improves precision on datasets where embedding similarity alone produces near-ties.</p>
 <div class="cb"><pre><code class="language-python">rag = SightRAG(rerank=True)
 rag.index("./100k_shelf_images/")
 results = rag.query("find empty shelf", top_k=5)
 # Fetches top 100, re-ranks to best 5</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="sr-cli">CLI & REST API</h2>
-<p class="pr">SightRAG includes a full command-line interface for indexing, querying, and serving without writing Python code.</p>
+<p class="pr">SightRAG includes a full command-line interface for indexing, querying, tracking, and serving without writing Python code.</p>
 <div class="cb"><pre><code class="language-bash"># Index
 sightrag index ./photos/
 sightrag index ./video.mp4 --fps 2
+sightrag index ./video.mp4 --fps 5 --track       # v0.5: with tracking
+sightrag index ./photos/ --segment                # v0.5: with segmentation
 
 # Query
 sightrag query "find person near exit"
 sightrag query --reference ./suspect.jpg --top-k 10
+sightrag query "find person" --segment            # v0.5: include masks
+
+# v0.5: Track commands
+sightrag find-track "person in red" --video ./footage.mp4 --fps 5
+sightrag tracks                                    # list all tracked objects
+sightrag timeline 3                                # timeline for Track#3
 
 # Visualize
 sightrag show --query "find person" --save ./output/
 
 # Manage
-sightrag status    # index stats
+sightrag status    # index stats + track count
 sightrag clear     # clear index
 
 # Serve as REST API
 sightrag serve --port 8000</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h3 class="ssh">REST API Endpoints</h3>
-<p class="pr">The REST API (FastAPI) exposes all SightRAG operations over HTTP. Start it with <code>sightrag-server</code> and access the interactive docs at <code>/docs</code>.</p>
+<p class="pr">The REST API (FastAPI) exposes all SightRAG operations over HTTP. Start it with <code>sightrag serve</code> and access the interactive docs at <code>/docs</code>.</p>
 <table class="tb">
 <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
 <tbody>
@@ -654,7 +779,6 @@ sightrag serve --port 8000</code></pre><button class="cp" onclick="cc(this)">Cop
 </table>
 </div>
 </div>
-
 <!-- ===== SONARWISE ===== -->
 <div class="pg" id="pg-sonarwise" data-lib="Sonarwise">
 <div class="ct">
