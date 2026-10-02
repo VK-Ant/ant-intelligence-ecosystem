@@ -661,13 +661,25 @@ sightrag serve --port 8000</code></pre><button class="cp" onclick="cc(this)">Cop
 <img src="images/sonarwise_ai.png" class="banner" alt="Sonarwise">
 <h1 class="dt" style="color:var(--col-sonarwise)">Sonarwise</h1>
 <div class="dtag" style="color:var(--col-sonarwise)">Hear. Search. Retrieve.</div>
-<p class="ddesc">Pluggable audio perception engine. Index meetings, calls, podcasts, lectures, factory floors — and make them searchable by text, speaker, sound event, or audio similarity. Every component is swappable.</p>
+<p class="ddesc">Pluggable audio perception engine. Index meetings, calls, podcasts, lectures, factory floors and make them searchable by text, speaker, sound event, or audio similarity. Every component is swappable.</p>
 <div class="lib-links">
       <a class="primary" href="https://github.com/VK-Ant/sonarwise" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a>
       <a href="https://pypi.org/project/sonarwise/" target="_blank">PyPI</a>
       <a href="https://github.com/VK-Ant/sonarwise/blob/main/LICENSE" target="_blank">Apache 2.0</a>
       <a href="https://github.com/VK-Ant/sonarwise#contributing" target="_blank">Contribute</a>
     </div>
+
+<h2 class="sh" id="sw-whats-new">What's New in v0.2.0</h2>
+<ul>
+<li><strong>Audio Preprocessing Pipeline</strong> &mdash; DC removal, bandpass filtering, spectral-gating noise reduction, peak/RMS normalization, dynamic range compression</li>
+<li><strong>Language Detection</strong> &mdash; Whisper, faster-whisper, or zero-dependency script-based detection for 99 languages</li>
+<li><strong>CLAP Zero-Shot Event Classifier</strong> &mdash; classify audio events without training data using text-audio similarity</li>
+<li><strong>Conversation Analytics</strong> &mdash; turn-taking stats, talk-time ratios, interruption detection, speaker overlap analysis</li>
+<li><strong>Clip Extraction</strong> &mdash; extract segments to WAV by time range, speaker, or search results</li>
+<li><strong>Webhook Notifications</strong> &mdash; HTTP callbacks on indexing, keyword detection, event triggers</li>
+<li><strong>Health Dashboard</strong> &mdash; pipeline health monitoring, component status, memory/latency tracking</li>
+<li><strong>Batch Operations</strong> &mdash; 7000+ segments/sec batch insertion, thread-safe SQLite store</li>
+</ul>
 
 <h2 class="sh" id="sw-install">Installation</h2>
 <p class="pr">The base install has no ML dependencies. Add extras for the features you need. <strong>Requires ffmpeg</strong> for audio format handling (<code>sudo apt install ffmpeg</code> or <code>brew install ffmpeg</code>).</p>
@@ -679,12 +691,14 @@ pip install sonarwise[clap]             # CLAP audio embeddings
 pip install sonarwise[diarization]      # Speaker diarization (pyannote)
 pip install sonarwise[speaker]          # Speaker identification (voiceprint)
 pip install sonarwise[events]           # Audio event detection (50+ event types)
+pip install sonarwise[preprocess]       # Audio preprocessing (scipy)
 pip install sonarwise[live]             # Live microphone capture
+pip install sonarwise[vad]              # Silero VAD chunking
 
 pip install sonarwise[all]              # Everything</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="sw-core">Core API</h2>
-<p class="pr">The workflow is <strong>index → query</strong>. Indexing processes audio through transcription, optional diarization, optional event detection, and CLAP embedding. Each segment is stored with its transcript, speaker label, timestamps, and audio embedding.</p>
+<p class="pr">The workflow is <strong>index &rarr; query</strong>. Indexing processes audio through transcription, optional diarization, optional event detection, and CLAP embedding. Each segment is stored with its transcript, speaker label, timestamps, and audio embedding.</p>
 
 <h3 class="ssh">Index and Search</h3>
 <div class="cb"><pre><code class="language-python">from sonarwise import SonarWise
@@ -708,6 +722,78 @@ results = sw.query("budget", speaker="Ant", top_k=5)
 
 # Search by sound event type
 results = sw.query_events(event="machine_fault", top_k=5)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="sw-preprocess">Audio Preprocessing</h2>
+<p class="pr">Clean and enhance audio before processing. The preprocessing pipeline runs five configurable stages: DC offset removal, bandpass filtering (Butterworth with FFT fallback), spectral-gating noise reduction (STFT-based), peak or RMS normalization, and dynamic range compression with envelope following. Each stage can be enabled independently.</p>
+<div class="cb"><pre><code class="language-python">from sonarwise.core.preprocessor import AudioPreprocessor, NoiseReducer, Normalizer
+from sonarwise import AudioData
+
+# Full pipeline — all stages
+preprocessor = AudioPreprocessor(
+    remove_dc=True,              # Remove DC offset
+    bandpass=True,               # Bandpass filter (80Hz-7500Hz)
+    noise_reduce=True,           # Spectral gating noise reduction
+    noise_reduce_strength=1.5,   # Noise gate aggressiveness
+    normalize=True,              # Peak normalization
+    target_peak=0.95,            # Target peak amplitude
+    compress=True,               # Dynamic range compression
+    compress_threshold=0.3,      # Compression threshold
+    compress_ratio=4.0,          # Compression ratio
+)
+result = preprocessor.process(audio)
+
+# Convenience wrappers for single-stage use
+reducer = NoiseReducer(strength=1.5)
+clean_audio = reducer.process(audio)
+
+normalizer = Normalizer(target_peak=0.95)
+loud_audio = normalizer.process(audio)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="sw-langdetect">Language Detection</h2>
+<p class="pr">Identify spoken language before or after transcription. Three backends: Whisper-based detection (highly accurate, needs GPU), faster-whisper (CTranslate2, production-ready), or a zero-dependency script-based heuristic that analyzes character distributions across hiragana, katakana, CJK, Hangul, Arabic, Devanagari, Cyrillic, Thai, and Latin scripts.</p>
+<div class="cb"><pre><code class="language-python">from sonarwise.core.language_detector import (
+    SimpleLanguageDetector,
+    WhisperLanguageDetector,
+    FasterWhisperLanguageDetector,
+)
+
+# Zero-dependency script analysis (99 languages)
+detector = SimpleLanguageDetector()
+result = detector.detect_from_text("Bonjour le monde")
+print(f"{result.language_name}: {result.confidence}")  # French: 0.5
+
+# Whisper-based (analyzes first 30s of audio, highly accurate)
+detector = WhisperLanguageDetector(model_size="base")
+result = detector.detect(audio_segment)
+print(f"{result.language_name}: {result.confidence}")  # French: 0.97
+print(f"Alternatives: {result.alternatives}")
+
+# Faster-whisper (CTranslate2, lower memory)
+detector = FasterWhisperLanguageDetector(model_size="base", compute_type="int8")
+result = detector.detect(audio_segment)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="sw-analytics">Conversation Analytics</h2>
+<p class="pr">Analyze meeting dynamics after indexing. Returns turn-taking statistics, per-speaker talk-time percentages, turn counts, interruption detection, and speaker overlap analysis.</p>
+<div class="cb"><pre><code class="language-python">sw = SonarWise(diarization=True)
+sw.index("meeting.wav")
+
+analytics = sw.conversation_analytics("meeting.wav")
+print(f"Total speakers: {analytics['total_speakers']}")
+print(f"Total turns: {analytics['total_turns']}")
+
+for speaker, stats in analytics['speaker_stats'].items():
+    print(f"  {speaker}: {stats['talk_time_pct']:.1f}% talk time, "
+          f"{stats['turn_count']} turns")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="sw-clip">Clip Extraction</h2>
+<p class="pr">Extract audio segments to WAV files by time range, speaker, or search results. Useful for pulling highlights, speaker-specific audio, or building training datasets from indexed audio.</p>
+<div class="cb"><pre><code class="language-python"># Extract a specific time range
+sw.extract_clip("meeting.wav", start_ms=30000, end_ms=60000,
+                output="clip_30s_60s.wav")
+
+# Extract all segments from a speaker
+sw.extract_clip("meeting.wav", speaker="Ant",
+                output="ant_segments.wav")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="sw-speaker">Speaker Intelligence</h2>
 <p class="pr">Sonarwise builds speaker voiceprints using ECAPA-TDNN embeddings. Register a speaker once with a reference audio clip, and Sonarwise identifies them across all future indexed audio. This enables queries like "find everything Ant said about the budget" across hundreds of meeting recordings.</p>
@@ -748,14 +834,20 @@ def on_danger(event):
 sw.listen(source="microphone")  # blocks, runs until stopped</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="sw-events">Audio Event Detection</h2>
-<p class="pr">The event detection module uses PANNs (Pre-trained Audio Neural Networks) to classify 50+ sound event types in indexed audio. Events are detected independently of speech transcription, so you can find non-speech sounds like alarms, machinery faults, glass breaks, dog barks, sirens, and more.</p>
+<p class="pr">Detect and classify 50+ sound event types. Two backends: PANNs with spectral feature analysis and AudioSet taxonomy mapping (171 AudioSet labels mapped to sonarwise events), or CLAP zero-shot classification that matches audio against natural-language event descriptions without any training data.</p>
 <div class="cb"><pre><code class="language-python">sw = SonarWise(events=True)
 sw.index("factory_floor.wav")
 
 # Find specific event types
 results = sw.query_events(event="machine_fault", top_k=5)
 results = sw.query_events(event="alarm", top_k=5)
-results = sw.query_events(event="glass_break", top_k=5)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+results = sw.query_events(event="glass_break", top_k=5)
+
+# CLAP zero-shot classifier (no training needed)
+from sonarwise.core.event_classifier import CLAPEventClassifier
+clf = CLAPEventClassifier()
+events = clf.classify(audio_segment)
+# Classifies against 37 event categories using text-audio similarity</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="sw-plug">Pluggable Components</h2>
 <p class="pr">Every component in Sonarwise is swappable through base classes. Implement the interface and pass your instance to the constructor.</p>
@@ -768,7 +860,9 @@ results = sw.query_events(event="glass_break", top_k=5)</code></pre><button clas
 <tr><td>Chunker</td><td><code>BaseChunker</code></td><td>Silero VAD</td><td>Voice activity detection for segment boundaries</td></tr>
 <tr><td>Diarizer</td><td><code>BaseDiarizer</code></td><td>pyannote</td><td>Speaker segmentation</td></tr>
 <tr><td>Speaker Embedder</td><td><code>BaseSpeakerEmbedder</code></td><td>ECAPA-TDNN</td><td>Speaker voiceprint generation</td></tr>
-<tr><td>Event Classifier</td><td><code>BaseEventClassifier</code></td><td>PANNs</td><td>Sound event detection</td></tr>
+<tr><td>Event Classifier</td><td><code>BaseEventClassifier</code></td><td>PANNs / CLAP</td><td>Sound event detection (zero-shot capable)</td></tr>
+<tr><td>Preprocessor</td><td><code>BasePreprocessor</code></td><td>AudioPreprocessor</td><td>Audio cleaning and enhancement</td></tr>
+<tr><td>Language Detector</td><td><code>BaseLanguageDetector</code></td><td>Whisper</td><td>Spoken language identification (99 languages)</td></tr>
 <tr><td>Stream Listener</td><td><code>BaseStreamListener</code></td><td>sounddevice</td><td>Microphone/stream audio capture</td></tr>
 </tbody>
 </table>
