@@ -29,6 +29,7 @@
     <ul class="hdr-nav">
       <li><a href="#quickstart" onclick="go('quickstart')">Getting Started</a></li>
       <li><a href="#antstudio" onclick="go('antstudio')">Ant Studio</a></li>
+      <li><a href="#arikizu" onclick="go('arikizu')">Arikizu OS</a></li>
       <li class="hdr-dropdown">
         <a href="#" onclick="event.preventDefault()">Explore <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="vertical-align:0;margin-left:2px"><path d="M6 9l6 6 6-6"/></svg></a>
         <div class="hdr-dd-menu"><div class="hdr-dd-inner">
@@ -75,7 +76,19 @@
     <a class="sb-l" data-p="quickstart" onclick="go('quickstart')"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg> Quick Start</a>
   </div>
   <div class="sb-sec">
-    <div class="sb-t">Studio Platform</div>
+    <div class="sb-t">Edge AI &amp; Studio</div>
+    <a class="sb-l" data-p="arikizu" onclick="go('arikizu');tsub('sub-az')">
+      <span class="d" style="background:var(--az)"></span> Arikizu OS
+    </a>
+    <div class="sb-sub" id="sub-az">
+      <a class="sb-l" onclick="go('arikizu','az-where')">Where It Runs</a>
+      <a class="sb-l" onclick="go('arikizu','az-quick')">Quick Start</a>
+      <a class="sb-l" onclick="go('arikizu','az-arch')">Architecture</a>
+      <a class="sb-l" onclick="go('arikizu','az-demos')">Demo Views</a>
+      <a class="sb-l" onclick="go('arikizu','az-models')">Default Models</a>
+      <a class="sb-l" onclick="go('arikizu','az-install')">Install Tiers</a>
+      <a class="sb-l" onclick="go('arikizu','az-vision')">Vision</a>
+    </div>
     <a class="sb-l" data-p="antstudio" onclick="go('antstudio');tsub('sub-as')">
       <span class="d" style="background:var(--as)"></span> Ant Studio
     </a>
@@ -208,23 +221,32 @@
   <section class="hero-wn3">
     <div class="hero-wn3-circles"></div>
     <div class="hero-content">
-      <span class="hero-badge">Open Source Platform</span>
-      <h1>Ant Intelligence Ecosystem</h1>
-      <p>Seven open-source Python libraries for building autonomous AI systems that see, hear, read, forecast, learn, evaluate, and protect.</p>
-      <div class="hero-cmd" onclick="navigator.clipboard.writeText('pip install sightrag sonarwise docqwise wavqwise adaptive-intelligence llmevalkit antguard')">
-        <span class="dl">$</span> pip install sightrag sonarwise docqwise wavqwise adaptive-intelligence llmevalkit antguard
-      </div>
+      <h1>Ant Intelligence<br>Ecosystem</h1>
+      <p>Build autonomous AI systems that see, hear, read, forecast, learn, evaluate, and protect. From open-source libraries to edge-ready OS.</p>
     </div>
   </section>
 
   <!-- GRID OVERVIEW -->
   <div class="lgrid-container">
-    <div class="lgrid-sec-title">Studio Platform</div>
-    <div class="lgrid" style="grid-template-columns: 1fr; margin-bottom: 28px;">
+    <!-- Arikizu OS - Edge AI Runtime (Top Position) -->
+    <div style="margin-bottom:36px;padding:32px;background:linear-gradient(135deg, rgba(199,92,42,.08), rgba(199,92,42,.02));border:1px solid rgba(199,92,42,.25);border-radius:14px;cursor:pointer" onclick="go('arikizu')">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+        <img src="images/arikizu_logo.png" style="width:52px;height:52px;border-radius:12px" alt="Arikizu OS">
+        <div>
+          <div style="font-size:22px;font-weight:700;color:var(--az)">Arikizu OS</div>
+          <div style="font-size:13px;color:var(--t3);letter-spacing:.5px">POWERED BY ANT INTELLIGENCE &mdash; BUILT FOR EDGE DEVICES &amp; AI</div>
+        </div>
+      </div>
+      <p style="font-size:14.5px;color:var(--t2);line-height:1.65;margin-bottom:14px">Edge-first, offline-first AI runtime that wraps all seven Ant Intelligence libraries into a single Rust binary. One supervisor, ten Python workers, one HTTP API. Runs on Jetson, Raspberry Pi, Mac, or any Linux box with no cloud account required.</p>
+      <div class="lc-b"><span>v0.1</span><span>Apache 2.0</span><span>Rust + Python</span></div>
+    </div>
+
+    <div class="lgrid-sec-title">Unified Studio</div>
+    <div class="lgrid" style="grid-template-columns:1fr;margin-bottom:28px">
       <div class="lc" onclick="go('antstudio')">
         <div class="lc-n" style="color:var(--as)">Ant Studio</div>
         <div class="lc-tag" style="color:var(--as)">Build &bull; Run &bull; Control</div>
-        <div class="lc-d">CLI and Python SDK that unifies the entire ecosystem. One command, real results. Built-in quality scoring via LLMEvalKit and privacy auditing with AntGuard on every pipeline run. Vision, audio, documents, time-series, and orchestration through one unified interface.</div>
+        <div class="lc-d">CLI and Python SDK that unifies all seven libraries. One command, real results. Built-in quality scoring via LLMEvalKit and privacy auditing with AntGuard on every pipeline run.</div>
         <div class="lc-b"><span>v0.2</span><span>Apache 2.0</span><span>pip install antstudio</span></div>
       </div>
     </div>
@@ -282,6 +304,7 @@
         <div class="lc-b"><span>v0.2</span><span>Apache 2.0</span></div>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -2892,6 +2915,206 @@ docker-compose.yml     # Full stack: CLI + Ollama + Tracker UI</code></pre><butt
 </div>
 
 
+<!-- ===== ARIKIZU OS PAGE ===== -->
+<div class="pg" id="pg-arikizu" data-lib="Arikizu OS">
+<div class="ct">
+<img src="images/arikizu_logo.png" class="banner" alt="Arikizu OS" style="max-width:180px">
+<h1 class="dt" style="color:var(--az)">Arikizu OS</h1>
+<div class="dtag" style="color:var(--az)">One Binary. One Device. No Cloud.</div>
+<p class="ddesc">Edge-first, offline-first, responsible-AI operating system for a single device. A local LLM runtime for the full AI stack: vision, audio, documents, time-series, reasoning, memory, policy enforcement, and human-in-the-loop feedback. One Rust supervisor spawns ten Python workers that wrap the Ant Intelligence libraries. Everything runs from one binary on one device (Jetson Orin Nano, Raspberry Pi, or small x86_64 server) with a browser dashboard, append-only audit log, and no cloud account required.</p>
+<div class="lib-links">
+  <a class="primary" href="https://github.com/VK-Ant/arikizu" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg> View on GitHub</a>
+  <a href="https://github.com/VK-Ant/arikizu/blob/main/LICENSE" target="_blank">Apache 2.0</a>
+  <a href="https://github.com/VK-Ant/arikizu/blob/main/CONTRIBUTING.md" target="_blank">Contribute</a>
+</div>
+
+<div class="note" style="margin-top:24px;padding:16px 20px;background:rgba(199,92,42,.08);border-left:3px solid var(--az);border-radius:8px">
+  <strong>Why "OS"?</strong> The Rust runtime does what init + syscall-dispatch + policy + syslog do for Linux, scoped to the AI layer. Arikizu is a systemd service on top of Raspberry Pi OS; Linux is not replaced. Target: a factory supervisor, nurse, ship engineer, or heritage conservator should install Arikizu with one command, connect cameras and mics, and start a pipeline from a web UI without touching Python.
+</div>
+
+<h2 class="sh" id="az-where">Where It Runs</h2>
+<p class="pr">Arikizu runs on the full edge device family. Reference device is the Jetson Orin Nano 8 GB.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Device</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Nvidia Jetson Orin Nano / AGX Orin</td><td>Best performance, GPU backend</td></tr>
+    <tr><td>Mac (Apple Silicon or Intel)</td><td>Dev-friendly, CoreML backend</td></tr>
+    <tr><td>Linux x86_64 (laptop, desktop, small server)</td><td>Great for prototyping</td></tr>
+    <tr><td>Raspberry Pi 4 (4 GB) or Pi 5</td><td>Entry-level, lowest-cost demo</td></tr>
+    <tr><td>Windows via WSL2</td><td>Dev only</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="sh" id="az-quick">Try It in 5 Minutes</h2>
+<p class="pr">Prerequisites: Rust 1.80+, uv 0.4+, and platform build tools. Run <code>scripts/check_prereqs.sh</code> to verify.</p>
+<div class="cb"><pre><code class="language-bash">git clone https://github.com/VK-Ant/arikizu
+cd arikizu
+scripts/check_prereqs.sh
+scripts/bootstrap.sh        # installs Python workers via uv sync
+make build                   # cargo build --release
+make run                     # starts supervisor + HTTP server on :7000</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<p class="pr" style="margin-top:20px">Open in your browser:</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>URL</th><th>What</th></tr></thead>
+  <tbody>
+    <tr><td><code>http://127.0.0.1:7000/</code></td><td><strong>Operator dashboard</strong> -- greeting, 6 capability cards, recent activity, system status</td></tr>
+    <tr><td><code>http://127.0.0.1:7000/demo/</code></td><td><strong>Developer sandbox</strong> -- one page per capability for raw testing</td></tr>
+  </tbody>
+</table>
+</div>
+
+<img src="images/arikizu_dashboard.png" alt="Arikizu Operator Dashboard" style="width:100%;border-radius:10px;margin:20px 0;border:1px solid var(--border)">
+
+<p class="pr">In a second terminal, confirm every worker is answering:</p>
+<div class="cb"><pre><code class="language-bash">make smoke
+# Expected: 0 failing
+# WAIT means a library is scaffolded but not yet wired
+
+# If a demo is not working:
+make doctor
+# Prints PASS/FAIL per component with exact fix lines</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<p class="pr" style="margin-top:20px">Call a capability by hand:</p>
+<div class="cb"><pre><code class="language-bash">curl -X POST http://127.0.0.1:7000/api/v1/call/test/echo \
+  -H 'content-type: application/json' \
+  -d '{"payload":{"message":"hello"}}'
+# {"echo":"hello"}</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="az-arch">Architecture</h2>
+<p class="pr">One Rust supervisor + ten Python workers behind one capability API. Four zones: Interaction (HTTP, dashboard, CLI, voice), Runtime (supervisor, router, worker lifecycle, policy), Intelligence (Ant Intelligence libraries as workers), and Trust (feedback manager, audit log, approval queue, golden set).</p>
+<img src="images/arikizu_arch.png" alt="Arikizu OS Architecture" style="width:100%;border-radius:10px;margin:20px 0;border:1px solid var(--border)">
+
+<h3 class="ssh">Architecture at a Glance</h3>
+<div class="arch-glance" style="text-align:left">
+  <img src="images/architecture_glance.svg" alt="Arikizu OS Architecture at a Glance">
+</div>
+
+<div class="table-wrap" style="margin-top:20px">
+<table>
+  <thead><tr><th>Rust Crate</th><th>Purpose</th></tr></thead>
+  <tbody>
+    <tr><td><code>ant-http</code></td><td>Axum REST + WebSocket + static file surface</td></tr>
+    <tr><td><code>ant-supervisor</code></td><td>Worker lifecycle, spawn, call, shutdown</td></tr>
+    <tr><td><code>ant-router</code></td><td>Capability registry loader and lookup</td></tr>
+    <tr><td><code>ant-ipc</code></td><td>Length-prefixed MessagePack over Unix sockets</td></tr>
+    <tr><td><code>ant-models</code></td><td>Model manifest, SHA-256 verification, backend selection</td></tr>
+    <tr><td><code>ant-devices</code></td><td>CPU / GPU / Jetson detection</td></tr>
+    <tr><td><code>ant-feedback</code></td><td>Rate, correct, approve, reject, annotate</td></tr>
+    <tr><td><code>ant-cli</code></td><td>The <code>arikizu</code> binary</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="table-wrap" style="margin-top:20px">
+<table>
+  <thead><tr><th>Python Worker</th><th>Wraps</th></tr></thead>
+  <tbody>
+    <tr><td><code>vision_worker</code></td><td>SightRAG + ONNX inference</td></tr>
+    <tr><td><code>audio_worker</code></td><td>Sonarwise + VAD + ASR</td></tr>
+    <tr><td><code>docs_worker</code></td><td>DocQWise</td></tr>
+    <tr><td><code>reasoning_worker</code></td><td>Local LLM via lightweight runtime</td></tr>
+    <tr><td><code>timeseries_worker</code></td><td>WavqWise + classical statistical models</td></tr>
+    <tr><td><code>memory_worker</code></td><td>Adaptive Intelligence</td></tr>
+    <tr><td><code>guard_worker</code></td><td>AntGuard (PII scan + redact)</td></tr>
+    <tr><td><code>eval_worker</code></td><td>LLMEvalKit (score + golden set)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="sh" id="az-demos">Demo Views</h2>
+<p class="pr">Every view is a plain HTML file served by the Rust server. No build step, no npm, no bundler.</p>
+
+<div style="margin:20px 0 24px;border-radius:12px;overflow:hidden;border:1px solid var(--border)">
+  <div style="position:relative;padding-bottom:56.25%;height:0">
+    <iframe src="https://www.youtube.com/embed/FElB_ZOO0uI" title="Arikizu OS Walkthrough" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
+  </div>
+</div>
+
+<img src="images/arikizu_sandbox.png" alt="Arikizu Developer Sandbox" style="width:100%;border-radius:10px;margin:20px 0;border:1px solid var(--border)">
+<div class="table-wrap">
+<table>
+  <thead><tr><th>View</th><th>What It Shows</th></tr></thead>
+  <tbody>
+    <tr><td><code>/</code></td><td>Operator dashboard: greeting, 6 capability cards, recent activity</td></tr>
+    <tr><td><code>/demo/</code></td><td>Developer hub: one card per capability, direct links</td></tr>
+    <tr><td><code>/demo/vision_live.html</code></td><td>Live annotated frames with FPS counter and detection list</td></tr>
+    <tr><td><code>/demo/vision_search.html</code></td><td>Audit-log search for past detections</td></tr>
+    <tr><td><code>/demo/audio_view.html</code></td><td>Waveform draw + VAD segments + transcript</td></tr>
+    <tr><td><code>/demo/docs_view.html</code></td><td>Schema editor + extracted fields + docs.search</td></tr>
+    <tr><td><code>/demo/timeseries_view.html</code></td><td>Line chart + forecast + anomaly markers</td></tr>
+    <tr><td><code>/demo/reasoning_chat.html</code></td><td>Chat with the local LLM worker</td></tr>
+    <tr><td><code>/demo/memory_view.html</code></td><td>Session memory: update / recall / reward</td></tr>
+    <tr><td><code>/demo/guard_view.html</code></td><td>PII scan + redacted preview (side by side)</td></tr>
+    <tr><td><code>/demo/eval_view.html</code></td><td>Predicted vs expected + score cards</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="sh" id="az-models">Default Models</h2>
+<p class="pr"><code>yolov8n.onnx</code> (12 MB) and <code>silero_vad.onnx</code> (2.3 MB) ship pre-installed. Vision and audio demos work the moment you run <code>make run</code>.</p>
+<div class="cb"><pre><code class="language-bash"># Download the local LLM for reasoning:
+scripts/download-default-models.sh --tier minimum
+# adds smollm2-360m-instruct-q4_k_m.gguf (258 MB)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<div class="table-wrap" style="margin-top:20px">
+<table>
+  <thead><tr><th>Tier</th><th>Adds</th><th>Size</th></tr></thead>
+  <tbody>
+    <tr><td><code>minimum</code></td><td>SmolLM2 360M GGUF</td><td>258 MB</td></tr>
+    <tr><td><code>standard</code></td><td>Whisper tiny.en encoder, MiniLM-L6-v2, Qwen 2.5 0.5B</td><td>~500 MB</td></tr>
+    <tr><td><code>full</code></td><td>Table Transformer, YOLOv8s, Whisper small.en encoder</td><td>~900 MB</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="pr" style="margin-top:16px">Backends are auto-selected per device: <code>onnxruntime-gpu</code> for Jetson/CUDA, CoreML for Mac, CPU for Pi. <code>scripts/install-runtime.sh</code> detects your device and installs the matching runtime.</p>
+
+<h2 class="sh" id="az-install">Install Tiers</h2>
+
+<h3 class="ssh">Tier 1: Developer Binary (laptop)</h3>
+<div class="cb"><pre><code class="language-bash">curl -fsSL https://arikizu.sh/install.sh | sh
+# Lands in ~/.arikizu/bin/arikizu. No root, no service.</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Tier 2: System Package (existing Pi/server/Jetson)</h3>
+<div class="cb"><pre><code class="language-bash">echo "deb https://apt.arikizu.sh stable main" | sudo tee /etc/apt/sources.list.d/arikizu.list
+curl -fsSL https://apt.arikizu.sh/arikizu.gpg | sudo gpg --dearmor \
+  -o /etc/apt/trusted.gpg.d/arikizu.gpg
+sudo apt update && sudo apt install arikizu</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Tier 3: Flash to a Pi</h3>
+<div class="cb"><pre><code class="language-bash"># Download arikizu-pi-vX.Y.Z.img.xz from GitHub Releases
+# Flash with Raspberry Pi Imager, boot, open http://arikizu.local</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Build from Source (recommended today)</h3>
+<div class="cb"><pre><code class="language-bash">git clone https://github.com/VK-Ant/arikizu
+cd arikizu
+scripts/check_prereqs.sh
+scripts/bootstrap.sh
+make build && make run</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="az-vision">Vision</h2>
+<p class="pr">Arikizu OS is not just an edge runtime. It is the foundation for a retrieval-first operating system and SDK designed to serve every industry with secure, offline-capable AI.</p>
+
+<h3 class="ssh">Where We Are Headed</h3>
+<div style="font-size:14.5px;color:var(--t2);line-height:1.8">
+<p><strong style="color:var(--az)">Industry-ready Retrieval OS.</strong> A single binary that brings retrieval, reasoning, and multimodal perception to any device. Healthcare, manufacturing, finance, defense, agriculture, logistics. One runtime, zero cloud dependency, full data sovereignty.</p>
+
+<p style="margin-top:16px"><strong style="color:var(--az)">SDK for builders.</strong> A developer SDK that lets teams plug custom models, custom workers, and custom governance policies into the Arikizu runtime. Build domain-specific AI applications on top of a battle-tested supervisor without reinventing the infrastructure.</p>
+
+<p style="margin-top:16px"><strong style="color:var(--az)">Security-first by design.</strong> Every pipeline runs through AntGuard's PII scanner and LLMEvalKit's quality gate before a single byte leaves the device. Governance policies, audit logs, and approval workflows ship as first-class primitives, not afterthoughts.</p>
+
+<p style="margin-top:16px"><strong style="color:var(--az)">From edge to fleet.</strong> Start on a Raspberry Pi, scale to a Jetson cluster, deploy across a factory floor. Arikizu OS manages device detection, model distribution, and worker orchestration so teams focus on the problem, not the plumbing.</p>
+</div>
+
+
+</div>
+</div>
+
+
 <!-- ===== DEMOS PAGE ===== -->
 <div class="pg" id="pg-demos" data-lib="Demos">
 <div class="ct">
@@ -2904,6 +3127,23 @@ docker-compose.yml     # Full stack: CLI + Ollama + Tracker UI</code></pre><butt
   </div>
 
   <div class="demo-grid">
+
+    <!-- DEMO: Arikizu OS Walkthrough -->
+    <div class="demo-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/FElB_ZOO0uI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Arikizu OS: Edge AI Runtime Walkthrough</div>
+        <div class="video-desc">Full walkthrough of the Arikizu OS edge runtime. Single Rust binary, ten Python workers, offline-first deployment on Jetson, Raspberry Pi, and Linux.</div>
+        <div class="video-tags">
+          <span class="video-tag">Arikizu OS</span>
+          <span class="video-tag">Edge AI</span>
+          <span class="video-tag">Rust</span>
+          <span class="video-tag">Offline-first</span>
+        </div>
+      </div>
+    </div>
 
     <!-- DEMO 1: DocQWise -->
     <div class="demo-card">
@@ -3014,6 +3254,26 @@ docker-compose.yml     # Full stack: CLI + Ollama + Tracker UI</code></pre><butt
       <a href="https://medium.com/@VK_Venkatkumar/list/the-ant-intelligence-ecosystem-71503517a3c1" target="_blank" class="author-btn">Medium Articles</a>
       <a href="https://vk-ant.github.io/Venkatkumar" target="_blank" class="author-btn">Portfolio</a>
     </div>
+  </div>
+
+  <!-- Contact Section -->
+  <h3 class="ssh" style="margin-top:40px">Get in Touch</h3>
+  <div class="contact-grid">
+    <a href="https://github.com/VK-Ant" target="_blank" class="contact-card">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <div class="cc-label">GitHub</div>
+      <div class="cc-value">VK-Ant</div>
+    </a>
+    <a href="https://www.linkedin.com/in/venkatkumarvk" target="_blank" class="contact-card">
+      <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      <div class="cc-label">LinkedIn</div>
+      <div class="cc-value">Venkatkumar R</div>
+    </a>
+    <a href="mailto:venkatkumarr.vk99@gmail.com" class="contact-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+      <div class="cc-label">Email</div>
+      <div class="cc-value">venkatkumarr.vk99@gmail.com</div>
+    </a>
   </div>
 </div>
 </div>

@@ -65,6 +65,7 @@ const SI = [
   {l:'Quick Start',p:'quickstart',t:'install pip quick start setup getting started'},
   {l:'Ant Studio',p:'antstudio',t:'ant studio cli sdk pipeline tracking docker forecast extract document ask anomaly ollama openai build run control'},
   {l:'Demos',p:'demos',t:'demo video showcase example workflow multi-library integration pipeline end-to-end'},
+  {l:'Arikizu OS',p:'arikizu',t:'arikizu os edge runtime rust supervisor worker jetson raspberry pi offline device binary capability api dashboard audit'},
 ];
 
 function search(q){
