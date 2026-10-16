@@ -4,6 +4,23 @@ Documentation for the Ant Intelligence Ecosystem: seven open-source Python libra
 
 **Live docs:** https://vk-ant.github.io/ant-intelligence-ecosystem
 
+## Arikizu OS
+
+**Arikizu OS** is an open-source, edge-first AI runtime that unifies vision, audio, document intelligence, local LLM reasoning, and sensor time-series processing on a single device — without cloud dependency.
+
+Built with a Rust supervisor and Python workers, it provides a unified HTTP API, local SQLite audit logging, and a browser-based dashboard.
+
+- **GitHub:** https://github.com/VK-Ant/arikizu
+- **License:** Apache 2.0
+
+```bash
+git clone https://github.com/VK-Ant/arikizu.git
+cd arikizu
+make build && make run
+```
+
+Arikizu OS brings the seven AI libraries in this ecosystem together under one runtime, designed for edge devices and local-first AI applications.
+
 ## Ant Studio
 
 **Ant Studio** is a CLI + Python SDK that unifies the entire ecosystem into one interface.
