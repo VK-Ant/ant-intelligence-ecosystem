@@ -58,14 +58,14 @@ const SI = [
   {l:'SightRAG',p:'sightrag',t:'sightrag visual rag image video camera query detection ocr grounding dino reid cli qdrant onnx tensorrt'},
   {l:'Sonarwise',p:'sonarwise',t:'sonarwise audio speech transcription whisper diarization speaker events clap embeddings live streaming microphone'},
   {l:'DocQWise',p:'docqwise',t:'docqwise document pdf ocr extraction table invoice contract graphrag rag read extract retrieve ollama openai'},
-  {l:'WavqWise',p:'wavqwise',t:'wavqwise time series forecast anomaly eeg trading arima xgboost chronos sensor signal pipeline sense'},
+  {l:'WavqWise',p:'wavqwise',t:'wavqwise time series forecast anomaly eeg trading arima xgboost chronos sensor signal pipeline sense streaming auto feature engineering dam monitoring weather graphcast aurora colab notebook output png csv json plugin gpu onnx tensorrt'},
   {l:'Adaptive Intelligence',p:'adaptive',t:'adaptive intelligence rl reinforcement learning rag orchestration mcp tools agentic memory context engineering'},
   {l:'LLMEvalKit',p:'llmevalkit',t:'llmevalkit evaluation metrics hallucination compliance hipaa gdpr dpdp security bias prompt injection pii detection'},
   {l:'AntGuard',p:'antguard',t:'antguard guard detect protect privacy security data movement file network process correlation policy profiler'},
   {l:'Quick Start',p:'quickstart',t:'install pip quick start setup getting started'},
   {l:'Ant Studio',p:'antstudio',t:'ant studio cli sdk pipeline tracking docker forecast extract document ask anomaly ollama openai build run control'},
   {l:'Demos',p:'demos',t:'demo video showcase example workflow multi-library integration pipeline end-to-end'},
-  {l:'Arikizu OS',p:'arikizu',t:'arikizu os edge runtime rust supervisor worker jetson raspberry pi offline device binary capability api dashboard audit'},
+  {l:'Arikizu OS',p:'arikizu',t:'arikizu os edge runtime rust supervisor worker jetson raspberry pi offline device binary capability api dashboard audit multimodal vision action search agents mcp custom capability troubleshooting promote mediapipe segformer vlm install'},
 ];
 
 function search(q){

@@ -6,6 +6,20 @@
 <title>Ant Intelligence Ecosystem</title>
 <meta name="description" content="Seven pluggable AI libraries for vision, audio, documents, time-series, orchestration, evaluation, and security.">
 <link rel="icon" href="images/logo.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ant Intelligence Ecosystem">
+<meta property="og:description" content="An open-source ecosystem of AI libraries, Ant Studio, and Arikizu OS. Build, evaluate, and govern intelligent systems.">
+<meta property="og:url" content="https://vk-ant.github.io/ant-intelligence-ecosystem/">
+<meta property="og:image" content="https://vk-ant.github.io/ant-intelligence-ecosystem/images/logo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ant Intelligence Ecosystem">
+<meta name="twitter:description" content="Open-source AI libraries, Ant Studio, and Arikizu OS.">
+<meta name="twitter:image" content="https://vk-ant.github.io/ant-intelligence-ecosystem/images/og-preview.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -83,10 +97,17 @@
     <div class="sb-sub" id="sub-az">
       <a class="sb-l" onclick="go('arikizu','az-where')">Where It Runs</a>
       <a class="sb-l" onclick="go('arikizu','az-quick')">Quick Start</a>
+      <a class="sb-l" onclick="go('arikizu','az-onecmd')">One-Command Install</a>
+      <a class="sb-l" onclick="go('arikizu','az-zero')">Zero to Running</a>
       <a class="sb-l" onclick="go('arikizu','az-arch')">Architecture</a>
+      <a class="sb-l" onclick="go('arikizu','az-multimodal')">Multimodal Vision</a>
+      <a class="sb-l" onclick="go('arikizu','az-agents')">Agents &amp; MCP</a>
+      <a class="sb-l" onclick="go('arikizu','az-custom')">Custom Capabilities</a>
       <a class="sb-l" onclick="go('arikizu','az-demos')">Demo Views</a>
       <a class="sb-l" onclick="go('arikizu','az-models')">Default Models</a>
       <a class="sb-l" onclick="go('arikizu','az-install')">Install Tiers</a>
+      <a class="sb-l" onclick="go('arikizu','az-trouble')">Troubleshooting</a>
+      <a class="sb-l" onclick="go('arikizu','az-pi')">Promote to Pi</a>
       <a class="sb-l" onclick="go('arikizu','az-vision')">Vision</a>
     </div>
     <a class="sb-l" data-p="antstudio" onclick="go('antstudio');tsub('sub-as')">
@@ -150,11 +171,14 @@
       <a class="sb-l" onclick="go('wavqwise','wq-models')">37 Models</a>
       <a class="sb-l" onclick="go('wavqwise','wq-stream')">Real-Time Streaming</a>
       <a class="sb-l" onclick="go('wavqwise','wq-anomaly')">Anomaly Detection</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-features')">Auto Features</a>
       <a class="sb-l" onclick="go('wavqwise','wq-eeg')">EEG &amp; Signals</a>
       <a class="sb-l" onclick="go('wavqwise','wq-trading')">Trading</a>
       <a class="sb-l" onclick="go('wavqwise','wq-weather')">Weather</a>
       <a class="sb-l" onclick="go('wavqwise','wq-dam')">Dam Monitoring</a>
       <a class="sb-l" onclick="go('wavqwise','wq-plugin')">Plugin System</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-output')">Output Formats</a>
+      <a class="sb-l" onclick="go('wavqwise','wq-demos')">Demos &amp; Colab</a>
     </div>
   </div>
   <div class="sb-sec">
@@ -1549,6 +1573,27 @@ allowing individual components to evolve independently.
   <a href="https://github.com/VK-Ant/wavqwise#contributing" target="_blank">Contribute</a>
 </div>
 
+<h2 class="sh" id="wq-diff">What Makes WavqWise Different</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Feature</th><th>Nixtla</th><th>Darts</th><th>Prophet</th><th style="color:var(--wq)">WavqWise</th></tr></thead>
+  <tbody>
+    <tr><td>Batch forecasting</td><td>Yes</td><td>Yes</td><td>Yes</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+    <tr><td>Real-time streaming</td><td>No</td><td>No</td><td>No</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+    <tr><td>Incremental update (no retrain)</td><td>No</td><td>No</td><td>No</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+    <tr><td>Anomaly detection</td><td>No</td><td>No</td><td>No</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+    <tr><td>EEG / Signal processing</td><td>No</td><td>No</td><td>No</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+    <tr><td>Trading indicators</td><td>No</td><td>No</td><td>No</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+    <tr><td>Weather (GraphCast / Aurora)</td><td>No</td><td>No</td><td>No</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+    <tr><td>Dam / Water level monitoring</td><td>No</td><td>No</td><td>No</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+    <tr><td>Auto feature engineering (12 groups)</td><td>No</td><td>No</td><td>No</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+    <tr><td>Auto GPU / ONNX / TensorRT</td><td>No</td><td>No</td><td>No</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+    <tr><td>Plugin any external model</td><td>No</td><td>No</td><td>No</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+    <tr><td>CLI + PNG charts + CSV/JSON export</td><td>No</td><td>No</td><td>No</td><td><strong style="color:var(--wq)">Yes</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
 <h2 class="sh" id="wq-install">Installation</h2>
 <div class="cb"><pre><code class="language-bash">pip install wavqwise                    # Core: numpy, pandas, scipy, sklearn, matplotlib
 pip install wavqwise[traditional]       # + statsmodels, statsforecast (ARIMA, SARIMA, ETS, Theta)
@@ -1665,7 +1710,7 @@ pipeline.compare_models(["arima", "ets", "xgboost"], horizon=14)</code></pre><bu
 <p class="pr">TimeGPT (Nixtla API), Ollama (local LLM), OpenAI (GPT-based). All via registry stubs with dynamic prefixes: <code>ollama:model_name</code>, <code>openai:model_name</code>.</p>
 
 <h2 class="sh" id="wq-stream">Real-Time Streaming Engine</h2>
-<p class="pr">The feature no other forecasting library has. Continuous data ingestion with live anomaly detection and automatic forecast updates. The core loop: receive data, append to sliding window, run anomaly detection, fire callback if anomaly found, update forecast every N points, refit model every M points.</p>
+<p class="pr">The feature no other forecasting library has. Continuous data ingestion with live anomaly detection and automatic forecast updates. <strong>v0.1.7:</strong> snapshot-based anomaly scoring — the detector fits on a clean baseline snapshot <em>before</em> new data is appended, so spikes can never contaminate their own baseline. Cold-start guard prevents false alerts when the window is still small.</p>
 <div class="cb"><pre><code class="language-python">stream = pipeline.stream(
     model="ema",
     anomaly_method="zscore",
@@ -1720,6 +1765,39 @@ sig.filter(low=1, high=50, notch=50)
 bands = sig.extract_bands(["delta", "theta", "alpha", "beta", "gamma"])
 bands.plot_bands()          # power spectral density per band
 events = sig.detect_events(threshold=3.0)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="wq-features">Auto Feature Engineering</h2>
+<p class="pr">12 feature groups, 80+ features generated automatically — zero manual work. Select specific groups or let the engine generate all.</p>
+<div class="cb"><pre><code class="language-python">from wavqwise.features import AutoFeatureEngineer
+
+fe = AutoFeatureEngineer()
+enriched = fe.generate(df, target="value", time_col="timestamp")
+print(fe.feature_report())
+# {'total_features': 85, 'groups_used': [...], 'feature_names': [...]}
+
+# Select specific groups
+fe = AutoFeatureEngineer(feature_groups=["lags", "rolling", "ewm", "cyclical"])
+enriched = fe.generate(df, target="value", time_col="timestamp")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<div class="table-wrap" style="margin-top:20px">
+<table>
+  <thead><tr><th>Group</th><th>Features</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Lags</strong></td><td><code>lag_1</code> .. <code>lag_30</code></td><td>Shifted target values</td></tr>
+    <tr><td><strong>Rolling</strong></td><td>mean, std, min, max, median, skew, kurt &times; 4 windows</td><td>Sliding-window statistics</td></tr>
+    <tr><td><strong>EWM</strong></td><td>mean, std, var &times; 3 spans</td><td>Exponentially weighted moving stats</td></tr>
+    <tr><td><strong>Calendar</strong></td><td>hour, day_of_week, month, quarter, is_weekend &hellip;</td><td>Datetime decomposition (12 features)</td></tr>
+    <tr><td><strong>Cyclical</strong></td><td>sin/cos for hour, day, month, day-of-year</td><td>Periodic encoding (8 features)</td></tr>
+    <tr><td><strong>Fourier</strong></td><td><code>fourier_sin_1</code>..<code>_3</code>, <code>fourier_cos_1</code>..<code>_3</code></td><td>Seasonal harmonics</td></tr>
+    <tr><td><strong>Trend</strong></td><td>linear, quadratic, normalised</td><td>Deterministic trend</td></tr>
+    <tr><td><strong>Diff</strong></td><td>1st, 2nd order + seasonal (lag-7)</td><td>Differencing / stationarity</td></tr>
+    <tr><td><strong>Pct Change</strong></td><td>1, 7, 14-period</td><td>Percentage change</td></tr>
+    <tr><td><strong>Rate of Change</strong></td><td>ROC + momentum at 7, 14, 30</td><td>Momentum indicators</td></tr>
+    <tr><td><strong>Volatility</strong></td><td>rolling z-score, Bollinger bands, band width</td><td>Risk / dispersion</td></tr>
+    <tr><td><strong>Interaction</strong></td><td>mean ratio, crossover signal, std ratio, distance</td><td>Cross-scale dynamics</td></tr>
+  </tbody>
+</table>
+</div>
 
 <h2 class="sh" id="wq-trading">Trading &amp; Financial Pipeline</h2>
 <p class="pr">Eight technical indicators across momentum, trend, and volatility categories. Each returns a modified DataFrame with new columns. Composable in any order.</p>
@@ -1850,6 +1928,96 @@ wavqwise models  # list all 37 available models</code></pre><button class="cp" o
 <h2 class="sh" id="wq-docker">Docker</h2>
 <p class="pr">Docker Compose stack: WavqWise + TimescaleDB + Grafana. Jupyter at :8888, Grafana at :3000.</p>
 <div class="cb"><pre><code class="language-bash">docker-compose -f docker/docker-compose.yml up -d</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="wq-output">Output Formats</h2>
+<p class="pr">Four output modes with no HTML dependency required. PNG charts via matplotlib, CLI tables for the terminal, CSV/JSON export with source metadata, and optional HTML interactive maps via Folium.</p>
+<div class="cb"><pre><code class="language-python">from wavqwise.visualization.renderer import ResultRenderer, CLIPrinter, DataExporter
+
+# PNG charts (matplotlib)
+ResultRenderer.forecast_chart(history, forecast, target, time_col,
+    source="India-WRIS", save_path="forecast.png")
+ResultRenderer.dam_network_chart(dams, save_path="network.png")
+ResultRenderer.anomaly_chart(data, save_path="anomalies.png")
+ResultRenderer.comparison_chart(comparison, save_path="comparison.png")
+
+# CLI tables (terminal)
+CLIPrinter.table(["Dam", "Level", "Status"], rows)
+CLIPrinter.dam_status("Mettur Dam", level=92, capacity=120)
+CLIPrinter.forecast_summary(result)
+
+# CSV / JSON export with source metadata
+DataExporter.to_csv(data, "output.csv", source="india-wris.nrsc.gov.in")
+DataExporter.to_json(data, "output.json", source="USGS")
+
+# HTML interactive (optional, via folium)
+from wavqwise.visualization.map_viz import WeatherMap
+wmap = WeatherMap()
+wmap.add_dam_marker("Mettur Dam", 11.79, 77.80, water_level=92, capacity=120)
+wmap.save("dashboard.html")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="wq-sources">Real Data Sources</h2>
+<p class="pr">All free, no API key required. Seven built-in data sources for weather, water levels, EEG, and financial data.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Source</th><th>URL</th><th>Coverage</th></tr></thead>
+  <tbody>
+    <tr><td>Open-Meteo</td><td>api.open-meteo.com</td><td>Global weather, 80+ years history</td></tr>
+    <tr><td>India-WRIS</td><td>india-wris.nrsc.gov.in</td><td>5000+ Indian dams</td></tr>
+    <tr><td>CWC India</td><td>cwc.gov.in</td><td>91 major reservoirs</td></tr>
+    <tr><td>USGS</td><td>waterservices.usgs.gov</td><td>1.5M+ US water sites</td></tr>
+    <tr><td>Global Dam Watch</td><td>globaldamwatch.org</td><td>7000+ reservoirs worldwide</td></tr>
+    <tr><td>MNE (EEG)</td><td>mne.tools</td><td>Clinical EEG datasets</td></tr>
+    <tr><td>Yahoo Finance</td><td>via yfinance</td><td>Global stock data</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="sh" id="wq-demos">Demos &amp; Scripts</h2>
+<p class="pr">12 ready-to-run demo scripts covering every pipeline. Each script is self-contained and uses real or synthetic data.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Demo</th><th>What It Does</th><th>Run</th></tr></thead>
+  <tbody>
+    <tr><td>Forecasting</td><td>Sales forecast + model comparison + incremental</td><td><code>python demos/demo_forecasting.py</code></td></tr>
+    <tr><td>Anomaly Detection</td><td>Sensor anomaly (Z-Score + IQR + severity)</td><td><code>python demos/demo_anomaly_detection.py</code></td></tr>
+    <tr><td>EEG Real Data</td><td>MNE clinical EEG classification</td><td><code>python demos/demo_eeg_real_data.py</code></td></tr>
+    <tr><td>EEG Classification</td><td>3-class mental state classification</td><td><code>python demos/demo_eeg_classification.py</code></td></tr>
+    <tr><td>EEG Analysis</td><td>Band power extraction + event detection</td><td><code>python demos/demo_eeg_analysis.py</code></td></tr>
+    <tr><td>Trading Real Data</td><td>AAPL with RSI/MACD/Bollinger/Stochastic</td><td><code>python demos/demo_trading_real_data.py</code></td></tr>
+    <tr><td>Trading Forecast</td><td>Stock price forecast + signals</td><td><code>python demos/demo_trading_forecast.py</code></td></tr>
+    <tr><td>Weather Forecast</td><td>Temperature/rain/wind for any city</td><td><code>python demos/demo_weather_forecast.py</code></td></tr>
+    <tr><td>Dam Monitoring</td><td>Tamil Nadu dams, flood alerts, streaming</td><td><code>python demos/demo_dam_monitoring.py</code></td></tr>
+    <tr><td>Dam World</td><td>49 dams, 13 countries, PNG + CLI + CSV output</td><td><code>python demos/demo_dam_world.py</code></td></tr>
+    <tr><td>Real-Time Stream</td><td>Live sensor monitoring with anomaly alerts</td><td><code>python demos/demo_realtime_streaming.py</code></td></tr>
+    <tr><td>Feature Engineering</td><td>Auto feature generation (12 groups, 80+ features)</td><td><code>python demos/demo_feature_engineering.py</code></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="sh" id="wq-colab">Colab Notebooks</h2>
+<p class="pr">Six interactive notebooks — open in Google Colab with one click and run with real data.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Notebook</th><th>Data</th><th>Open</th></tr></thead>
+  <tbody>
+    <tr><td>Weather Forecast</td><td>Open-Meteo real weather</td><td><a href="https://colab.research.google.com/github/VK-Ant/wavqwise/blob/main/demos/notebooks/wavqwise_weather_forecast.ipynb" target="_blank" style="color:var(--wq)">Open in Colab &rarr;</a></td></tr>
+    <tr><td>Dam Monitoring</td><td>49 dams, 13 countries</td><td><a href="https://colab.research.google.com/github/VK-Ant/wavqwise/blob/main/demos/notebooks/wavqwise_dam_monitoring.ipynb" target="_blank" style="color:var(--wq)">Open in Colab &rarr;</a></td></tr>
+    <tr><td>EEG Real Data</td><td>MNE clinical EEG</td><td><a href="https://colab.research.google.com/github/VK-Ant/wavqwise/blob/main/demos/notebooks/wavqwise_eeg_real_data.ipynb" target="_blank" style="color:var(--wq)">Open in Colab &rarr;</a></td></tr>
+    <tr><td>EEG Classification</td><td>Mental state classification</td><td><a href="https://colab.research.google.com/github/VK-Ant/wavqwise/blob/main/demos/notebooks/wavqwise_eeg_classification.ipynb" target="_blank" style="color:var(--wq)">Open in Colab &rarr;</a></td></tr>
+    <tr><td>Trading Real Data</td><td>yfinance AAPL/TSLA/MSFT</td><td><a href="https://colab.research.google.com/github/VK-Ant/wavqwise/blob/main/demos/notebooks/wavqwise_trading_real_data.ipynb" target="_blank" style="color:var(--wq)">Open in Colab &rarr;</a></td></tr>
+    <tr><td>Trading Forecast</td><td>Stock analysis + indicators</td><td><a href="https://colab.research.google.com/github/VK-Ant/wavqwise/blob/main/demos/notebooks/wavqwise_trading_forecast.ipynb" target="_blank" style="color:var(--wq)">Open in Colab &rarr;</a></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="sh" id="wq-testing">Testing</h2>
+<p class="pr">94 tests across five categories. Run individually or all at once.</p>
+<div class="cb"><pre><code class="language-bash">make smoke        # 26 smoke tests (does it run?)
+make sanity       # 20 sanity tests (is output correct?)
+make ab           # 5 A/B comparison tests (which model wins?)
+make integration  # 7 integration tests (full pipeline flows)
+make streaming    # 31 streaming regression tests
+make test         # All 94 tests</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 </div>
 </div>
@@ -2984,6 +3152,46 @@ make doctor
   -d '{"payload":{"message":"hello"}}'
 # {"echo":"hello"}</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
+<h2 class="sh" id="az-onecmd">One-Command Install</h2>
+<p class="pr">Install everything — system libraries, Python workers, and all models — in a single command:</p>
+<div class="cb"><pre><code class="language-bash">scripts/install-everything.sh --llm-size 1.5b</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+<p class="pr" style="margin-top:16px">That runs three sub-steps:</p>
+<div style="font-size:14.5px;color:var(--t2);line-height:1.8">
+<p><strong style="color:var(--az)">1. System libraries</strong> via <code>apt install</code> (needs sudo once). Installs libgl1, libgles2, libegl1, libglvnd0, libglib2.0, libportaudio2, ffmpeg, libavcodec-extra — everything MediaPipe / OpenCV / ONNX / llama-cpp might ever ask for.</p>
+<p style="margin-top:12px"><strong style="color:var(--az)">2. Python workers</strong> via <code>uv sync</code>. Pins the workspace to Python 3.12 (MediaPipe has no 3.13+ wheels yet) and installs MediaPipe as a required dep. If your system Python is 3.14, <code>uv</code> manages its own 3.12 side-by-side.</p>
+<p style="margin-top:12px"><strong style="color:var(--az)">3. All models</strong>: YOLOv8 (vision), Silero VAD (audio), SmolLM2 (fallback LLM), MediaPipe tflite set (video perception), SegFormer int8 (scene parse), Qwen2.5-1.5B-Instruct (agent brain). About 1.5 GB total.</p>
+</div>
+<p class="pr" style="margin-top:16px">Add <code>--with-vlm</code> for the optional Qwen2.5-VL 3B for reference-image action search (~2.7 GB more). The summary at the end says "install completed cleanly" or lists the exact step that failed with the exact command to retry.</p>
+
+<h2 class="sh" id="az-zero">From Zero to Running</h2>
+<p class="pr">Six steps, in order. Each takes 1–10 minutes.</p>
+
+<h3 class="ssh">Step 1: Unzip and Enter</h3>
+<div class="cb"><pre><code class="language-bash">cd ~
+unzip -o arikizu-v2.0.3.zip
+cd ~/arikizu</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Step 2: Install Everything</h3>
+<div class="cb"><pre><code class="language-bash">scripts/install-everything.sh --llm-size 1.5b</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Step 3: Build the Rust Supervisor</h3>
+<div class="cb"><pre><code class="language-bash">make build   # 2-5 minutes first time, seconds on rebuilds</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Step 4: Start Arikizu</h3>
+<div class="cb"><pre><code class="language-bash">pkill -9 -f arikizu   # just in case
+make run               # keep this terminal open</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Step 5: Open the Browser</h3>
+<p class="pr">Open <code>http://127.0.0.1:7000/demo/</code>. The Diagnostics panel should show all five rows as <strong style="color:var(--az)">green READY</strong>: vision model, audio VAD, reasoning LLM, video stack, and agent runtime.</p>
+
+<h3 class="ssh">Step 6: Import Example Agents (optional)</h3>
+<div class="cb"><pre><code class="language-bash">for a in safety-inspector elder-care-companion document-reviewer sensor-triage retail-floor; do
+  curl -sS -X POST http://127.0.0.1:7000/api/v1/call/agent/import \
+    -H 'content-type: application/json' \
+    -d "{\"payload\":{\"file_path\":\"examples/agents/${a}.json\"}}"
+done</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+<p class="pr" style="margin-top:12px">Open <code>http://127.0.0.1:7000/demo/agent_studio.html</code> and chat with any of them.</p>
+
 <h2 class="sh" id="az-arch">Architecture</h2>
 <p class="pr">One Rust supervisor + ten Python workers behind one capability API. Four zones: Interaction (HTTP, dashboard, CLI, voice), Runtime (supervisor, router, worker lifecycle, policy), Intelligence (Ant Intelligence libraries as workers), and Trust (feedback manager, audit log, approval queue, golden set).</p>
 <img src="images/arikizu_arch.png" alt="Arikizu OS Architecture" style="width:100%;border-radius:10px;margin:20px 0;border:1px solid var(--border)">
@@ -3021,9 +3229,92 @@ make doctor
     <tr><td><code>memory_worker</code></td><td>Adaptive Intelligence</td></tr>
     <tr><td><code>guard_worker</code></td><td>AntGuard (PII scan + redact)</td></tr>
     <tr><td><code>eval_worker</code></td><td>LLMEvalKit (score + golden set)</td></tr>
+    <tr><td><code>video_worker</code></td><td>Multimodal action search (MediaPipe + SegFormer + VLM)</td></tr>
+    <tr><td><code>agent_worker</code></td><td>Custom agents + policy enforcement</td></tr>
   </tbody>
 </table>
 </div>
+
+<h2 class="sh" id="az-multimodal">Vision: Multimodal Action Search</h2>
+<p class="pr">Upload a clip or open your webcam. Give the system a text prompt, a reference image, or nothing at all. Get back a timestamped list of actions, who and what is in the scene, how fast they are moving, and the room they are in. Everything runs on your device.</p>
+
+<h3 class="ssh">Three Inputs, Same Pipeline</h3>
+<div style="font-size:14.5px;color:var(--t2);line-height:1.8">
+<p><strong style="color:var(--az)">No prompt.</strong> Default rule-based recognition over 12 actions (walking, running, sitting, standing, waving, kicking, jumping, hands-up, arms-crossed, bending, falling, pointing).</p>
+<p style="margin-top:12px"><strong style="color:var(--az)">Text prompt.</strong> "A person waving at the camera." The VLM scores every sampled frame against the prompt.</p>
+<p style="margin-top:12px"><strong style="color:var(--az)">Reference image.</strong> Drop a screenshot of the action you want to find. The VLM describes it, then searches the target video.</p>
+</div>
+
+<p class="pr" style="margin-top:16px"><strong>Backbone:</strong> MediaPipe LiteRT (object detection, pose landmarks, segmentation, face privacy), SegFormer-B0 int8 for scene parsing, dense optical flow for motion, multi-object tracking with trails. All on CPU with XNNPACK, GPU delegate on Jetson. Qwen2.5-VL 3B Q4_K_M on top for open-vocabulary action search when the VLM is available.</p>
+
+<p class="pr"><strong>Device-aware model selection.</strong> On page load, the demo calls <code>video.device_report</code> and shows which model preset is recommended for your hardware. On a Pi 4 you see the rule-based path only. On a Jetson Orin Nano or newer, the VLM is enabled.</p>
+
+<div class="cb"><pre><code class="language-bash"># Install vision stack
+cd workers && uv add mediapipe --package video-worker
+cd .. && scripts/download-video-models.sh
+
+# Optional: VLM for open-vocabulary action search (~2.7 GB)
+cd workers && uv add llama-cpp-python --package video-worker
+cd .. && scripts/download-video-models.sh --with-vlm
+
+# Restart and open
+pkill -f arikizu && make run
+# Open http://127.0.0.1:7000/demo/video_studio.html</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="az-agents">Custom Agents &amp; MCP</h2>
+<p class="pr">Two ways to build on top of Arikizu's capabilities, both governed by the same policy and audit layer.</p>
+
+<h3 class="ssh">Agents</h3>
+<p class="pr">Create your own chatbots inside Arikizu. Give each agent a name, a system prompt, and a policy (which capabilities it may call directly, which require human approval, which are refused). The agent runs in <code>agent_worker</code>, talks via the local reasoning worker, emits tool calls, and the dispatcher enforces the policy before any call reaches another worker.</p>
+<div class="cb"><pre><code class="language-bash"># Import example agents
+for a in safety-inspector elder-care-companion document-reviewer sensor-triage retail-floor; do
+  curl -X POST http://127.0.0.1:7000/api/v1/call/agent/import \
+    -H 'content-type: application/json' \
+    -d "{\"payload\": {\"file_path\": \"examples/agents/${a}.json\"}}"
+done
+# Open http://127.0.0.1:7000/demo/agent_studio.html</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">MCP Server</h3>
+<p class="pr">For agents that live <em>outside</em> Arikizu (any MCP-compatible AI agent client), Arikizu ships an MCP server at <code>mcp/arikizu_mcp_server.py</code>. It exposes a safe subset of capabilities as MCP tools. External agents call them like any other tool; the calls still land on the HTTP router and go through the global policy and audit.</p>
+<div class="cb"><pre><code class="language-bash">pip install mcp httpx
+export ARIKIZU_HTTP=http://127.0.0.1:7000
+python3 mcp/arikizu_mcp_server.py</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+<p class="pr" style="margin-top:12px"><strong>Responsible AI by architecture.</strong> Policy + audit + approval are not bolted on. The system is designed so that governance is a thin, local, auditable ring around a runtime whose data never leaves the device.</p>
+
+<h2 class="sh" id="az-custom">Custom Capabilities</h2>
+<p class="pr">Add your own capability with two files, no scaffolding. The built-in demos all go through the same path your custom code uses — same HTTP API, same policy enforcement, same audit log.</p>
+
+<h3 class="ssh">File 1 — Python Handler</h3>
+<div class="cb"><pre><code class="language-python"># custom/my_math.py
+from arikizu_worker import Worker
+worker = Worker.current()
+
+@worker.handler("my.add")
+def add(a: float, b: float) -> dict:
+    return {"result": a + b}</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">File 2 — Registry Entry</h3>
+<div class="cb"><pre><code class="language-toml"># capabilities/my_math.toml
+[my_add]
+name = "my.add"
+worker = "custom"
+input = { a = "number", b = "number" }
+output = "object"
+timeout_ms = 5000</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<p class="pr" style="margin-top:16px"><strong>Save the file — that's it.</strong> The custom worker watches <code>custom/</code> and hot-reloads in ~1 second. No restart. Your capability is live at <code>POST /api/v1/call/my/add</code>. It's visible to the HTTP API, to agents, to YAML pipelines, and to external MCP clients.</p>
+
+<h2 class="sh" id="az-custdemo">Custom Demo Pages</h2>
+<p class="pr">No framework lock-in. Pick HTML, Streamlit, Gradio, React, anything — Arikizu's HTTP API is the only contract.</p>
+<div style="font-size:14.5px;color:var(--t2);line-height:1.8">
+<p><strong style="color:var(--az)">HTML — ships in the box.</strong> Drop a file in <code>demo/web/user/</code>, add it to <code>manifest.json</code>, reload. It auto-appears on the Demos page.</p>
+<p style="margin-top:12px"><strong style="color:var(--az)">Any Python UI framework.</strong> Streamlit, Gradio, Dash, Panel, Flask, FastAPI. Each capability call is one <code>requests.post</code>.</p>
+<p style="margin-top:12px"><strong style="color:var(--az)">YAML pipeline — no code at all.</strong> Chain existing capabilities in a <code>.yaml</code> file.</p>
+</div>
+<div class="cb" style="margin-top:16px"><pre><code class="language-bash"># Create a custom HTML demo
+cp demo/web/user/hello.html demo/web/user/my_demo.html
+# Edit my_demo.html, add an entry to demo/web/user/manifest.json
+# Open http://127.0.0.1:7000/demo/ -> your demo card is there</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
 <h2 class="sh" id="az-demos">Demo Views</h2>
 <p class="pr">Every view is a plain HTML file served by the Rust server. No build step, no npm, no bundler.</p>
@@ -3040,7 +3331,9 @@ make doctor
   <thead><tr><th>View</th><th>What It Shows</th></tr></thead>
   <tbody>
     <tr><td><code>/</code></td><td>Operator dashboard: greeting, 6 capability cards, recent activity</td></tr>
-    <tr><td><code>/demo/</code></td><td>Developer hub: one card per capability, direct links</td></tr>
+    <tr><td><code>/demo/</code></td><td>Developer hub: one card per capability, direct links + diagnostics panel</td></tr>
+    <tr><td><code>/demo/video_studio.html</code></td><td>Webcam detection + pose + action labels (multimodal vision)</td></tr>
+    <tr><td><code>/demo/agent_studio.html</code></td><td>Chat with custom agents (import, create, test)</td></tr>
     <tr><td><code>/demo/vision_live.html</code></td><td>Live annotated frames with FPS counter and detection list</td></tr>
     <tr><td><code>/demo/vision_search.html</code></td><td>Audit-log search for past detections</td></tr>
     <tr><td><code>/demo/audio_view.html</code></td><td>Waveform draw + VAD segments + transcript</td></tr>
@@ -3095,6 +3388,47 @@ cd arikizu
 scripts/check_prereqs.sh
 scripts/bootstrap.sh
 make build && make run</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="az-trouble">Troubleshooting</h2>
+<p class="pr">Run the honest self-test; the output tells you exactly what to fix:</p>
+<div class="cb"><pre><code class="language-bash"># System-level checks
+make doctor
+# Prints PASS/FAIL per component with the exact fix line
+
+# Video self-test (if vision is not working)
+curl -sS -X POST http://127.0.0.1:7000/api/v1/call/video/selftest \
+  -H 'content-type: application/json' -d '{"payload":{}}' | python3 -m json.tool
+# The "fix" field in the response is the exact command to run</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">MediaPipe Not Working?</h3>
+<div class="cb"><pre><code class="language-bash">cd ~/arikizu/workers
+uv add mediapipe --package video-worker
+uv run --package video-worker python3 -c "import mediapipe; print(mediapipe.__version__)"
+cd .. && scripts/download-video-models.sh
+pkill -9 -f arikizu && make run</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Agents Give Generic Answers?</h3>
+<p class="pr">The default model is SmolLM2-360M (230 MB) — too small for structured tool calls. Download a properly-sized LLM:</p>
+<div class="cb"><pre><code class="language-bash">scripts/download-reasoning-llm.sh --size 1.5b   # Qwen2.5-1.5B ~0.9 GB
+pkill -9 -f arikizu && make run
+# Sizes: --size 0.5b (400 MB), 1.5b (recommended), 3b (2 GB), 7b (4.4 GB)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h3 class="ssh">Download Everything in One Go</h3>
+<div class="cb"><pre><code class="language-bash">scripts/download-all.sh --with-vlm --llm-size 1.5b
+# Runs all download steps and reports pass/fail per step</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<h2 class="sh" id="az-pi">Promote to Raspberry Pi</h2>
+<p class="pr">Only after <code>make test</code> and <code>make smoke</code> are green on your laptop:</p>
+<div class="cb"><pre><code class="language-bash"># On the Pi (Pi 4 or 5, Pi OS 64-bit)
+sudo apt install -y build-essential git curl pkg-config libssl-dev \
+  python3-picamera2 python3-opencv alsa-utils libportaudio2
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
+git clone https://github.com/VK-Ant/arikizu
+cd arikizu && scripts/bootstrap.sh
+make build && make run   # terminal 1
+make smoke               # terminal 2</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+<p class="pr" style="margin-top:12px">Dashboard from your laptop: <code>http://arikizu-dev.local:7000/</code> (or the Pi's IP from <code>hostname -I</code>).</p>
 
 <h2 class="sh" id="az-vision">Vision</h2>
 <p class="pr">Arikizu OS is not just an edge runtime. It is the foundation for a retrieval-first operating system and SDK designed to serve every industry with secure, offline-capable AI.</p>
