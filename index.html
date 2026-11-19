@@ -47,6 +47,8 @@
       <li class="hdr-dropdown">
         <a href="#" onclick="event.preventDefault()">Explore <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="vertical-align:0;margin-left:2px"><path d="M6 9l6 6 6-6"/></svg></a>
         <div class="hdr-dd-menu"><div class="hdr-dd-inner">
+          <div class="dd-group-label">Geo Intelligence</div>
+          <a onclick="go('atlas')"><span class="dd-dot" style="background:var(--at)"></span>Atlas</a>
           <div class="dd-group-label">Perception</div>
           <a onclick="go('sightrag')"><span class="dd-dot" style="background:var(--sr)"></span>SightRAG</a>
           <a onclick="go('sonarwise')"><span class="dd-dot" style="background:var(--so)"></span>Sonarwise</a>
@@ -121,6 +123,22 @@
       <a class="sb-l" onclick="go('antstudio','as-sdk')">Python SDK</a>
       <a class="sb-l" onclick="go('antstudio','as-track')">Pipeline Tracking</a>
       <a class="sb-l" onclick="go('antstudio','as-docker')">Docker</a>
+    </div>
+  </div>
+  <div class="sb-sec">
+    <div class="sb-t">Geo Intelligence</div>
+    <a class="sb-l" data-p="atlas" onclick="go('atlas');tsub('sub-at')">
+      <span class="d" style="background:var(--at)"></span> Atlas
+    </a>
+    <div class="sb-sub" id="sub-at">
+      <a class="sb-l" onclick="go('atlas','at-principles')">Design Principles</a>
+      <a class="sb-l" onclick="go('atlas','at-arch')">Architecture</a>
+      <a class="sb-l" onclick="go('atlas','at-stack')">Tech Stack</a>
+      <a class="sb-l" onclick="go('atlas','at-features')">Seven Geo Tools</a>
+      <a class="sb-l" onclick="go('atlas','at-data')">Open Data Sources</a>
+      <a class="sb-l" onclick="go('atlas','at-voice')">Voice Pipeline</a>
+      <a class="sb-l" onclick="go('atlas','at-limits')">Limitations</a>
+      <a class="sb-l" onclick="go('atlas','at-demo')">Demo Playlist</a>
     </div>
   </div>
   <div class="sb-sec">
@@ -263,6 +281,21 @@
       </div>
       <p style="font-size:14.5px;color:var(--t2);line-height:1.65;margin-bottom:14px">Edge-first, offline-first AI runtime that wraps all seven Ant Intelligence libraries into a single Rust binary. One supervisor, ten Python workers, one HTTP API. Runs on Jetson, Raspberry Pi, Mac, or any Linux box with no cloud account required.</p>
       <div class="lc-b"><span>v0.1</span><span>Apache 2.0</span><span>Rust + Python</span></div>
+    </div>
+
+    <!-- Atlas - Geo Intelligence (Under Development) -->
+    <div style="margin-bottom:36px;padding:32px;background:linear-gradient(135deg, rgba(230,126,34,.08), rgba(230,126,34,.02));border:1px solid rgba(230,126,34,.25);border-radius:14px;cursor:pointer" onclick="go('atlas')">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+        <div style="width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#e67e22,#d35400);display:flex;align-items:center;justify-content:center">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="1.5"/><path d="M12 2a10 10 0 0 1 0 20" fill="none" stroke="white" stroke-width="1.5"/><path d="M2 12h20M12 2c3 3 4.5 6 4.5 10S15 19 12 22" fill="none" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+        <div>
+          <div style="font-size:22px;font-weight:700;color:var(--at)">Atlas - Geo Intelligence</div>
+          <div style="font-size:13px;color:var(--t3);letter-spacing:.5px">EXPLORE &bull; DISCOVER &bull; UNDERSTAND &mdash; UNDER DEVELOPMENT</div>
+        </div>
+      </div>
+      <p style="font-size:14.5px;color:var(--t2);line-height:1.65;margin-bottom:14px">Local-first, free, keyless geo-intelligence assistant. 3D CesiumJS globe with voice-and-text AI, seven geospatial tools (destinations, reach, transport, satellite change, land cover, routing), all built on open data. No cloud, no API keys.</p>
+      <div class="lc-b"><span>Under Development</span><span>Not Open Source</span><span>Arikizui Lab</span></div>
     </div>
 
     <div class="lgrid-sec-title">Unified Studio</div>
@@ -3449,6 +3482,168 @@ make smoke               # terminal 2</code></pre><button class="cp" onclick="cc
 </div>
 
 
+<!-- ===== ATLAS - GEO INTELLIGENCE PAGE ===== -->
+<div class="pg" id="pg-atlas" data-lib="Atlas">
+<div class="ct">
+<h1 class="dt" style="color:var(--at)">Atlas - Geo Intelligence</h1>
+<p class="ddesc">Explore. Discover. Understand. A local-first, free, keyless geo-intelligence assistant that combines a 3D globe, voice-and-text AI, and real geospatial tools in one application. Ask about anywhere in plain language and immediately understand the answer on the map, in one sentence, and spoken aloud.</p>
+
+<div style="padding:16px 20px;background:rgba(230,126,34,.08);border:1px solid rgba(230,126,34,.25);border-radius:10px;margin-bottom:28px;font-size:14px;color:var(--t2);line-height:1.7">
+<strong style="color:var(--at)">Status: Under Active Development</strong><br>
+Atlas - Geo Intelligence is currently under active development as part of Arikizui Lab. It is <strong>not open source</strong> at this time. Follow the demos below and the project updates for progress.
+</div>
+
+<div class="lib-links" style="margin-bottom:32px">
+  <a href="https://youtube.com/playlist?list=PLUQAiqC849rs&si=dVXgo4jObSOm-uQQ" target="_blank" class="lib-link-btn" style="border-color:var(--at);color:var(--at)">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Demo Playlist
+  </a>
+</div>
+
+<h2 class="sh" id="at-principles">Design Principles</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Principle</th><th>What It Means</th></tr></thead>
+<tbody>
+<tr><td><strong>Free and Keyless</strong></td><td>Not a single feature needs a paid API key. Every data source is open: OpenStreetMap, Wikipedia, Wikidata, ESA satellite programmes, and free routing. The tool belongs to whoever runs it.</td></tr>
+<tr><td><strong>Local-first</strong></td><td>Backend runs on the user's machine. Speech recognition, language model, and voice synthesis all run on-device. Questions and voice never have to leave the machine.</td></tr>
+<tr><td><strong>People Easily Understand</strong></td><td>Every answer is one plain sentence, a small number of figures, and a clear picture on the globe. Each tool also states what it cannot do, so people trust what they see.</td></tr>
+<tr><td><strong>One Tool, One File</strong></td><td>Each capability is a single backend module and a single frontend module. A feature can be read, understood, and changed on its own.</td></tr>
+</tbody>
+</table></div>
+
+<h2 class="sh" id="at-arch">Architecture</h2>
+<p class="pr">Atlas has two surfaces that share the same underlying tools:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Surface</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><strong>The Assistant</strong></td><td>Main voice-and-text application with the 3D globe. Ask anything by voice or text. Vite-bundled, served as <code>index.html</code>.</td></tr>
+<tr><td><strong>Tool Pages</strong></td><td>Each focuses on one capability (Places, Reach, Transport, Detect, Dams, Crops, Farming, Hazards). Load <code>change-tool.js</code> directly.</td></tr>
+</tbody>
+</table></div>
+<p class="pr">Both call the same browser-side tool modules (<code>window.Atlas*</code>) and the same backend endpoints, so a question behaves identically wherever it is asked.</p>
+
+<h3 class="ssh">Question Lifecycle</h3>
+<p class="pr"><strong>Typed question:</strong> <code>routeToolQuery(text)</code> checks each tool parser in turn. The first that matches runs its tool and the language model is skipped. The tool resolves the place, calls its backend endpoint, draws the result on the globe, renders a panel, and speaks the summary.</p>
+<p class="pr"><strong>Spoken question:</strong> Browser VAD sends speech over WebSocket. Backend transcribes (ASR), checks if it's a geo question. If yes, sends <code>tool_intent</code> back to the browser which runs the same tool path. If not, the backend runs LLM + TTS and streams audio back. This design means voice and text give the same answer with no duplicate reply.</p>
+
+<h2 class="sh" id="at-stack">Technology Stack</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Layer</th><th>Technology</th></tr></thead>
+<tbody>
+<tr><td>Globe</td><td>CesiumJS 1.123.0</td></tr>
+<tr><td>Frontend</td><td>Vite, vanilla JavaScript</td></tr>
+<tr><td>Backend</td><td>Python, FastAPI, Uvicorn, WebSockets</td></tr>
+<tr><td>Graph Analysis</td><td>city2graph (BSD-3), networkx</td></tr>
+<tr><td>Geospatial</td><td>geopandas, shapely, pyproj, rasterio</td></tr>
+<tr><td>Data Store</td><td>DuckDB</td></tr>
+<tr><td>Voice</td><td>On-device VAD, ASR, language model, TTS</td></tr>
+</tbody>
+</table></div>
+
+<h2 class="sh" id="at-features">Seven Geo Tools</h2>
+<p class="pr">Each tool follows a contract: <code>parse(text)</code> to detect, <code>run(opts)</code> to call backend, <code>draw(viewer, C, res)</code> to render on globe, <code>clear(viewer)</code> to remove, <code>html(res)</code> for the side panel.</p>
+
+<h3 class="ssh" id="at-destinations">1. Destinations: Famous Places, Ranked and Connected</h3>
+<p class="pr">Turns a city from scattered dots into one map of its famous places, ranked best first, joined into a network, each with why it matters and the language spoken there.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Step</th><th>What Happens</th></tr></thead>
+<tbody>
+<tr><td><strong>Cover the whole place</strong></td><td>From the bounding box, Atlas computes the diagonal. If too large, it lays a grid of 14 km search points (up to 16 tiles) and merges/de-duplicates by page ID.</td></tr>
+<tr><td><strong>Collect candidates</strong></td><td>Up to ~90 geotagged Wikipedia articles near the point.</td></tr>
+<tr><td><strong>Pre-rank cheaply</strong></td><td>By Wikipedia language count (how many languages each article exists in), keep top ~70.</td></tr>
+<tr><td><strong>Rank by real fame</strong></td><td>Fetch pageviews over last 6 months in parallel. A global landmark outranks a locally known spot.</td></tr>
+<tr><td><strong>Keep 45, tier</strong></td><td>Top 10 are first priority (always labelled). Rest are second priority.</td></tr>
+<tr><td><strong>Connect them</strong></td><td>Relative neighbourhood graph via city2graph links each place to nearest neighbours.</td></tr>
+<tr><td><strong>Explain them</strong></td><td>Each place gets a 1-3 sentence "why" from Wikipedia intro.</td></tr>
+</tbody>
+</table></div>
+<p class="pr"><strong>What you see:</strong> Big gold dots for top ten (always labelled), green dots for the rest (labels on zoom). Bold red glowing lines connect nearest neighbours. Panel shows Places / Links / Language stat row, then places grouped by priority.</p>
+<p class="pr"><strong>Data:</strong> Nominatim (geocode) + Wikipedia geosearch + pageviews + language count + extracts. All free, all keyless.</p>
+
+<h3 class="ssh" id="at-language">2. Local Language of a Place</h3>
+<p class="pr">Computed in the browser using a built-in state-to-language map for India (Tamil Nadu to Tamil, Kerala to Malayalam, etc.) and a country-to-language fallback for the rest of the world. Backend additionally queries Wikidata SPARQL for the official language of the administrative regions, closest first. Up to three languages shown.</p>
+
+<h3 class="ssh" id="at-reach">3. Reach: How Far Can You Get</h3>
+<p class="pr">Travel-time map showing the real area reachable from a point in a few minutes on foot or by road. Fetches OSM roads via Overpass (rotates 4 mirror servers), builds a street graph with city2graph, assigns travel time per segment (walk 4.8 km/h, drive 28 km/h), and floods outward to create isochrones.</p>
+<p class="pr"><strong>What you see:</strong> Coloured bands (green shortest, orange longest), total street length, junction count, and connectivity read.</p>
+
+<h3 class="ssh" id="at-transport">4. Transport: Buses, Trams and Trains</h3>
+<p class="pr">Public transport routes from OSM via Overpass. Groups routes by mode, measures the network via city2graph. Coloured lines per mode (bus blue, train red, metro purple, tram orange), stops, counts per mode, and total line length.</p>
+
+<h3 class="ssh" id="at-change">5. Change: Water and Green Cover on Satellite</h3>
+<p class="pr">Compares water or green cover between two years using Sentinel-2 imagery from the free Earth Search STAC API. Computes NDWI (water) or NDVI (green cover) per pixel, masks clouds using the scene classification band, and reports area change. Handles the Copernicus BOA reflectance offset carefully to avoid false 100% loss readings.</p>
+
+<h3 class="ssh" id="at-detect">6. Detect: Land Cover Around a Place</h3>
+<p class="pr">Reads ESA WorldCover 10m land-cover data (CC BY 4.0) directly from the public S3 bucket as cloud-optimised GeoTIFFs. Classifies each 10m square into: Farmland, Trees, Built-up, Water, Scrub/Grass, Bare Ground. Works at point-level (1-5 km radius) or across a whole district boundary from Nominatim.</p>
+
+<h3 class="ssh" id="at-route">7. Route: Driving Line Between Two Places</h3>
+<p class="pr">Uses the public OSRM routing service on OSM roads. Geocodes both places, draws the driving route with distance and duration. From there, offers to scan famous places, reach, or land use at either end.</p>
+
+<h3 class="ssh">Dashboard Pages</h3>
+<p class="pr">Four specialized views: <strong>Hazards</strong> (environmental hazard context), <strong>Farming</strong> (advisory built on land cover, water, and season), <strong>Dams</strong> (water comparison analysis), and <strong>Crops</strong> (crop explorer for the region). Each has its own globe page and can also be asked through the assistant.</p>
+
+<h2 class="sh" id="at-data">Open Data Sources</h2>
+<p class="pr">Everything is free and needs no API key.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Source</th><th>Provides</th><th>Licence</th></tr></thead>
+<tbody>
+<tr><td><strong>OpenStreetMap (Overpass)</strong></td><td>Roads (Reach) and public-transport route relations (Transport). 4 mirror servers with retry.</td><td>ODbL</td></tr>
+<tr><td><strong>Nominatim</strong></td><td>Geocoding, bounding box, address hierarchy, Wikidata ID. Photon as fallback.</td><td>ODbL</td></tr>
+<tr><td><strong>Wikipedia</strong></td><td>Geosearch (notable places), pageviews (fame), language count (pre-rank), extracts (why).</td><td>CC BY-SA</td></tr>
+<tr><td><strong>Wikidata</strong></td><td>Official language of a place via SPARQL query.</td><td>CC0</td></tr>
+<tr><td><strong>ESA WorldCover</strong></td><td>Global 10m land-cover map, read as COGs from public S3.</td><td>CC BY 4.0</td></tr>
+<tr><td><strong>Sentinel-2 (Earth Search STAC)</strong></td><td>Multi-band satellite imagery for change detection, read band-by-band.</td><td>Copernicus Open</td></tr>
+<tr><td><strong>OSRM</strong></td><td>Driving route, distance and time between two points.</td><td>ODbL / BSD</td></tr>
+<tr><td><strong>CesiumJS</strong></td><td>3D globe and optional photorealistic tiles. Free tier.</td><td>Apache-2.0</td></tr>
+</tbody>
+</table></div>
+
+<h2 class="sh" id="at-voice">Voice Pipeline</h2>
+<p class="pr">Atlas uses the same voice pipeline as the VK Voice Agent project: browser-side VAD (LiteRT.js), server-side ASR (faster-whisper), on-device language model, and Kokoro TTS. The key branch is <code>_is_geo_tool()</code> which detects geo questions on the backend and routes them to the browser's tool system instead of the LLM, keeping tool answers fast and avoiding duplicate replies.</p>
+
+<h2 class="sh" id="at-limits">Honest Limitations</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Feature</th><th>Limitation</th></tr></thead>
+<tbody>
+<tr><td>Destinations</td><td>Fame is global attention, not local love. Only Wikipedia-known places appear. Coverage is city-scale.</td></tr>
+<tr><td>Language</td><td>Official/regional language, not necessarily what's spoken on the street.</td></tr>
+<tr><td>Reach</td><td>Depends on mapped roads. Flat speed, no traffic or signals.</td></tr>
+<tr><td>Transport</td><td>Only mapped routes. Thin bus coverage in small towns.</td></tr>
+<tr><td>Change</td><td>Cloud removes part of a scene. Satellite read, not a survey.</td></tr>
+<tr><td>Detect</td><td>10m squares miss small features. Districts read coarser.</td></tr>
+<tr><td>Route</td><td>For display, not live navigation. No traffic, tolls, or closures.</td></tr>
+</tbody>
+</table></div>
+<p class="pr">Each of these is stated in the product itself, not hidden in documentation.</p>
+
+<h2 class="sh" id="at-demo">Demo Playlist</h2>
+<p class="pr">Watch the full Atlas - Geo Intelligence development journey and feature demos:</p>
+<div class="demo-grid">
+  <div class="demo-card">
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/videoseries?list=PLUQAiqC849rs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="video-info">
+      <div class="video-title">Atlas - Geo Intelligence: Full Demo Playlist</div>
+      <div class="video-desc">Complete walkthrough of all Atlas features: 3D globe exploration, voice-and-text assistant, destinations ranking, travel-time maps, satellite change detection, land cover analysis, and routing. All running locally with open data.</div>
+      <div class="video-tags">
+        <span class="video-tag" style="background:rgba(230,126,34,.1);color:#e67e22">Atlas</span>
+        <span class="video-tag">CesiumJS</span>
+        <span class="video-tag">Geo Intelligence</span>
+        <span class="video-tag">Local-first</span>
+        <span class="video-tag">Voice AI</span>
+        <span class="video-tag">Satellite</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="sh" id="at-credits">Credits</h2>
+<p class="pr">Atlas - Geo Intelligence is part of the Ant Intelligence ecosystem, built as independent applied AI research and engineering through <strong>Arikizui Lab</strong>. It stands on the open-data communities of OpenStreetMap, Wikipedia, Wikidata, the European Space Agency, and Copernicus, whose free global data makes a keyless geo-intelligence assistant possible.</p>
+
+</div>
+</div>
+
+
 <!-- ===== DEMOS PAGE ===== -->
 <div class="pg" id="pg-demos" data-lib="Demos">
 <div class="ct">
@@ -3556,10 +3751,69 @@ make smoke               # terminal 2</code></pre><button class="cp" onclick="cc
 <!-- ===== ABOUT PAGE ===== -->
 <div class="pg" id="pg-about" data-lib="About">
 <div class="ct">
-  <div style="text-align:center;margin-bottom:36px">
-    <img src="images/logo.png" alt="Ant Intelligence" style="width:120px;height:120px;border-radius:24px;margin-bottom:20px">
-    <h1 class="dt" style="font-size:32px">About the Ecosystem</h1>
+
+  <!-- Creator Card -->
+  <div class="author-card" style="margin-bottom:40px">
+    <div class="author-badge">Founder &amp; Independent Applied AI Researcher</div>
+    <h2 class="author-name">Venkatkumar Rajan</h2>
+    <p class="author-role" style="font-size:15px;margin-bottom:6px">ARIKIZUI LAB (Independent Research Initiative)</p>
+    <p style="font-size:13px;color:var(--t3);margin-bottom:16px">Madurai, Tamil Nadu, India</p>
+    <p class="author-bio">
+      Building ARIKIZUI LAB as an independent applied AI research and engineering initiative, focused on developing practical AI systems, open-source technologies, and exploring emerging areas of artificial intelligence.
+    </p>
+    <div class="author-links">
+      <a href="https://github.com/VK-Ant" target="_blank" class="author-btn primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/venkatkumarvk" target="_blank" class="author-btn">LinkedIn</a>
+      <a href="https://pypi.org/user/Venkat_VK/" target="_blank" class="author-btn">PyPI</a>
+      <a href="https://medium.com/@VK_Venkatkumar/list/the-ant-intelligence-ecosystem-71503517a3c1" target="_blank" class="author-btn">Medium</a>
+      <a href="https://vk-ant.github.io/Venkatkumar" target="_blank" class="author-btn">Portfolio</a>
+    </div>
   </div>
+
+  <!-- Key Areas of Work -->
+  <h2 class="sh" id="about-work">Key Areas of Work</h2>
+
+  <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:40px">
+
+    <!-- 1. Ant Intelligence Ecosystem -->
+    <div style="padding:24px;border:1px solid var(--border);border-radius:12px;cursor:pointer" onclick="go('home')">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <img src="images/logo.png" alt="Ant Intelligence" style="width:40px;height:40px;border-radius:10px">
+        <div style="font-size:18px;font-weight:700;color:var(--t1)">Ant Intelligence Ecosystem</div>
+      </div>
+      <p style="font-size:14px;color:var(--t2);line-height:1.65;margin:0">Designed and developed seven Python libraries published on PyPI, covering LLM evaluation, agentic RAG, MCP integration, document intelligence, multimodal search, time-series intelligence, and AI governance.</p>
+      <div class="lc-b" style="margin-top:12px"><span>Open Source</span><span>7 Libraries</span><span>PyPI</span><span>Apache 2.0</span></div>
+    </div>
+
+    <!-- 2. Arikizu OS -->
+    <div style="padding:24px;border:1px solid rgba(199,92,42,.25);border-radius:12px;cursor:pointer" onclick="go('arikizu')">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <img src="images/arikizu_logo.png" alt="Arikizu OS" style="width:40px;height:40px;border-radius:10px">
+        <div style="font-size:18px;font-weight:700;color:var(--az)">Arikizu OS</div>
+      </div>
+      <p style="font-size:14px;color:var(--t2);line-height:1.65;margin:0">Architected an edge-first, privacy-focused local AI runtime for Raspberry Pi, NVIDIA Jetson, and Linux environments.</p>
+      <div class="lc-b" style="margin-top:12px"><span>Edge AI</span><span>Rust + Python</span><span>Offline-first</span></div>
+    </div>
+
+    <!-- 3. Atlas - Geo Intelligence -->
+    <div style="padding:24px;border:1px solid rgba(230,126,34,.25);border-radius:12px;cursor:pointer" onclick="go('atlas')">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#e67e22,#d35400);display:flex;align-items:center;justify-content:center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="1.5"/><path d="M12 2a10 10 0 0 1 0 20" fill="none" stroke="white" stroke-width="1.5"/><path d="M2 12h20M12 2c3 3 4.5 6 4.5 10S15 19 12 22" fill="none" stroke="white" stroke-width="1.5"/></svg>
+        </div>
+        <div style="font-size:18px;font-weight:700;color:var(--at)">Atlas - Geo Intelligence</div>
+      </div>
+      <p style="font-size:14px;color:var(--t2);line-height:1.65;margin:0">Developed a conversational geospatial AI experience integrating spatial intelligence with interactive 3D visualization.</p>
+      <div class="lc-b" style="margin-top:12px"><span>Under Development</span><span>CesiumJS</span><span>Voice AI</span><span>Open Data</span></div>
+    </div>
+
+  </div>
+
+  <!-- Ant Intelligence Ecosystem - Open Source -->
+  <h2 class="sh" id="about-ecosystem">Ant Intelligence Ecosystem</h2>
   <p class="pr">The <strong>Ant Intelligence Ecosystem</strong> is entirely open source. Every library and module is free to use, modify, and distribute under standard open-source licenses.</p>
 
   <h3 class="ssh">How You Can Contribute</h3>
@@ -3570,25 +3824,6 @@ make smoke               # terminal 2</code></pre><button class="cp" onclick="cc
     <li>Build integrations with other tools and frameworks</li>
     <li>Share feedback on production deployments</li>
   </ul>
-
-  <!-- Creator Card (No Photo) -->
-  <div class="author-card">
-    <div class="author-badge">Creator &amp; Maintainer</div>
-    <h2 class="author-name">Venkatkumar Rajan</h2>
-    <p class="author-role">Applied AI Researcher</p>
-    <p class="author-bio">
-      Real-time problem solver. Using current knowledge to help others create real value. Learning, building, and delivering real impact with visible results. From research to applied engineering.
-    </p>
-    <div class="author-links">
-      <a href="https://github.com/VK-Ant" target="_blank" class="author-btn primary">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        Contribute on GitHub
-      </a>
-      <a href="https://pypi.org/user/Venkat_VK/" target="_blank" class="author-btn">PyPI Profile</a>
-      <a href="https://medium.com/@VK_Venkatkumar/list/the-ant-intelligence-ecosystem-71503517a3c1" target="_blank" class="author-btn">Medium Articles</a>
-      <a href="https://vk-ant.github.io/Venkatkumar" target="_blank" class="author-btn">Portfolio</a>
-    </div>
-  </div>
 
   <!-- Contact Section -->
   <h3 class="ssh" style="margin-top:40px">Get in Touch</h3>

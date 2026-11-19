@@ -13,7 +13,7 @@
   --g-code-bg: #f1f3f4;
   --sr: #00c896; --so: #f97316; --dq: #16a34a; --wq: #8b5cf6;
   --ai: #eab308; --ek: #ec4899; --ag: #3b82f6; --as: #f5a623;
-  --az: #c75c2a;
+  --az: #c75c2a; --at: #e67e22;
   --col-sightrag: var(--sr);
   --col-sonarwise: var(--so);
   --col-docqwise: var(--dq);
