@@ -7,7 +7,7 @@ function go(p, sec) {
     el.querySelectorAll('pre code:not(.hljs)').forEach(b => hljs.highlightElement(b)); 
   }
   
-  if (p === 'home') {
+  if (p === 'home' || p === 'landing') {
     document.body.classList.add('home-active');
   } else {
     document.body.classList.remove('home-active');
@@ -82,7 +82,7 @@ function search(q){
 function loadHash(){
   const h = location.hash.slice(1);
   if(!h) {
-    go('home');
+    go('landing');
     return;
   }
   const [p,s] = h.split('/');
