@@ -45,13 +45,14 @@
     </a>
     <ul class="hdr-nav">
       <li><a href="#home" onclick="go('home')">Ant Intelligence</a></li>
-      <li><a href="#arikizu" onclick="go('arikizu')">Arikizu OS</a></li>
       <li class="hdr-dropdown">
         <a href="#" onclick="event.preventDefault()">Explore <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="vertical-align:0;margin-left:2px"><path d="M6 9l6 6 6-6"/></svg></a>
         <div class="hdr-dd-menu"><div class="hdr-dd-inner">
+          <div class="dd-group-label">Edge AI & Studio</div>
+          <a onclick="go('arikizu')"><span class="dd-dot" style="background:var(--az)"></span>Arikizu OS</a>
+          <a onclick="go('antstudio')"><span class="dd-dot" style="background:var(--as)"></span>Ant Studio</a>
           <div class="dd-group-label">Ant Intelligence Ecosystem</div>
           <a onclick="go('home')"><span class="dd-dot" style="background:#2563eb"></span>Overview</a>
-          <a onclick="go('antstudio')"><span class="dd-dot" style="background:var(--as)"></span>Ant Studio</a>
           <a onclick="go('sightrag')"><span class="dd-dot" style="background:var(--sr)"></span>SightRAG</a>
           <a onclick="go('sonarwise')"><span class="dd-dot" style="background:var(--so)"></span>Sonarwise</a>
           <a onclick="go('docqwise')"><span class="dd-dot" style="background:var(--dq)"></span>DocQWise</a>
