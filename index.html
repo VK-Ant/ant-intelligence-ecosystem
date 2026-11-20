@@ -58,6 +58,8 @@
           <a onclick="go('antguard')"><span class="dd-dot" style="background:var(--ag)"></span>AntGuard</a>
           <div class="dd-group-label">Spatial Intelligence</div>
           <a onclick="go('atlas')"><span class="dd-dot" style="background:var(--at)"></span>Atlas Geo Intelligence</a>
+          <a onclick="go('ahifa3d')"><span class="dd-dot" style="background:#8b5cf6"></span>AHIFA3D</a>
+          <a onclick="go('materialpbr')"><span class="dd-dot" style="background:#f59e0b"></span>Material PBR</a>
         </div></div>
       </li>
       <li><a href="#research" onclick="go('research')">Research</a></li>
@@ -137,6 +139,26 @@
       <a class="sb-l" onclick="go('atlas','at-voice')">Voice Pipeline</a>
       <a class="sb-l" onclick="go('atlas','at-limits')">Limitations</a>
       <a class="sb-l" onclick="go('atlas','at-demo')">Demo Playlist</a>
+    </div>
+    <a class="sb-l" data-p="ahifa3d" onclick="go('ahifa3d');tsub('sub-ah')">
+      <span class="d" style="background:#8b5cf6"></span> AHIFA3D
+    </a>
+    <div class="sb-sub" id="sub-ah">
+      <a class="sb-l" onclick="go('ahifa3d','ah-objective')">Objective</a>
+      <a class="sb-l" onclick="go('ahifa3d','ah-problem')">Problem & Solution</a>
+      <a class="sb-l" onclick="go('ahifa3d','ah-arch')">Architecture</a>
+      <a class="sb-l" onclick="go('ahifa3d','ah-setup')">Setup</a>
+      <a class="sb-l" onclick="go('ahifa3d','ah-future')">Future Work</a>
+    </div>
+    <a class="sb-l" data-p="materialpbr" onclick="go('materialpbr');tsub('sub-mp')">
+      <span class="d" style="background:#f59e0b"></span> Material PBR
+    </a>
+    <div class="sb-sub" id="sub-mp">
+      <a class="sb-l" onclick="go('materialpbr','mp-features')">Key Features</a>
+      <a class="sb-l" onclick="go('materialpbr','mp-properties')">Material Properties</a>
+      <a class="sb-l" onclick="go('materialpbr','mp-materials')">Supported Materials</a>
+      <a class="sb-l" onclick="go('materialpbr','mp-usage')">Usage</a>
+      <a class="sb-l" onclick="go('materialpbr','mp-future')">Future Work</a>
     </div>
   </div>
   <div class="sb-sec">
@@ -3714,6 +3736,390 @@ Atlas - Geo Intelligence is currently under active development as part of Arikiz
 </div>
 </div>
 
+
+<!-- ===== AHIFA3D - Text-to-3D Reconstruction ===== -->
+<div class="pg" id="pg-ahifa3d" data-lib="AHIFA3D">
+<div class="ct">
+
+  <!-- Hero -->
+  <div style="text-align:center;margin-bottom:40px">
+    <div style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#8b5cf6,#ec4899);margin-bottom:16px">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    </div>
+    <h1 class="dt" style="font-size:32px">AHIFA3D</h1>
+    <p style="color:var(--t2);font-size:16px;margin:8px 0 0 0">A Generative Approach to High Fidelity 3D Reconstruction from Text Data</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px">
+      <a href="https://arxiv.org/abs/2503.03664v1" target="_blank" class="lc-b" style="margin:0"><span>arXiv Paper</span></a>
+      <a href="https://vk-ant.github.io/AHIFA3D/" target="_blank" class="lc-b" style="margin:0"><span>Project Page</span></a>
+      <a href="https://github.com/VK-Ant/Text-to-3D-Reconstruction-Research" target="_blank" class="lc-b" style="margin:0"><span>GitHub</span></a>
+    </div>
+  </div>
+
+  <!-- Objective -->
+  <div id="ah-objective" style="scroll-margin-top:80px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 16px 0;padding-bottom:10px;border-bottom:2px solid #8b5cf6">Objective</h2>
+    <p style="font-size:15px;color:var(--t2);line-height:1.7;margin:0 0 16px 0">
+      Develop an AI-driven methodology that converts textual descriptions into high-quality 3D models by combining generative AI, image processing, and 3D reconstruction methods. The approach ensures semantic consistency and geometric accuracy while reducing the time and skill necessary for 3D content development.
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px">
+      <span style="display:inline-block;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;background:rgba(139,92,246,.1);color:#8b5cf6">Gaming</span>
+      <span style="display:inline-block;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;background:rgba(236,72,153,.1);color:#ec4899">AR/VR</span>
+      <span style="display:inline-block;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;background:rgba(99,102,241,.1);color:#6366f1">Manufacturing</span>
+      <span style="display:inline-block;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;background:rgba(245,158,11,.1);color:#d97706">3D Artists</span>
+    </div>
+  </div>
+
+  <!-- Problem & Solution -->
+  <div id="ah-problem" style="scroll-margin-top:80px;margin-top:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #8b5cf6">Problem & Proposed Solution</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+      <!-- Challenges -->
+      <div style="padding:20px;border:1px solid var(--border);border-radius:12px;border-left:4px solid #ef4444">
+        <h3 style="font-size:16px;font-weight:700;color:#ef4444;margin:0 0 12px 0">Challenges</h3>
+        <ul style="margin:0;padding:0 0 0 18px;font-size:14px;color:var(--t2);line-height:1.8">
+          <li>Generative AI struggles with consistent 3D representations</li>
+          <li>Poor texture and mesh quality in existing tools</li>
+          <li>Traditional modeling takes days or months per model</li>
+          <li>Steep learning curve for 3D software limits accessibility</li>
+          <li>Lack of semantic alignment between text and 3D output</li>
+        </ul>
+      </div>
+      <!-- Solution -->
+      <div style="padding:20px;border:1px solid var(--border);border-radius:12px;border-left:4px solid #10b981">
+        <h3 style="font-size:16px;font-weight:700;color:#10b981;margin:0 0 12px 0">Our Solution</h3>
+        <ul style="margin:0;padding:0 0 0 18px;font-size:14px;color:var(--t2);line-height:1.8">
+          <li>Neural networks + image processing for enhanced texture and mesh quality</li>
+          <li>Intelligent algorithms ensure semantic consistency</li>
+          <li>AI-powered text-to-3D reduces modeling time dramatically</li>
+          <li>User-friendly text-based input for non-experts</li>
+          <li>Scalable, accessible 3D content creation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Architecture -->
+  <div id="ah-arch" style="scroll-margin-top:80px;margin-top:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #8b5cf6">Concept Architecture</h2>
+    <div style="padding:24px;border:1px solid var(--border);border-radius:14px;background:var(--bg2)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px">
+        <div style="text-align:center;padding:16px;border-radius:10px;background:var(--bg1);border:1px solid var(--border)">
+          <div style="font-size:24px;margin-bottom:6px">1</div>
+          <div style="font-size:14px;font-weight:600;color:var(--t1)">Text Input</div>
+          <div style="font-size:12px;color:var(--t3);margin-top:4px">User provides text description</div>
+        </div>
+        <div style="text-align:center;padding:16px;border-radius:10px;background:var(--bg1);border:1px solid var(--border)">
+          <div style="font-size:24px;margin-bottom:6px">2</div>
+          <div style="font-size:14px;font-weight:600;color:var(--t1)">Text-to-Image</div>
+          <div style="font-size:12px;color:var(--t3);margin-top:4px">ControlNet + Stable Diffusion</div>
+        </div>
+        <div style="text-align:center;padding:16px;border-radius:10px;background:var(--bg1);border:1px solid var(--border)">
+          <div style="font-size:24px;margin-bottom:6px">3</div>
+          <div style="font-size:14px;font-weight:600;color:var(--t1)">Image Enhancement</div>
+          <div style="font-size:12px;color:var(--t3);margin-top:4px">SRGAN + U2Net + RL Agent</div>
+        </div>
+        <div style="text-align:center;padding:16px;border-radius:10px;background:var(--bg1);border:1px solid var(--border)">
+          <div style="font-size:24px;margin-bottom:6px">4</div>
+          <div style="font-size:14px;font-weight:600;color:var(--t1)">3D Reconstruction</div>
+          <div style="font-size:12px;color:var(--t3);margin-top:4px">TripoSR neural reconstruction</div>
+        </div>
+      </div>
+      <p style="font-size:14px;color:var(--t2);line-height:1.7;margin:0">
+        The pipeline begins with user text input, processed through text-to-image generation using ControlNet and Stable Diffusion. Images are refined through GAN-based upscaling and U2Net background removal. Reinforcement learning adaptively optimizes low-light conditions and reflections. The preprocessed images feed into single-image 3D reconstruction using TripoSR neural networks for spatial inference.
+      </p>
+    </div>
+  </div>
+
+  <!-- Tech Stack -->
+  <div style="margin-top:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #8b5cf6">Key Technologies</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+      <div style="padding:14px 16px;border:1px solid var(--border);border-radius:10px;text-align:center">
+        <div style="font-size:14px;font-weight:600;color:var(--t1)">ControlNet</div>
+        <div style="font-size:12px;color:var(--t3)">Conditional generation</div>
+      </div>
+      <div style="padding:14px 16px;border:1px solid var(--border);border-radius:10px;text-align:center">
+        <div style="font-size:14px;font-weight:600;color:var(--t1)">Stable Diffusion</div>
+        <div style="font-size:12px;color:var(--t3)">Text-to-image</div>
+      </div>
+      <div style="padding:14px 16px;border:1px solid var(--border);border-radius:10px;text-align:center">
+        <div style="font-size:14px;font-weight:600;color:var(--t1)">TripoSR</div>
+        <div style="font-size:12px;color:var(--t3)">3D reconstruction</div>
+      </div>
+      <div style="padding:14px 16px;border:1px solid var(--border);border-radius:10px;text-align:center">
+        <div style="font-size:14px;font-weight:600;color:var(--t1)">SRGAN</div>
+        <div style="font-size:12px;color:var(--t3)">Super resolution</div>
+      </div>
+      <div style="padding:14px 16px;border:1px solid var(--border);border-radius:10px;text-align:center">
+        <div style="font-size:14px;font-weight:600;color:var(--t1)">U2Net</div>
+        <div style="font-size:12px;color:var(--t3)">Background removal</div>
+      </div>
+      <div style="padding:14px 16px;border:1px solid var(--border);border-radius:10px;text-align:center">
+        <div style="font-size:14px;font-weight:600;color:var(--t1)">RL Agent</div>
+        <div style="font-size:12px;color:var(--t3)">Adaptive optimization</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Setup -->
+  <div id="ah-setup" style="scroll-margin-top:80px;margin-top:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #8b5cf6">Setup</h2>
+    <div style="padding:20px;border:1px solid var(--border);border-radius:12px;background:var(--bg2)">
+      <p style="font-size:14px;color:var(--t2);margin:0 0 12px 0;font-weight:600">1. Download the 3D reconstruction models:</p>
+      <pre style="background:var(--bg1);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;font-size:13px;margin:0 0 16px 0"><code class="language-bash"># Download models from Google Drive
+https://drive.google.com/drive/folders/1-3Oq4MBrOuIt_5WlNGtth0m58KacvARc</code></pre>
+      <p style="font-size:14px;color:var(--t2);margin:0 0 12px 0;font-weight:600">2. Run the notebook:</p>
+      <pre style="background:var(--bg1);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;font-size:13px;margin:0"><code class="language-bash"># Open and run in Google Colab
+TextTo3DReconstruction.ipynb</code></pre>
+    </div>
+  </div>
+
+  <!-- Future Work -->
+  <div id="ah-future" style="scroll-margin-top:80px;margin-top:40px;margin-bottom:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #8b5cf6">Future Development</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <div style="padding:18px;border:1px solid var(--border);border-radius:12px;border-top:3px solid #8b5cf6">
+        <div style="font-size:15px;font-weight:600;color:var(--t1);margin-bottom:6px">RL-based Texture Tuning</div>
+        <div style="font-size:13px;color:var(--t2)">Reinforcement learning agent for adaptive texture color optimization</div>
+      </div>
+      <div style="padding:18px;border:1px solid var(--border);border-radius:12px;border-top:3px solid #ec4899">
+        <div style="font-size:15px;font-weight:600;color:var(--t1);margin-bottom:6px">Material Detection</div>
+        <div style="font-size:13px;color:var(--t2)">Base color application for realistic texture and detailed material refinement</div>
+      </div>
+      <div style="padding:18px;border:1px solid var(--border);border-radius:12px;border-top:3px solid #6366f1">
+        <div style="font-size:15px;font-weight:600;color:var(--t1);margin-bottom:6px">UV Mapping Model</div>
+        <div style="font-size:13px;color:var(--t2)">Automated UV mapping for high-quality text-to-3D with lower computational cost</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- References -->
+  <div style="margin-bottom:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #8b5cf6">References</h2>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="https://arxiv.org/abs/2302.05543" target="_blank" style="font-size:14px;color:var(--t2);text-decoration:none;padding:10px 14px;border:1px solid var(--border);border-radius:8px;transition:background .2s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='transparent'">
+        <span style="font-weight:600;color:var(--t1)">ControlNet</span> - Adding Conditional Control to Text-to-Image Diffusion Models
+      </a>
+      <a href="https://arxiv.org/abs/2403.02151" target="_blank" style="font-size:14px;color:var(--t2);text-decoration:none;padding:10px 14px;border:1px solid var(--border);border-radius:8px;transition:background .2s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='transparent'">
+        <span style="font-weight:600;color:var(--t1)">TripoSR</span> - Fast 3D Object Reconstruction from a Single Image
+      </a>
+      <a href="https://github.com/Stability-AI/stablediffusion" target="_blank" style="font-size:14px;color:var(--t2);text-decoration:none;padding:10px 14px;border:1px solid var(--border);border-radius:8px;transition:background .2s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='transparent'">
+        <span style="font-weight:600;color:var(--t1)">Stable Diffusion</span> - High-Resolution Image Synthesis with Latent Diffusion Models
+      </a>
+      <a href="https://github.com/Stable-X/StableDelight" target="_blank" style="font-size:14px;color:var(--t2);text-decoration:none;padding:10px 14px;border:1px solid var(--border);border-radius:8px;transition:background .2s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='transparent'">
+        <span style="font-weight:600;color:var(--t1)">StableDelight</span> - Revealing Hidden Textures by Removing Specular Reflections
+      </a>
+      <a href="https://github.com/tensorlayer/SRGAN" target="_blank" style="font-size:14px;color:var(--t2);text-decoration:none;padding:10px 14px;border:1px solid var(--border);border-radius:8px;transition:background .2s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='transparent'">
+        <span style="font-weight:600;color:var(--t1)">SRGAN</span> - Super-Resolution Generative Adversarial Network
+      </a>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ===== MATERIAL PBR - Interpretable Material Classification ===== -->
+<div class="pg" id="pg-materialpbr" data-lib="Material PBR">
+<div class="ct">
+
+  <!-- Hero -->
+  <div style="text-align:center;margin-bottom:40px">
+    <div style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#f59e0b,#ef4444);margin-bottom:16px">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+    </div>
+    <h1 class="dt" style="font-size:32px">Interpretable Material PBR</h1>
+    <p style="color:var(--t2);font-size:16px;margin:8px 0 0 0">Interpretable Material Classification and PBR-Based Shader Calibration</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px">
+      <a href="https://www.researchgate.net/publication/405075985_Interpretable_Single_Image_Material_Analysis_via_PBR_Shader_Calibration" target="_blank" class="lc-b" style="margin:0"><span>ResearchGate Paper</span></a>
+      <a href="https://medium.com/ai-mind-labs/from-pixels-to-properties-interpretable-material-classification-using-shader-principles-3e33c3b7ec2c" target="_blank" class="lc-b" style="margin:0"><span>Medium Article</span></a>
+      <a href="https://github.com/VK-Ant/interpretable-material-pbr" target="_blank" class="lc-b" style="margin:0"><span>GitHub</span></a>
+    </div>
+  </div>
+
+  <!-- Overview -->
+  <div style="padding:24px;border:1px solid var(--border);border-radius:14px;background:var(--bg2);margin-bottom:32px">
+    <p style="font-size:15px;color:var(--t2);line-height:1.7;margin:0">
+      An open-source framework for interpretable material classification and PBR-based shader calibration. Analyzes images to extract material properties using computer vision and image processing techniques, inspired by the Unity Shader Calibration Scene methodology. This project represents the initial step toward age detection based on material properties using a single image.
+    </p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px">
+      <span style="font-size:12px;color:var(--t3)">By:</span>
+      <span style="font-size:12px;font-weight:600;color:var(--t2)">Venkatkumar R</span>
+      <span style="font-size:12px;color:var(--t3)">&</span>
+      <span style="font-size:12px;font-weight:600;color:var(--t2)">Deepak Saravanan</span>
+    </div>
+  </div>
+
+  <!-- Key Features -->
+  <div id="mp-features" style="scroll-margin-top:80px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #f59e0b">Key Features</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+      <div style="padding:20px;border:1px solid var(--border);border-radius:12px;border-top:3px solid #f59e0b">
+        <div style="font-size:15px;font-weight:700;color:var(--t1);margin-bottom:8px">Material Type Detection</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6">Classifies materials as Metal or Non-Metal with specific material identification (aluminium, gold, wood, ceramic, etc.)</div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:12px;border-top:3px solid #ef4444">
+        <div style="font-size:15px;font-weight:700;color:var(--t1);margin-bottom:8px">Shader-Based Property Extraction</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6">Extracts PBR properties: albedo, smoothness, specular intensity, transparency, luster, and subsurface scattering</div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:12px;border-top:3px solid #8b5cf6">
+        <div style="font-size:15px;font-weight:700;color:var(--t1);margin-bottom:8px">Comprehensive Analysis</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.6">Full material characteristics analysis including dominant color RGB, reflective properties, and light interaction</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Material Properties -->
+  <div id="mp-properties" style="scroll-margin-top:80px;margin-top:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #f59e0b">Supported Material Properties</h2>
+    <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden">
+      <table style="width:100%;border-collapse:collapse;font-size:14px">
+        <thead>
+          <tr style="background:var(--bg2)">
+            <th style="text-align:left;padding:12px 16px;font-weight:600;color:var(--t1);border-bottom:1px solid var(--border)">Property</th>
+            <th style="text-align:left;padding:12px 16px;font-weight:600;color:var(--t1);border-bottom:1px solid var(--border)">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:500;color:var(--t1)">Material Category</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--t2)">Metal or Non-Metal classification</td></tr>
+          <tr style="background:var(--bg2)"><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:500;color:var(--t1)">Material Type</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--t2)">Specific material (aluminium, gold, wood, etc.)</td></tr>
+          <tr><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:500;color:var(--t1)">Dominant Color</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--t2)">RGB representation of the primary color</td></tr>
+          <tr style="background:var(--bg2)"><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:500;color:var(--t1)">Albedo</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--t2)">Base color reflectivity</td></tr>
+          <tr><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:500;color:var(--t1)">Surface Smoothness</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--t2)">Texture roughness measurement</td></tr>
+          <tr style="background:var(--bg2)"><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:500;color:var(--t1)">Specular Intensity</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--t2)">Reflective characteristics strength</td></tr>
+          <tr><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:500;color:var(--t1)">Transparency</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--t2)">Light penetration through material</td></tr>
+          <tr style="background:var(--bg2)"><td style="padding:10px 16px;border-bottom:1px solid var(--border);font-weight:500;color:var(--t1)">Luster</td><td style="padding:10px 16px;border-bottom:1px solid var(--border);color:var(--t2)">Surface shininess level</td></tr>
+          <tr><td style="padding:10px 16px;font-weight:500;color:var(--t1)">Subsurface Scattering</td><td style="padding:10px 16px;color:var(--t2)">Light interaction beneath the surface</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Example Output -->
+    <div style="margin-top:20px">
+      <h3 style="font-size:16px;font-weight:600;color:var(--t1);margin:0 0 12px 0">Example Output</h3>
+      <pre style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;overflow-x:auto;font-size:13px;margin:0"><code>Material Category: Metal
+Material Type: aluminium
+
+Dominant Color (RGB): [128 128 128]
+Albedo: 0.5043
+Surface Smoothness: 0.9993
+Specular Intensity: 1.0000
+Transparency: 0.6975
+Luster: 0.5043
+Subsurface Scattering: 0.6975</code></pre>
+    </div>
+  </div>
+
+  <!-- Supported Materials -->
+  <div id="mp-materials" style="scroll-margin-top:80px;margin-top:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #f59e0b">Supported Materials</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
+      <div style="padding:20px;border:1px solid var(--border);border-radius:12px">
+        <h3 style="font-size:16px;font-weight:700;color:var(--t1);margin:0 0 14px 0;display:flex;align-items:center;gap:8px">
+          <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#c0c0c0,#ffd700)"></span>
+          Metals
+        </h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="padding:5px 12px;border-radius:6px;font-size:13px;background:rgba(245,158,11,.1);color:#d97706;font-weight:500">Gold</span>
+          <span style="padding:5px 12px;border-radius:6px;font-size:13px;background:rgba(148,163,184,.15);color:var(--t2);font-weight:500">Silver</span>
+          <span style="padding:5px 12px;border-radius:6px;font-size:13px;background:rgba(217,119,6,.1);color:#b45309;font-weight:500">Copper</span>
+          <span style="padding:5px 12px;border-radius:6px;font-size:13px;background:rgba(202,138,4,.1);color:#a16207;font-weight:500">Brass</span>
+          <span style="padding:5px 12px;border-radius:6px;font-size:13px;background:rgba(148,163,184,.1);color:var(--t2);font-weight:500">Aluminium</span>
+          <span style="padding:5px 12px;border-radius:6px;font-size:13px;background:rgba(148,163,184,.12);color:var(--t2);font-weight:500">Platinum</span>
+        </div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:12px">
+        <h3 style="font-size:16px;font-weight:700;color:var(--t1);margin:0 0 14px 0;display:flex;align-items:center;gap:8px">
+          <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#8b6914,#d2691e)"></span>
+          Non-Metals
+        </h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="padding:5px 12px;border-radius:6px;font-size:13px;background:rgba(139,69,19,.1);color:#92400e;font-weight:500">Wood</span>
+          <span style="padding:5px 12px;border-radius:6px;font-size:13px;background:rgba(148,163,184,.12);color:var(--t2);font-weight:500">Concrete</span>
+          <span style="padding:5px 12px;border-radius:6px;font-size:13px;background:rgba(239,68,68,.08);color:#dc2626;font-weight:500">Brick</span>
+          <span style="padding:5px 12px;border-radius:6px;font-size:13px;background:rgba(217,119,6,.08);color:#b45309;font-weight:500">Ceramic</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Usage -->
+  <div id="mp-usage" style="scroll-margin-top:80px;margin-top:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #f59e0b">Installation & Usage</h2>
+    <div style="padding:20px;border:1px solid var(--border);border-radius:12px;background:var(--bg2)">
+      <p style="font-size:14px;color:var(--t2);margin:0 0 12px 0;font-weight:600">1. Clone and install:</p>
+      <pre style="background:var(--bg1);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;font-size:13px;margin:0 0 16px 0"><code class="language-bash">git clone https://github.com/VK-Ant/interpretable-material-pbr.git
+cd interpretable-material-pbr
+pip install -r requirements.txt</code></pre>
+      <p style="font-size:14px;color:var(--t2);margin:0 0 12px 0;font-weight:600">2. Analyze a material:</p>
+      <pre style="background:var(--bg1);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;font-size:13px;margin:0"><code class="language-python">from main import MaterialClassifier
+
+classifier = MaterialClassifier('image.jpg')
+results = classifier.analyze_material()
+print(results)</code></pre>
+    </div>
+  </div>
+
+  <!-- Methodology -->
+  <div style="margin-top:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #f59e0b">Methodology</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+      <div style="text-align:center;padding:20px;border:1px solid var(--border);border-radius:10px">
+        <div style="font-size:28px;margin-bottom:8px">1</div>
+        <div style="font-size:14px;font-weight:600;color:var(--t1)">Input Image</div>
+        <div style="font-size:12px;color:var(--t3);margin-top:4px">Clear, well-lit material photo</div>
+      </div>
+      <div style="text-align:center;padding:20px;border:1px solid var(--border);border-radius:10px">
+        <div style="font-size:28px;margin-bottom:8px">2</div>
+        <div style="font-size:14px;font-weight:600;color:var(--t1)">CV Analysis</div>
+        <div style="font-size:12px;color:var(--t3);margin-top:4px">Color, texture, reflection extraction</div>
+      </div>
+      <div style="text-align:center;padding:20px;border:1px solid var(--border);border-radius:10px">
+        <div style="font-size:28px;margin-bottom:8px">3</div>
+        <div style="font-size:14px;font-weight:600;color:var(--t1)">Shader Calibration</div>
+        <div style="font-size:12px;color:var(--t3);margin-top:4px">Unity PBR shader principles</div>
+      </div>
+      <div style="text-align:center;padding:20px;border:1px solid var(--border);border-radius:10px">
+        <div style="font-size:28px;margin-bottom:8px">4</div>
+        <div style="font-size:14px;font-weight:600;color:var(--t1)">Classification</div>
+        <div style="font-size:12px;color:var(--t3);margin-top:4px">Material type + PBR properties</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Limitations -->
+  <div style="margin-top:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #f59e0b">Limitations</h2>
+    <div style="padding:20px;border:1px solid var(--border);border-radius:12px;border-left:4px solid #f59e0b">
+      <ul style="margin:0;padding:0 0 0 18px;font-size:14px;color:var(--t2);line-height:2">
+        <li>Accuracy depends on image quality and lighting conditions</li>
+        <li>Best results with clear, well-lit images</li>
+        <li>Relies on predefined material reference database</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Future Work -->
+  <div id="mp-future" style="scroll-margin-top:80px;margin-top:40px;margin-bottom:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #f59e0b">Future Improvements</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+      <div style="padding:18px;border:1px solid var(--border);border-radius:12px;border-top:3px solid #f59e0b">
+        <div style="font-size:15px;font-weight:600;color:var(--t1);margin-bottom:6px">Expand Material Database</div>
+        <div style="font-size:13px;color:var(--t2)">Add more materials and reference samples for broader classification coverage</div>
+      </div>
+      <div style="padding:18px;border:1px solid var(--border);border-radius:12px;border-top:3px solid #ef4444">
+        <div style="font-size:15px;font-weight:600;color:var(--t1);margin-bottom:6px">Improved Algorithms</div>
+        <div style="font-size:13px;color:var(--t2)">Enhanced classification algorithms for better accuracy across diverse conditions</div>
+      </div>
+      <div style="padding:18px;border:1px solid var(--border);border-radius:12px;border-top:3px solid #8b5cf6">
+        <div style="font-size:15px;font-weight:600;color:var(--t1);margin-bottom:6px">RL + DL Detection</div>
+        <div style="font-size:13px;color:var(--t2)">Add reinforcement learning and deep learning based material detection</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
 
 <!-- ===== RESEARCH & PUBLICATIONS PAGE ===== -->
 <div class="pg" id="pg-research" data-lib="Research">
