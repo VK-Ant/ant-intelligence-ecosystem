@@ -95,10 +95,10 @@ body {
 }
 
 .hdr-logo img {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  object-fit: contain;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .hdr-brand-title {
@@ -687,7 +687,7 @@ button, input, a { -webkit-tap-highlight-color: transparent; }
   }
   .hdr-left { min-width: 0; flex: 1; gap: 10px; }
   .hdr-logo { min-width: 0; gap: 8px; }
-  .hdr-logo img { width: 32px; height: 32px; }
+  .hdr-logo img { width: 36px; height: 36px; }
   .hdr-brand-title {
     font-size: 1rem;
     letter-spacing: -0.2px;
@@ -761,7 +761,7 @@ button, input, a { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 480px) {
   .hdr { padding: 0 8px; }
   .hdr-brand-title { font-size: .92rem; }
-  .hdr-logo img { width: 30px; height: 30px; }
+  .hdr-logo img { width: 34px; height: 34px; }
   .icon-btn { width: 34px; height: 34px; }
   .ham { width: 34px; height: 34px; }
   .hero-content { padding: 60px 14px 52px; }
