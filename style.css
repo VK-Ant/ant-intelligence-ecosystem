@@ -1002,3 +1002,20 @@ button, input, a { -webkit-tap-highlight-color: transparent; }
   color: var(--az);
 }
 
+
+/* ===== Site footer ===== */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 22px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--t2);
+  font-size: 13px;
+}
+.site-footer a { color: var(--g-blue); text-decoration: none; font-weight: 600; }
+.site-footer a:hover { text-decoration: underline; }
+.site-footer .sf-sep { opacity: .5; }
