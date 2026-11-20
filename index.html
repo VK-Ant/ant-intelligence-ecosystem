@@ -60,6 +60,7 @@
           <a onclick="go('atlas')"><span class="dd-dot" style="background:var(--at)"></span>Atlas Geo Intelligence</a>
         </div></div>
       </li>
+      <li><a href="#research" onclick="go('research')">Research</a></li>
       <li><a href="#demos" onclick="go('demos')">Demos</a></li>
       <li><a href="#about" onclick="go('about')">About</a></li>
     </ul>
@@ -241,6 +242,10 @@
   </div>
   <div class="sb-sec" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
     <div class="sb-t">About</div>
+    <a class="sb-l" data-p="research" onclick="go('research')">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Research
+    </a>
     <a class="sb-l" data-p="demos" onclick="go('demos')">
       <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       Demos
@@ -3709,6 +3714,148 @@ Atlas - Geo Intelligence is currently under active development as part of Arikiz
 </div>
 </div>
 
+
+<!-- ===== RESEARCH & PUBLICATIONS PAGE ===== -->
+<div class="pg" id="pg-research" data-lib="Research">
+<div class="ct">
+  <div style="text-align:center;margin-bottom:48px">
+    <h1 class="dt" style="font-size:32px">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-4px;margin-right:8px"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Research & Publications
+    </h1>
+    <p style="color:var(--t2);font-size:15px;max-width:600px;margin:12px auto 0">Peer-reviewed papers and preprints across AI systems, 3D vision, materials science, and embedded systems.</p>
+  </div>
+
+  <!-- Paper 1: Adaptive Retrieval -->
+  <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 24px rgba(0,0,0,.08)'" onmouseout="this.style.boxShadow='none'">
+    <div style="height:4px;background:linear-gradient(90deg,var(--ai),#6366f1)"></div>
+    <div style="padding:24px 28px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px">
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(99,102,241,.12);color:#6366f1">AI Systems</span>
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(37,99,235,.1);color:#2563eb">RAG</span>
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(100,116,139,.1);color:#64748b">2025</span>
+      </div>
+      <h3 style="font-size:17px;font-weight:700;color:var(--t1);margin:0 0 8px 0;line-height:1.4">Adaptive Retrieval Orchestration for Self-Learning Knowledge Systems</h3>
+      <p style="font-size:13px;color:var(--t2);margin:0 0 16px 0;line-height:1.6">A self-learning retrieval framework that dynamically orchestrates knowledge retrieval strategies using reinforcement learning, enabling adaptive RAG pipelines that improve over time.</p>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:16px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span style="font-size:13px;color:var(--t2);font-weight:500">Venkatkumar Rajan</span>
+        <span style="font-size:13px;color:var(--t3);margin-left:4px">(Lead Author)</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <a href="https://www.researchgate.net/publication/405076088_Adaptive_Retrieval_Orchestration_for_Self-Learning_Knowledge_Systems" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;background:#00d0af;color:#fff;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          ResearchGate
+        </a>
+        <a href="https://pypi.org/project/adaptive-intelligence/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;background:#3775a9;color:#fff;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          PyPI
+        </a>
+      </div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <span style="font-size:12px;color:var(--t3)">Connected to: </span>
+        <a onclick="go('adaptive')" style="font-size:12px;color:#6366f1;cursor:pointer;text-decoration:none;font-weight:500">Adaptive Intelligence Library</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paper 2: PBR Shader Calibration -->
+  <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 24px rgba(0,0,0,.08)'" onmouseout="this.style.boxShadow='none'">
+    <div style="height:4px;background:linear-gradient(90deg,#f59e0b,#ef4444)"></div>
+    <div style="padding:24px 28px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px">
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(245,158,11,.12);color:#d97706">3D Vision</span>
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(239,68,68,.1);color:#ef4444">Materials</span>
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(100,116,139,.1);color:#64748b">2025</span>
+      </div>
+      <h3 style="font-size:17px;font-weight:700;color:var(--t1);margin:0 0 8px 0;line-height:1.4">Interpretable Single-Image Material Analysis via PBR Shader Calibration</h3>
+      <p style="font-size:13px;color:var(--t2);margin:0 0 16px 0;line-height:1.6">A novel approach to material property estimation from single images using physically-based rendering shader calibration, enabling interpretable material analysis for 3D reconstruction pipelines.</p>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:16px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span style="font-size:13px;color:var(--t2);font-weight:500">Venkatkumar Rajan</span>
+        <span style="font-size:13px;color:var(--t3);margin-left:4px">(Lead Author)</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <a href="https://www.researchgate.net/publication/405075985_Interpretable_Single_Image_Material_Analysis_via_PBR_Shader_Calibration" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;background:#00d0af;color:#fff;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          ResearchGate
+        </a>
+        <a href="https://github.com/VK-Ant/interpretable-material-pbr" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;background:#24292e;color:#fff;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <span style="font-size:12px;color:var(--t3)">Connected to: </span>
+        <a onclick="go('home')" style="font-size:12px;color:#f59e0b;cursor:pointer;text-decoration:none;font-weight:500">Spatial Intelligence</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paper 3: Text-to-3D Reconstruction -->
+  <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 24px rgba(0,0,0,.08)'" onmouseout="this.style.boxShadow='none'">
+    <div style="height:4px;background:linear-gradient(90deg,#8b5cf6,#ec4899)"></div>
+    <div style="padding:24px 28px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px">
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(139,92,246,.12);color:#8b5cf6">3D Reconstruction</span>
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(236,72,153,.1);color:#ec4899">Generative AI</span>
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(100,116,139,.1);color:#64748b">2025</span>
+      </div>
+      <h3 style="font-size:17px;font-weight:700;color:var(--t1);margin:0 0 8px 0;line-height:1.4">A Generative Approach to High Fidelity 3D Reconstruction from Text Data</h3>
+      <p style="font-size:13px;color:var(--t2);margin:0 0 16px 0;line-height:1.6">Text-to-3D reconstruction pipeline that generates high-fidelity 3D models from natural language descriptions, combining diffusion models with neural implicit representations.</p>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:16px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span style="font-size:13px;color:var(--t2);font-weight:500">Venkatkumar Rajan</span>
+        <span style="font-size:13px;color:var(--t3);margin-left:4px">(Lead Author)</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <a href="https://arxiv.org/abs/2503.03664v1" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;background:#b31b1b;color:#fff;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          arXiv
+        </a>
+        <a href="https://vk-ant.github.io/AHIFA3D/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;background:#2563eb;color:#fff;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Project Page
+        </a>
+      </div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <span style="font-size:12px;color:var(--t3)">Connected to: </span>
+        <a onclick="go('atlas')" style="font-size:12px;color:#8b5cf6;cursor:pointer;text-decoration:none;font-weight:500">Spatial Intelligence</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paper 4: CNC/PCB Layout -->
+  <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 24px rgba(0,0,0,.08)'" onmouseout="this.style.boxShadow='none'">
+    <div style="height:4px;background:linear-gradient(90deg,#10b981,#06b6d4)"></div>
+    <div style="padding:24px 28px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px">
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(16,185,129,.12);color:#10b981">Embedded Systems</span>
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(6,182,212,.1);color:#06b6d4">CNC / IoT</span>
+        <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(100,116,139,.1);color:#64748b">2020</span>
+      </div>
+      <h3 style="font-size:17px;font-weight:700;color:var(--t1);margin:0 0 8px 0;line-height:1.4">Implementation of PCB Layout using CNC Machine Controlling with Wireless Communication</h3>
+      <p style="font-size:13px;color:var(--t2);margin:0 0 16px 0;line-height:1.6">Wireless-controlled CNC system for automated PCB layout fabrication, combining embedded hardware design with communication protocols for precision manufacturing.</p>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:16px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span style="font-size:13px;color:var(--t2);font-weight:500">Venkatkumar Rajan</span>
+        <span style="font-size:13px;color:var(--t3);margin-left:4px">(Lead Author)</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <a href="https://irjiet.com/Volume-4/Issue-3-March-2020/Implementation-of-PCB-Layout-using-CNC-Machine-Controlling-with-Wireless-Communication/191" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;background:#10b981;color:#fff;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          IRJIET Journal
+        </a>
+      </div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <span style="font-size:12px;color:var(--t3)">Published in: </span>
+        <span style="font-size:12px;color:var(--t2);font-weight:500">International Research Journal of Innovations in Engineering and Technology (IRJIET)</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
 
 <!-- ===== DEMOS PAGE ===== -->
 <div class="pg" id="pg-demos" data-lib="Demos">
