@@ -102,6 +102,8 @@ window.addEventListener('hashchange', loadHash);
 document.addEventListener('DOMContentLoaded', () => {
   hljs.highlightAll();
   loadHash();
+  const yr = document.getElementById('footer-year');
+  if (yr) yr.textContent = new Date().getFullYear();
 });
 
 document.addEventListener('click', e => {

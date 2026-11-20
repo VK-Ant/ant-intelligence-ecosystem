@@ -1009,13 +1009,13 @@ button, input, a { -webkit-tap-highlight-color: transparent; }
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  padding: 22px 16px;
-  border-top: 1px solid var(--border);
-  background: var(--bg2);
+  gap: 10px;
+  padding: 40px 16px;
+  background: transparent;
   color: var(--t2);
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .2px;
+  opacity: .75;
 }
-.site-footer a { color: var(--g-blue); text-decoration: none; font-weight: 600; }
-.site-footer a:hover { text-decoration: underline; }
 .site-footer .sf-sep { opacity: .5; }
