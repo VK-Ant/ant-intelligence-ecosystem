@@ -67,10 +67,16 @@
           <a onclick="go('ahifa3d')"><span class="dd-dot" style="background:#8b5cf6"></span>AHIFA3D</a>
           <a onclick="go('materialpbr')"><span class="dd-dot" style="background:#f59e0b"></span>Material PBR</a>
           <div class="dd-group-label">Idea to PoC</div>
-          <a onclick="go('research','res-poc')"><span class="dd-dot" style="background:#06b6d4"></span>VK Voice Agent</a>
+          <a onclick="go('ideatopoc')"><span class="dd-dot" style="background:#06b6d4"></span>VK Voice Agent</a>
         </div></div>
       </li>
-      <li><a href="#research" onclick="go('research')">Research</a></li>
+      <li class="hdr-dropdown">
+        <a href="#" onclick="event.preventDefault()">Research <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:0;margin-left:2px"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="hdr-dd-menu"><div class="hdr-dd-inner">
+          <a onclick="go('publications')"><span class="dd-dot" style="background:#6366f1"></span>Publications</a>
+          <a onclick="go('ideatopoc')"><span class="dd-dot" style="background:#06b6d4"></span>Idea to PoC</a>
+        </div></div>
+      </li>
       <li><a href="#demos" onclick="go('demos')">Demos</a></li>
       <li><a href="#about" onclick="go('about')">About</a></li>
     </ul>
@@ -277,8 +283,8 @@
       Research
     </a>
     <div class="sb-sub" id="sub-res">
-      <a class="sb-l" onclick="go('research','res-pubs')">Publications</a>
-      <a class="sb-l" onclick="go('research','res-poc')">Idea to PoC</a>
+      <a class="sb-l" data-p="publications" onclick="go('publications')">Publications</a>
+      <a class="sb-l" data-p="ideatopoc" onclick="go('ideatopoc')">Idea to PoC</a>
     </div>
     <a class="sb-l" data-p="demos" onclick="go('demos')">
       <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -4143,23 +4149,16 @@ print(results)</code></pre>
 </div>
 </div>
 
-<!-- ===== RESEARCH & PUBLICATIONS PAGE ===== -->
-<div class="pg" id="pg-research" data-lib="Research">
+<!-- ===== PUBLICATIONS PAGE ===== -->
+<div class="pg" id="pg-publications" data-lib="Publications">
 <div class="ct">
   <div style="text-align:center;margin-bottom:48px">
     <h1 class="dt" style="font-size:32px">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-4px;margin-right:8px"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-      Research
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-4px;margin-right:8px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Publications
     </h1>
-    <p style="color:var(--t2);font-size:15px;max-width:600px;margin:12px auto 0">Publications, proof-of-concepts, and experimental projects from Arikizui Lab.</p>
+    <p style="color:var(--t2);font-size:15px;max-width:600px;margin:12px auto 0">Peer-reviewed papers and preprints across AI systems, 3D vision, materials science, and embedded systems.</p>
   </div>
-
-  <!-- ===== PUBLICATIONS SECTION ===== -->
-  <h2 class="sh" id="res-pubs" style="margin-bottom:24px">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-3px;margin-right:6px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-    Publications
-  </h2>
-  <p style="color:var(--t2);font-size:14px;margin-bottom:28px">Peer-reviewed papers and preprints across AI systems, 3D vision, materials science, and embedded systems.</p>
 
   <!-- Paper 1: Adaptive Retrieval -->
   <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 24px rgba(0,0,0,.08)'" onmouseout="this.style.boxShadow='none'">
@@ -4289,12 +4288,19 @@ print(results)</code></pre>
     </div>
   </div>
 
-  <!-- ===== IDEA TO PoC SECTION ===== -->
-  <h2 class="sh" id="res-poc" style="margin-top:48px;margin-bottom:24px">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-3px;margin-right:6px"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-    Idea to PoC
-  </h2>
-  <p style="color:var(--t2);font-size:14px;margin-bottom:28px">Experimental projects built from scratch. Each one explores a real problem, ships a working prototype, and stays open-source.</p>
+</div>
+</div>
+
+<!-- ===== IDEA TO PoC PAGE ===== -->
+<div class="pg" id="pg-ideatopoc" data-lib="Idea to PoC">
+<div class="ct">
+  <div style="text-align:center;margin-bottom:48px">
+    <h1 class="dt" style="font-size:32px">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-4px;margin-right:8px"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Idea to PoC
+    </h1>
+    <p style="color:var(--t2);font-size:15px;max-width:600px;margin:12px auto 0">Experimental projects built from scratch. Each one explores a real problem, ships a working prototype, and stays open-source.</p>
+  </div>
 
   <!-- PoC 1: VK Voice Agent -->
   <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px;transition:box-shadow .2s" onmouseover="this.style.boxShadow='0 4px 24px rgba(0,0,0,.08)'" onmouseout="this.style.boxShadow='none'">
