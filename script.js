@@ -18,7 +18,12 @@ function go(p, sec) {
   if (sec) setTimeout(() => { const s = document.getElementById(sec); if (s) s.scrollIntoView({behavior:'smooth',block:'start'}); }, 60);
   else window.scrollTo({top:0});
   document.getElementById('sb').classList.remove('open');
-  history.replaceState(null, '', '#' + p + (sec ? '/' + sec : ''));
+  if (p === 'landing') {
+    // Keep the default page on a clean URL (no #landing) so shared links stay tidy
+    history.replaceState(null, '', location.pathname + location.search);
+  } else {
+    history.replaceState(null, '', '#' + p + (sec ? '/' + sec : ''));
+  }
 }
 
 function tsub(id) { 
