@@ -64,7 +64,7 @@ const SI = [
   {l:'AntGuard',p:'antguard',t:'antguard guard detect protect privacy security data movement file network process correlation policy profiler'},
   {l:'Quick Start',p:'quickstart',t:'install pip quick start setup getting started'},
   {l:'Ant Studio',p:'antstudio',t:'ant studio cli sdk pipeline tracking docker forecast extract document ask anomaly ollama openai build run control'},
-  {l:'Research & Publications',p:'research',t:'research publications papers arxiv researchgate journal adaptive retrieval pbr shader 3d reconstruction cnc pcb'},
+  {l:'Research',p:'research',t:'research publications papers arxiv researchgate journal adaptive retrieval pbr shader 3d reconstruction cnc pcb idea poc proof of concept voice agent vk voice'},
   {l:'Demos',p:'demos',t:'demo video showcase example workflow multi-library integration pipeline end-to-end'},
   {l:'Arikizu OS',p:'arikizu',t:'arikizu os edge runtime rust supervisor worker jetson raspberry pi offline device binary capability api dashboard audit multimodal vision action search agents mcp custom capability troubleshooting promote mediapipe segformer vlm install'},
   {l:'Atlas - Geo Intelligence',p:'atlas',t:'atlas geo intelligence globe cesium 3d voice assistant destinations places reach isochrone transport transit satellite change ndvi ndwi land cover detect route osrm overpass wikipedia wikidata esa worldcover sentinel city2graph farming hazards dams crops'},
