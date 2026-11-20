@@ -41,23 +41,22 @@
       <span class="hdr-brand-title">Arikizui <span>Lab</span></span>
     </a>
     <ul class="hdr-nav">
-      <li><a href="#home" onclick="go('home')">Ant Intelligence Ecosystem</a></li>
       <li><a href="#arikizu" onclick="go('arikizu')">Arikizu OS</a></li>
-      <li><a href="#atlas" onclick="go('atlas')">Spatial Intelligence</a></li>
       <li class="hdr-dropdown">
         <a href="#" onclick="event.preventDefault()">Explore <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="vertical-align:0;margin-left:2px"><path d="M6 9l6 6 6-6"/></svg></a>
         <div class="hdr-dd-menu"><div class="hdr-dd-inner">
-          <div class="dd-group-label">Perception</div>
+          <div class="dd-group-label">Ant Intelligence Ecosystem</div>
+          <a onclick="go('home')"><span class="dd-dot" style="background:#2563eb"></span>Overview</a>
+          <a onclick="go('antstudio')"><span class="dd-dot" style="background:var(--as)"></span>Ant Studio</a>
           <a onclick="go('sightrag')"><span class="dd-dot" style="background:var(--sr)"></span>SightRAG</a>
           <a onclick="go('sonarwise')"><span class="dd-dot" style="background:var(--so)"></span>Sonarwise</a>
           <a onclick="go('docqwise')"><span class="dd-dot" style="background:var(--dq)"></span>DocQWise</a>
-          <div class="dd-group-label">Forecasting</div>
           <a onclick="go('wavqwise')"><span class="dd-dot" style="background:var(--wq)"></span>WavqWise</a>
-          <div class="dd-group-label">Orchestration</div>
           <a onclick="go('adaptive')"><span class="dd-dot" style="background:var(--ai)"></span>Adaptive Intelligence</a>
-          <div class="dd-group-label">Evaluation &amp; Security</div>
           <a onclick="go('llmevalkit')"><span class="dd-dot" style="background:var(--ek)"></span>LLMEvalKit</a>
           <a onclick="go('antguard')"><span class="dd-dot" style="background:var(--ag)"></span>AntGuard</a>
+          <div class="dd-group-label">Spatial Intelligence</div>
+          <a onclick="go('atlas')"><span class="dd-dot" style="background:var(--at)"></span>Atlas Geo Intelligence</a>
         </div></div>
       </li>
       <li><a href="#demos" onclick="go('demos')">Demos</a></li>
@@ -85,9 +84,8 @@
 <!-- ===== SIDEBAR NAVIGATION ===== -->
 <nav class="sb" id="sb">
   <div class="sb-sec">
-    <div class="sb-t">Get Started</div>
+    <div class="sb-t">Ant Intelligence</div>
     <a class="sb-l on" data-p="home" onclick="go('home')"><svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg> Overview</a>
-    <a class="sb-l" data-p="quickstart" onclick="go('quickstart')"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg> Quick Start</a>
   </div>
   <div class="sb-sec">
     <div class="sb-t">Edge AI &amp; Studio</div>
@@ -124,7 +122,7 @@
     </div>
   </div>
   <div class="sb-sec">
-    <div class="sb-t">Geo Intelligence</div>
+    <div class="sb-t">Spatial Intelligence</div>
     <a class="sb-l" data-p="atlas" onclick="go('atlas');tsub('sub-at')">
       <span class="d" style="background:var(--at)"></span> Atlas
     </a>
