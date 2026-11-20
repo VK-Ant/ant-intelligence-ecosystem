@@ -3803,31 +3803,33 @@ Atlas - Geo Intelligence is currently under active development as part of Arikiz
   <div id="ah-arch" style="scroll-margin-top:80px;margin-top:40px">
     <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #8b5cf6">Concept Architecture</h2>
     <div style="padding:24px;border:1px solid var(--border);border-radius:14px;background:var(--bg2)">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px">
-        <div style="text-align:center;padding:16px;border-radius:10px;background:var(--bg1);border:1px solid var(--border)">
-          <div style="font-size:24px;margin-bottom:6px">1</div>
-          <div style="font-size:14px;font-weight:600;color:var(--t1)">Text Input</div>
-          <div style="font-size:12px;color:var(--t3);margin-top:4px">User provides text description</div>
-        </div>
-        <div style="text-align:center;padding:16px;border-radius:10px;background:var(--bg1);border:1px solid var(--border)">
-          <div style="font-size:24px;margin-bottom:6px">2</div>
-          <div style="font-size:14px;font-weight:600;color:var(--t1)">Text-to-Image</div>
-          <div style="font-size:12px;color:var(--t3);margin-top:4px">ControlNet + Stable Diffusion</div>
-        </div>
-        <div style="text-align:center;padding:16px;border-radius:10px;background:var(--bg1);border:1px solid var(--border)">
-          <div style="font-size:24px;margin-bottom:6px">3</div>
-          <div style="font-size:14px;font-weight:600;color:var(--t1)">Image Enhancement</div>
-          <div style="font-size:12px;color:var(--t3);margin-top:4px">SRGAN + U2Net + RL Agent</div>
-        </div>
-        <div style="text-align:center;padding:16px;border-radius:10px;background:var(--bg1);border:1px solid var(--border)">
-          <div style="font-size:24px;margin-bottom:6px">4</div>
-          <div style="font-size:14px;font-weight:600;color:var(--t1)">3D Reconstruction</div>
-          <div style="font-size:12px;color:var(--t3);margin-top:4px">TripoSR neural reconstruction</div>
+      <img src="images/ahifa3d_architecture.jpg" alt="AHIFA3D Architecture Diagram" style="width:100%;border-radius:10px;margin-bottom:20px;border:1px solid var(--border)">
+      <p style="font-size:14px;color:var(--t2);line-height:1.7;margin:0">
+        The pipeline begins with user text input, processed through text-to-image generation. Images go through preprocessing, reflection removal (RL Agent), upscaling (ISR/GAN), and background removal (U2Net). User-provided images can also be enhanced using prompts. The preprocessed images feed into single-image 3D reconstruction, followed by evaluation to produce the final 3D model with texture.
+      </p>
+    </div>
+  </div>
+
+  <!-- Output Example -->
+  <div style="margin-top:40px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--t1);margin:0 0 20px 0;padding-bottom:10px;border-bottom:2px solid #8b5cf6">Example Output</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+      <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden">
+        <img src="images/ahifa3d_output.gif" alt="Text to 3D Reconstruction - Text-to-Image Generation vs RL Agent Relighting" style="width:100%;display:block">
+        <div style="padding:14px 16px">
+          <div style="font-size:14px;font-weight:600;color:var(--t1);margin-bottom:4px">RL Agent: Relighting</div>
+          <div style="font-size:13px;color:var(--t2)">Text-to-image generation output vs RL Agent relighting comparison</div>
         </div>
       </div>
-      <p style="font-size:14px;color:var(--t2);line-height:1.7;margin:0">
-        The pipeline begins with user text input, processed through text-to-image generation using ControlNet and Stable Diffusion. Images are refined through GAN-based upscaling and U2Net background removal. Reinforcement learning adaptively optimizes low-light conditions and reflections. The preprocessed images feed into single-image 3D reconstruction using TripoSR neural networks for spatial inference.
-      </p>
+      <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden">
+        <video controls style="width:100%;display:block" poster="images/ahifa3d_output.gif">
+          <source src="images/ahifa3d_demo.mp4" type="video/mp4">
+        </video>
+        <div style="padding:14px 16px">
+          <div style="font-size:14px;font-weight:600;color:var(--t1);margin-bottom:4px">3D Reconstruction Demo</div>
+          <div style="font-size:13px;color:var(--t2)">Full pipeline demo: text input to final 3D model with texture</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -3997,6 +3999,7 @@ TextTo3DReconstruction.ipynb</code></pre>
     <!-- Example Output -->
     <div style="margin-top:20px">
       <h3 style="font-size:16px;font-weight:600;color:var(--t1);margin:0 0 12px 0">Example Output</h3>
+      <img src="images/materialpbr_output.png" alt="Material PBR Classification Output - Aluminium and Gold" style="width:100%;border-radius:10px;border:1px solid var(--border);margin-bottom:16px">
       <pre style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;overflow-x:auto;font-size:13px;margin:0"><code>Material Category: Metal
 Material Type: aluminium
 
