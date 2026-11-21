@@ -971,6 +971,12 @@ sightrag serve --port 8000</code></pre><button class="cp" onclick="cc(this)">Cop
 <tr><td>DELETE</td><td><code>/index</code></td><td>Clear the entire index</td></tr>
 </tbody>
 </table>
+
+<div class="image-container">
+    <h2 class="sh" id="sr-cli">Architecture</h2>
+    <img src="images/Arc/SightRAG Architecture Overview.png" alt="Description">
+</div>
+
 </div>
 </div>
 <!-- ===== SONARWISE ===== -->
@@ -1210,6 +1216,11 @@ sw.export("meeting.wav", format="json", output="segments.json")    # Full JSON w
 sw.export("meeting.wav", format="csv", output="segments.csv")      # CSV tabular
 sw.export("meeting.wav", format="txt", output="transcript.txt")    # Plain text transcript
 sw.export("meeting.wav", format="notes", output="meeting_notes.md") # Meeting notes</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<div class="image-container">
+    <h2 class="sh" id="sr-cli">Architecture</h2>
+    <img src="images/Arc/SonarWise Audio Intelligence Architecture.png" alt="Description">
+</div>
 
 </div>
 </div>
@@ -1697,7 +1708,7 @@ allowing individual components to evolve independently.
 </p>
 
 <img
-    src="images/docqwise_Arc.png"
+    src="images/Arc/DocQWise Agentic Intelligence Architecture.png"
     class="banner"
     alt="DocQWise Architecture"
 >
@@ -2166,8 +2177,17 @@ make integration  # 7 integration tests (full pipeline flows)
 make streaming    # 31 streaming regression tests
 make test         # All 94 tests</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
+
+<div class="image-container">
+    <h2 class="sh" id="sr-cli">Architecture</h2>
+    <img src="images/Arc/WavqWise Technical Architecture Infographic.png" alt="Description">
+</div>
+
 </div>
 </div>
+<!-- ===== Adaptive Intelligence ===== -->
+
+
 <div class="pg" id="pg-adaptive" data-lib="Adaptive Intelligence">
 <div class="ct">
 <img src="images/adaptive_intelligence.png" class="banner" alt="Adaptive Intelligence">
@@ -2360,6 +2380,12 @@ engine = AdaptiveAI(api_key="sk-...", llm_model="gpt-4o")
 
 # Any OpenAI-compatible server (vLLM, text-generation-inference, etc.)
 engine = AdaptiveAI(base_url="http://localhost:8000/v1")</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
+
+<div class="image-container">
+    <h2 class="sh" id="sr-cli">Architecture</h2>
+    <img src="images/Arc/Adaptive Intelligence Architecture Diagram.png" alt="Description">
+</div>
+
 
 <h2 class="sh" id="ai-faq">Performance Notes</h2>
 <p class="pr"><strong>Warmup:</strong> Default 15 queries. During warmup, smart heuristic defaults are used while collecting RL statistics. Use <code>pretrained_policy=True</code> to skip warmup.</p>
@@ -2698,6 +2724,13 @@ print("Jailbreak resistance:", r.score)  # 1.0 = resisted (good)
 r = PIIExtractionProbe().evaluate(answer="I cannot share personal information.")
 print("PII resistance:", r.score)  # 1.0 = no leak (good)</code></pre><button class="cp" onclick="cc(this)">Copy</button></div>
 
+
+<div class="image-container">
+    <h2 class="sh" id="sr-cli">Architecture</h2>
+    <img src="images/Arc/LLMEvalKit Architecture Overview.png" alt="Description">
+</div>
+
+
 <h2 class="sh" id="ek-pre">All 28 Presets</h2>
 <p class="pr">Presets are pre-configured metric bundles. Instead of selecting individual metrics, pick a preset that matches your scenario.</p>
 <table class="tb">
@@ -2955,6 +2988,11 @@ OVERALL RISK: LOW
 <tr><td>CPU/Memory</td><td>psutil</td><td>psutil</td><td>psutil</td></tr>
 </tbody>
 </table>
+
+<div class="image-container">
+    <h2 class="sh" id="sr-cli">Architecture</h2>
+    <img src="images/Arc/AntGuard.png" alt="Description">
+</div>
 
 <h2 class="sh" id="ag-perf">Performance</h2>
 <p class="pr"><strong>Memory footprint:</strong> Under 25 MB RAM regardless of session length. Events stream to disk, not held in memory.</p>
